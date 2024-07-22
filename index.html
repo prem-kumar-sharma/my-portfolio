@@ -65,11 +65,13 @@
             margin: 20px 0 0;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
         }
         nav ul li {
             margin: 0 10px;
             display: inline-block;
+            white-space: nowrap;
         }
         nav ul li a {
             color: #ffdd57;
@@ -209,7 +211,8 @@
                 margin: 0 0 20px;
             }
             nav ul {
-                justify-content: center;
+                justify-content: flex-start;
+                overflow-x: auto;
             }
             nav ul li {
                 margin: 5px;
