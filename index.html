@@ -11,12 +11,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: #121212;
+            color: #fff;
             transition: background-color 0.5s, color 0.5s;
         }
         header {
-            background-color: #002147;
+            background-color: #1f1f1f;
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -24,10 +24,12 @@
         header h1 {
             margin: 0;
             font-size: 36px;
+            text-shadow: 0 0 10px #ffdd57;
         }
         header p {
             margin: 10px 0 0;
             font-size: 18px;
+            text-shadow: 0 0 5px #ffdd57;
         }
         nav ul {
             list-style: none;
@@ -35,18 +37,20 @@
             margin: 20px 0 0;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
         nav ul li {
             margin: 0 15px;
         }
         nav ul li a {
-            color: #fff;
+            color: #ffdd57;
             text-decoration: none;
             font-size: 16px;
             transition: color 0.3s;
         }
         nav ul li a:hover {
             color: #ffdd57;
+            text-shadow: 0 0 5px #fff;
         }
         .container {
             max-width: 1200px;
@@ -56,8 +60,9 @@
         h2 {
             font-size: 28px;
             margin-bottom: 20px;
-            border-bottom: 2px solid #002147;
+            border-bottom: 2px solid #ffdd57;
             padding-bottom: 10px;
+            text-shadow: 0 0 5px #ffdd57;
         }
         .about {
             display: flex;
@@ -71,6 +76,7 @@
             height: 150px;
             object-fit: cover;
             transition: transform 0.5s;
+            box-shadow: 0 0 15px #ffdd57;
         }
         .about img:hover {
             transform: scale(1.1);
@@ -82,17 +88,17 @@
             margin: 20px 0;
         }
         .skill {
-            background-color: #fff;
+            background-color: #1f1f1f;
             padding: 10px 20px;
             border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 221, 87, 0.2);
             display: flex;
             align-items: center;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .skill:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
         }
         .skill img {
             width: 24px;
@@ -100,20 +106,21 @@
             margin-right: 10px;
         }
         .project, .experience {
-            background-color: #fff;
+            background-color: #1f1f1f;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(255, 221, 87, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .project:hover, .experience:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
         }
         .project h3, .experience h3 {
             margin-top: 0;
             font-size: 24px;
+            text-shadow: 0 0 5px #ffdd57;
         }
         .project button {
             display: inline-block;
@@ -121,42 +128,44 @@
             padding: 10px 15px;
             font-size: 14px;
             color: #fff;
-            background-color: #002147;
+            background-color: #ffdd57;
             border: none;
             border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s;
         }
         .project button:hover {
-            background-color: #ffdd57;
-            color: #002147;
+            background-color: #fff;
+            color: #121212;
         }
         .contact p, .contact a {
             font-size: 16px;
-            color: #002147;
+            color: #ffdd57;
             text-decoration: none;
         }
         .contact a:hover {
             text-decoration: underline;
         }
         footer {
-            background-color: #002147;
-            color: #fff;
+            background-color: #1f1f1f;
+            color: #ffdd57;
             text-align: center;
             padding: 10px 0;
+            text-shadow: 0 0 5px #ffdd57;
         }
         .social-icons {
             margin-top: 20px;
         }
         .social-icons a {
             margin: 0 10px;
-            color: #002147;
+            color: #ffdd57;
             text-decoration: none;
             font-size: 24px;
             transition: color 0.3s;
         }
         .social-icons a:hover {
-            color: #ffdd57;
+            color: #fff;
+            text-shadow: 0 0 5px #ffdd57;
         }
         @media (max-width: 768px) {
             .about {
@@ -190,8 +199,8 @@
             <div>
                 <h2>About Me</h2>
                 <p>Hey 👋🏻 I am <b>Prem Kumar</b>, currently pursuing a <b>Bachelor's Degree in Data Science & Applications</b> from the <b>Indian Institute of Technology Madras</b>. My technical skills include <b>Python</b>, <b>JavaScript</b>, <b>Vue.js</b>, <b>Flask</b>, and various <b>machine learning tools</b> like <b>scikit-learn</b> and <b>pandas</b>. I also have experience with <b>web development</b> using <b>HTML</b>, <b>CSS</b>, <b>Bootstrap</b>, and <b>Jinja2</b>, as well as <b>database management</b> with <b>SQL</b> and <b>Flask-SQLAlchemy</b>.</p>
-                <p>I have worked on several exciting projects, including developing a <b>Grocery-Store-App</b>, comparing <b>machine learning models</b>, conducting a <b>Business Data Management capstone project</b>, and creating an <b>E-Library platform</b>. Additionally, I co-founded and served as CEO of <b>TechoTians</b>, a <b>digital marketing company</b>, and worked as a <b>Data Analyst Intern</b> at <b>Medical Network Pvt. Ltd.</b> I've also held positions as a <b>Graphic Designer and Content Researcher</b> at <b>LearnEverythingAI</b> and as the <b>WebOps Team Lead and Designer</b> at <b>Nallamala House, IIT Madras</b>.</p>
-                <p>In my free time, I enjoy <b>reading books</b>, <b>playing chess</b>, and <b>cricket</b>. I am passionate about creating visually engaging content, conducting market research, and fostering innovation and collaboration among teams.</p>
+                <p>I have worked on several exciting projects, including developing a <b>Grocery-Store-App</b> 🛒, comparing <b>machine learning models</b> 🤖, conducting a <b>Business Data Management capstone project</b> 📊, and creating an <b>E-Library platform</b> 📚. Additionally, I co-founded and served as CEO of <b>TechoTians</b> 🚀, a <b>digital marketing company</b>, and worked as a <b>Data Analyst Intern</b> at <b>Medical Network Pvt. Ltd.</b> 💼. I've also held positions as a <b>Graphic Designer and Content Researcher</b> at <b>LearnEverythingAI</b> 🎨 and as the <b>WebOps Team Lead and Designer</b> at <b>Nallamala House, IIT Madras</b> 🏫.</p>
+                <p>In my free time, I enjoy <b>reading books</b> 📚, <b>playing chess</b> ♟️, and <b>cricket</b> 🏏. I am passionate about creating visually engaging content, conducting market research, and fostering innovation and collaboration among teams.</p>
             </div>
         </section>
         <section id="skills" class="container">
@@ -282,41 +291,41 @@
                     {
                         title: 'Food Recipe Rating Prediction',
                         link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
-                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy.'
+                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy. 🤖'
                     },
                     {
                         title: 'Library Management System',
                         link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
-                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database.'
+                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database. 📚'
                     },
                     {
                         title: 'Diabeteasy',
                         link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
-                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript.'
+                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript. 💊'
                     },
                     {
                         title: 'Optimization of Operations at Shanvi General & Dairy Products Shop',
                         link: 'https://github.com/prem-kumar-sharma/BDM-Capstone-Projects',
-                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations.'
+                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations. 📊'
                     },
                     {
                         title: 'Grocery Store App',
                         link: 'https://github.com/prem-kumar-sharma/Grocery-Store-App',
-                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management.'
+                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management. 🛒'
                     }
                 ],
                 experiences: [
                     {
                         title: 'Co-founder & CEO at TechoTians',
-                        description: 'Oversee a digital marketing company specializing in marketing, lead generation, market research, and IT solutions. Responsible for strategic planning, business development, and ensuring client satisfaction for company growth and success.'
+                        description: 'Oversee a digital marketing company specializing in marketing, lead generation, market research, and IT solutions. Responsible for strategic planning, business development, and ensuring client satisfaction for company growth and success. 🚀'
                     },
                     {
                         title: 'Data Analyst Intern at Medical Network Pvt. Ltd.',
-                        description: 'Analyzed leads data for the franchise model and other critical data related to marketing, inventory, and business operations. Extracted insights, optimized processes, and supported data-driven decision-making to enhance overall performance.'
+                        description: 'Analyzed leads data for the franchise model and other critical data related to marketing, inventory, and business operations. Extracted insights, optimized processes, and supported data-driven decision-making to enhance overall performance. 💼'
                     },
                     {
                         title: 'Graphic Designer & Content Researcher at LearnEverythingAI',
-                        description: 'Created visually engaging content and conducted in-depth research. Designed graphics, analyzed trends, and crafted compelling content to enhance user experience and drive engagement.'
+                        description: 'Created visually engaging content and conducted in-depth research. Designed graphics, analyzed trends, and crafted compelling content to enhance user experience and drive engagement. 🎨'
                     }
                 ]
             }
