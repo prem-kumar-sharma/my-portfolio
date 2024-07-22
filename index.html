@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prem Kumar - Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        header {
+            background-color: #002147;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        header p {
+            margin: 10px 0 0;
+            font-size: 18px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffdd57;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #002147;
+            padding-bottom: 10px;
+        }
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .about img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .about img:hover {
+            transform: scale(1.1);
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .skill {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .skill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+        }
+        .skill img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .project, .experience {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project:hover, .experience:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+        }
+        .project h3, .experience h3 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+        .project button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #002147;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .project button:hover {
+            background-color: #ffdd57;
+            color: #002147;
+        }
+        .contact p, .contact a {
+            font-size: 16px;
+            color: #002147;
+            text-decoration: none;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #002147;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .social-icons {
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: #002147;
+            text-decoration: none;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #ffdd57;
+        }
+        @media (max-width: 768px) {
+            .about {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .about img {
+                margin: 0 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Prem Kumar</h1>
+            <p><b>Co-founder & CEO</b> at <b>TechoTians</b> | <b>Data Science Student</b> at <b>IIT Madras</b></p>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="about" class="container about">
+            <img src="profile.jpg" alt="Prem Kumar">
+            <div>
+                <h2>About Me</h2>
+                <p>Hey 👋🏻 I am <b>Prem Kumar</b>, currently pursuing a <b>Bachelor's Degree in Data Science & Applications</b> from the <b>Indian Institute of Technology Madras</b>. My technical skills include <b>Python</b>, <b>JavaScript</b>, <b>Vue.js</b>, <b>Flask</b>, and various <b>machine learning tools</b> like <b>scikit-learn</b> and <b>pandas</b>. I also have experience with <b>web development</b> using <b>HTML</b>, <b>CSS</b>, <b>Bootstrap</b>, and <b>Jinja2</b>, as well as <b>database management</b> with <b>SQL</b> and <b>Flask-SQLAlchemy</b>.</p>
+                <p>I have worked on several exciting projects, including developing a <b>Grocery-Store-App</b>, comparing <b>machine learning models</b>, conducting a <b>Business Data Management capstone project</b>, and creating an <b>E-Library platform</b>. Additionally, I co-founded and served as CEO of <b>TechoTians</b>, a <b>digital marketing company</b>, and worked as a <b>Data Analyst Intern</b> at <b>Medical Network Pvt. Ltd.</b> I've also held positions as a <b>Graphic Designer and Content Researcher</b> at <b>LearnEverythingAI</b> and as the <b>WebOps Team Lead and Designer</b> at <b>Nallamala House, IIT Madras</b>.</p>
+                <p>In my free time, I enjoy <b>reading books</b>, <b>playing chess</b>, and <b>cricket</b>. I am passionate about creating visually engaging content, conducting market research, and fostering innovation and collaboration among teams.</p>
+            </div>
+        </section>
+        <section id="skills" class="container">
+            <h2>Skills</h2>
+            <div class="skills">
+                <div class="skill">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+                    <span>Python</span>
+                </div>
+                <div class="skill">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                    <span>JavaScript</span>
+                </div>
+                <div class="skill">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js">
+                    <span>Vue.js</span>
+                </div>
+                <div class="skill">
+                    <img src="https://cdn.worldvectorlogo.com/logos/java.svg" alt="Java">
+                    <span>Java</span>
+                </div>
+                <div class="skill">
+                    <img src="https://repository-images.githubusercontent.com/994551/2ba89c40-184d-45ec-8ffe-f9e155aaf702" alt="Jinja2">
+                    <span>Jinja2</span>
+                </div>
+                <div class="skill">
+                    <img src="https://miro.medium.com/v2/resize:fit:438/1*0G5zu7CnXdMT9pGbYUTQLQ.png" alt="Flask">
+                    <span>Flask</span>
+                </div>
+                <div class="skill">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn">
+                    <span>Scikit-learn</span>
+                </div>
+                <div class="skill">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pandas_logo.svg" alt="Pandas">
+                    <span>Pandas</span>
+                </div>
+                <div class="skill">
+                    <img src="https://numpy.org/images/numpy-image.jpg" alt="NumPy">
+                    <span>NumPy</span>
+                </div>
+                <div class="skill">
+                    <img src="https://techcommunity.microsoft.com/t5/image/serverpage/image-id/283585i32E35734ADB2BDF9" alt="SQL">
+                    <span>SQL</span>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="container">
+            <h2>Projects</h2>
+            <div class="project" v-for="project in projects" :key="project.title">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                <a :href="project.link" target="_blank"><button>View Project</button></a>
+            </div>
+        </section>
+        <section id="experience" class="container">
+            <h2>Experience</h2>
+            <div class="experience" v-for="experience in experiences" :key="experience.title">
+                <h3>{{ experience.title }}</h3>
+                <p>{{ experience.description }}</p>
+            </div>
+        </section>
+        <section id="contact" class="container contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:viratprem4321@gmail.com">viratprem4321@gmail.com</a></p>
+            <p>Phone: <a href="tel:+917488680644">+91-7488680644</a></p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/prem-kumar-a499b1201/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="32" height="32">
+                </a>
+                <a href="https://github.com/prem-kumar-sharma" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="32" height="32">
+                </a>
+                <a href="https://www.instagram.com/prem.kr_sharma/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="32" height="32">
+                </a>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2024 Prem Kumar. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                projects: [
+                    {
+                        title: 'Food Recipe Rating Prediction',
+                        link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
+                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy.'
+                    },
+                    {
+                        title: 'Library Management System',
+                        link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
+                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database.'
+                    },
+                    {
+                        title: 'Diabeteasy',
+                        link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
+                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript.'
+                    },
+                    {
+                        title: 'Optimization of Operations at Shanvi General & Dairy Products Shop',
+                        link: 'https://github.com/prem-kumar-sharma/BDM-Capstone-Projects',
+                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations.'
+                    },
+                    {
+                        title: 'Grocery Store App',
+                        link: 'https://github.com/prem-kumar-sharma/Grocery-Store-App',
+                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management.'
+                    }
+                ],
+                experiences: [
+                    {
+                        title: 'Co-founder & CEO at TechoTians',
+                        description: 'Oversee a digital marketing company specializing in marketing, lead generation, market research, and IT solutions. Responsible for strategic planning, business development, and ensuring client satisfaction for company growth and success.'
+                    },
+                    {
+                        title: 'Data Analyst Intern at Medical Network Pvt. Ltd.',
+                        description: 'Analyzed leads data for the franchise model and other critical data related to marketing, inventory, and business operations. Extracted insights, optimized processes, and supported data-driven decision-making to enhance overall performance.'
+                    },
+                    {
+                        title: 'Graphic Designer & Content Researcher at LearnEverythingAI',
+                        description: 'Created visually engaging content and conducted in-depth research. Designed graphics, analyzed trends, and crafted compelling content to enhance user experience and drive engagement.'
+                    }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
