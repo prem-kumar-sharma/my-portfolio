@@ -14,51 +14,22 @@
             background-color: #121212;
             color: #fff;
             transition: background-color 0.5s, color 0.5s;
-            overflow: hidden;
-        }
-        .splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #1f1f1f;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-        }
-        .splash-screen h1 {
-            color: #ffdd57;
-            font-size: 36px;
-            text-shadow: 0 0 10px #ffdd57;
         }
         header {
             background-color: #1f1f1f;
-            color: #ffdd57;
+            color: #fff;
             padding: 20px 0;
             text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         header h1 {
             margin: 0;
             font-size: 36px;
             text-shadow: 0 0 10px #ffdd57;
-            display: inline-block;
         }
-        header .typewriter p {
+        header p {
             margin: 10px 0 0;
             font-size: 18px;
             text-shadow: 0 0 5px #ffdd57;
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 0.15em solid #ffdd57;
-            animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
         }
         nav ul {
             list-style: none;
@@ -78,12 +49,12 @@
             transition: color 0.3s;
         }
         nav ul li a:hover {
-            color: #fff;
-            text-shadow: 0 0 5px #ffdd57;
+            color: #ffdd57;
+            text-shadow: 0 0 5px #fff;
         }
         .container {
             max-width: 1200px;
-            margin: 100px auto 20px;
+            margin: 20px auto;
             padding: 0 20px;
         }
         h2 {
@@ -97,7 +68,6 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            animation: fadeIn 1s ease-in-out;
         }
         .about img {
             border-radius: 50%;
@@ -111,15 +81,11 @@
         .about img:hover {
             transform: scale(1.1);
         }
-        .about .about-text {
-            flex: 1;
-        }
         .skills {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin: 20px 0;
-            animation: fadeIn 1s ease-in-out;
         }
         .skill {
             background-color: #1f1f1f;
@@ -146,7 +112,6 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(255, 221, 87, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeIn 1s ease-in-out;
         }
         .project:hover, .experience:hover {
             transform: translateY(-5px);
@@ -162,7 +127,7 @@
             margin-top: 10px;
             padding: 10px 15px;
             font-size: 14px;
-            color: #121212;
+            color: #fff;
             background-color: #ffdd57;
             border: none;
             border-radius: 5px;
@@ -211,37 +176,14 @@
             .about img {
                 margin: 0 0 20px;
             }
-            nav ul {
-                flex-direction: column;
-            }
-            nav ul li {
-                margin: 10px 0;
-            }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #ffdd57; }
         }
     </style>
 </head>
 <body>
-    <div class="splash-screen" id="splash-screen">
-        <h1>Loading...</h1>
-    </div>
-    <div id="app" style="display: none;">
+    <div id="app">
         <header>
             <h1>Prem Kumar</h1>
-            <div class="typewriter">
-                <p>Co-founder & CEO at TechoTians | Data Science Student at IIT Madras</p>
-            </div>
+            <p><b>Co-founder & CEO</b> at <b>TechoTians</b> | <b>Data Science Student</b> at <b>IIT Madras</b></p>
             <nav>
                 <ul>
                     <li><a href="#about">About</a></li>
@@ -254,7 +196,7 @@
         </header>
         <section id="about" class="container about">
             <img src="profile.jpg" alt="Prem Kumar">
-            <div class="about-text">
+            <div>
                 <h2>About Me</h2>
                 <p>Hey 👋🏻 I am <b>Prem Kumar</b>, currently pursuing a <b>Bachelor's Degree in Data Science & Applications</b> from the <b>Indian Institute of Technology Madras</b>. My technical skills include <b>Python</b>, <b>JavaScript</b>, <b>Vue.js</b>, <b>Flask</b>, and various <b>machine learning tools</b> like <b>scikit-learn</b> and <b>pandas</b>. I also have experience with <b>web development</b> using <b>HTML</b>, <b>CSS</b>, <b>Bootstrap</b>, and <b>Jinja2</b>, as well as <b>database management</b> with <b>SQL</b> and <b>Flask-SQLAlchemy</b>.</p>
                 <p>I have worked on several exciting projects, including developing a <b>Grocery-Store-App</b> 🛒, comparing <b>machine learning models</b> 🤖, conducting a <b>Business Data Management capstone project</b> 📊, and creating an <b>E-Library platform</b> 📚. Additionally, I co-founded and served as CEO of <b>TechoTians</b> 🚀, a <b>digital marketing company</b>, and worked as a <b>Data Analyst Intern</b> at <b>Medical Network Pvt. Ltd.</b> 💼. I've also held positions as a <b>Graphic Designer and Content Researcher</b> at <b>LearnEverythingAI</b> 🎨 and as the <b>WebOps Team Lead and Designer</b> at <b>Nallamala House, IIT Madras</b> 🏫.</p>
@@ -387,27 +329,6 @@
                     }
                 ]
             }
-        });
-
-        // Splash screen functionality
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('splash-screen').style.display = 'none';
-                document.getElementById('app').style.display = 'block';
-                document.body.style.overflow = 'auto';
-            }, 2000);
-        });
-
-        // Add scroll animations
-        document.addEventListener('scroll', function() {
-            let elements = document.querySelectorAll('.about, .skills, .project, .experience');
-            elements.forEach(function(element) {
-                let position = element.getBoundingClientRect().top;
-                let screenPosition = window.innerHeight / 1.3;
-                if (position < screenPosition) {
-                    element.style.animation = 'fadeIn 1s ease-in-out';
-                }
-            });
         });
     </script>
 </body>
