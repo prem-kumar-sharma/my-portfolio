@@ -67,9 +67,10 @@
             justify-content: center;
             flex-wrap: nowrap;
             overflow-x: auto;
+            gap: 10px; /* Add this line for spacing between buttons */
         }
         nav ul li {
-            margin: 0 10px;
+            margin: 0;
             display: inline-block;
             white-space: nowrap;
         }
@@ -77,12 +78,13 @@
             color: #ffdd57;
             text-decoration: none;
             font-size: 16px;
-            padding: 8px 12px;
+            padding: 10px 20px; /* Adjust padding for a more button-like appearance */
             border: 2px solid #ffdd57;
             border-radius: 12px;
             transition: background-color 0.3s, color 0.3s;
             font-weight: bold;
-            display: inline-block;
+            display: block; /* Ensure full button area is clickable */
+            background-color: #1f1f1f; /* Background color for buttons */
         }
         nav ul li a:hover {
             background-color: #ffdd57;
