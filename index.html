@@ -152,6 +152,17 @@
             transform: translateY(-5px);
             box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
         }
+        .project img {
+            width: 600px;
+            height: 200px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 221, 87, 0.2);
+            transition: transform 0.3s;
+            margin-bottom: 15px;
+        }
+        .project img:hover {
+            transform: scale(1.05);
+        }
         .project h3, .experience h3 {
             margin-top: 0;
             font-size: 24px;
@@ -307,6 +318,7 @@
         <section id="projects" class="container">
             <h2>Projects</h2>
             <div class="project" v-for="project in projects" :key="project.title">
+                <img :src="project.image" :alt="project.title">
                 <h3>{{ project.title }}</h3>
                 <p>{{ project.description }}</p>
                 <a :href="project.link" target="_blank"><button>View Project</button></a>
@@ -347,27 +359,32 @@
                     {
                         title: 'Food Recipe Rating Prediction',
                         link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
-                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy. 🤖'
+                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy. 🤖',
+                        image: 'https://c.ndtvimg.com/2022-05/lktbe7no_dinner-indian-food_625x300_11_May_22.jpg?im=FeatureCrop,algorithm=dnn,width=620,height=350?im=FaceCrop,algorithm=dnn,width=1200,height=886/600x200'
                     },
                     {
                         title: 'Library Management System',
                         link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
-                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database. 📚'
+                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database. 📚',
+                        image: 'https://images.indianexpress.com/2022/01/E-library.jpg'
                     },
                     {
                         title: 'Diabeteasy',
                         link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
-                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript. 💊'
+                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript. 💊',
+                        image: 'https://frontierhealthcare.com.sg/wp-content/uploads/2023/02/Diabetes-Complications-Banner.jpg'
                     },
                     {
                         title: 'Optimization of Operations at Shanvi General & Dairy Products Shop',
                         link: 'https://github.com/prem-kumar-sharma/BDM-Capstone-Projects',
-                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations. 📊'
+                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations. 📊',
+                        image: 'https://imageio.forbes.com/specials-images/imageserve/5fca87f3ce4ca55e8985a10a/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds'
                     },
                     {
                         title: 'Grocery Store App',
                         link: 'https://github.com/prem-kumar-sharma/Grocery-Store-App',
-                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management. 🛒'
+                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management. 🛒',
+                        image: 'https://www.tastingtable.com/img/gallery/13-most-affordable-grocery-stores-in-2023/l-intro-1679073677.jpg'
                     }
                 ],
                 experiences: [
