@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +15,6 @@
             color: #fff;
             transition: background-color 0.5s, color 0.5s;
         }
-
         /* Splash Screen */
         #splash-screen {
             position: fixed;
@@ -28,7 +26,6 @@
             justify-content: center;
             z-index: 1000;
         }
-
         .loading-box {
             width: 150px;
             height: 20px;
@@ -36,43 +33,32 @@
             position: relative;
             overflow: hidden;
         }
-
         .loading-bar {
             width: 100%;
             height: 100%;
             background-color: #ffdd57;
             animation: loading 1s linear infinite;
         }
-
         @keyframes loading {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
+            0% {transform: translateX(-100%);}
+            100% {transform: translateX(100%);}
         }
-
         header {
             background-color: #1f1f1f;
             color: #fff;
             padding: 20px 0;
             text-align: center;
         }
-
         header h1 {
             margin: 0;
             font-size: 36px;
             text-shadow: 0 0 10px #ffdd57;
         }
-
         header p {
             margin: 10px 0 0;
             font-size: 18px;
             text-shadow: 0 0 5px #ffdd57;
         }
-
         nav ul {
             list-style: none;
             padding: 0;
@@ -82,13 +68,11 @@
             flex-wrap: nowrap;
             overflow-x: auto;
         }
-
         nav ul li {
             margin: 0 10px;
             display: inline-block;
             white-space: nowrap;
         }
-
         nav ul li a {
             color: #ffdd57;
             text-decoration: none;
@@ -99,18 +83,15 @@
             transition: background-color 0.3s, color 0.3s;
             font-weight: bold;
         }
-
         nav ul li a:hover {
             background-color: #ffdd57;
             color: #121212;
         }
-
         .container {
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 20px;
         }
-
         h2 {
             font-size: 28px;
             margin-bottom: 20px;
@@ -118,13 +99,11 @@
             padding-bottom: 10px;
             text-shadow: 0 0 5px #ffdd57;
         }
-
         .about {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
         }
-
         .about img {
             border-radius: 50%;
             margin-right: 20px;
@@ -134,18 +113,15 @@
             transition: transform 0.5s;
             box-shadow: 0 0 15px #ffdd57;
         }
-
         .about img:hover {
             transform: scale(1.1);
         }
-
         .skills {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin: 20px 0;
         }
-
         .skill {
             background-color: #1f1f1f;
             padding: 10px 20px;
@@ -155,20 +131,16 @@
             align-items: center;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
         .skill:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
         }
-
         .skill img {
             width: 24px;
             height: 24px;
             margin-right: 10px;
         }
-
-        .project,
-        .experience {
+        .project, .experience {
             background-color: #1f1f1f;
             padding: 20px;
             margin-bottom: 20px;
@@ -176,30 +148,16 @@
             box-shadow: 0 0 15px rgba(255, 221, 87, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
-        .project:hover,
-        .experience:hover {
+        .project:hover, .experience:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
         }
-
-        .project h3,
-        .experience h3 {
+        .project h3, .experience h3 {
             margin-top: 0;
             font-size: 24px;
             text-shadow: 0 0 5px #ffdd57;
         }
-
-        .project img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            max-height: 200px; /* Adjust height as per requirement */
-        }
-
-        .project button,
-        .resume-download button {
+        .project button, .resume-download button {
             display: inline-block;
             margin-top: 10px;
             padding: 10px 15px;
@@ -211,24 +169,18 @@
             text-decoration: none;
             transition: background-color 0.3s;
         }
-
-        .project button:hover,
-        .resume-download button:hover {
+        .project button:hover, .resume-download button:hover {
             background-color: #fff;
             color: #121212;
         }
-
-        .contact p,
-        .contact a {
+        .contact p, .contact a {
             font-size: 16px;
             color: #ffdd57;
             text-decoration: none;
         }
-
         .contact a:hover {
             text-decoration: underline;
         }
-
         footer {
             background-color: #1f1f1f;
             color: #ffdd57;
@@ -236,11 +188,9 @@
             padding: 10px 0;
             text-shadow: 0 0 5px #ffdd57;
         }
-
         .social-icons {
             margin-top: 20px;
         }
-
         .social-icons a {
             margin: 0 10px;
             color: #ffdd57;
@@ -248,33 +198,27 @@
             font-size: 24px;
             transition: color 0.3s;
         }
-
         .social-icons a:hover {
             color: #fff;
             text-shadow: 0 0 5px #ffdd57;
         }
-
         @media (max-width: 768px) {
             .about {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
             }
-
             .about img {
                 margin: 0 0 20px;
             }
-
             nav ul {
                 justify-content: center;
                 overflow-x: auto;
                 padding: 10px 0;
             }
-
             nav ul li {
                 margin: 5px;
             }
-
             nav ul li a {
                 font-size: 14px;
                 padding: 6px 10px;
@@ -282,38 +226,8 @@
                 font-weight: bold;
             }
         }
-
-        @media (min-width: 769px) {
-            header {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-
-            nav ul {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            nav ul li {
-                margin: 10px;
-                display: inline-block;
-            }
-
-            nav ul li a {
-                font-size: 16px;
-                padding: 8px 12px;
-                border-radius: 8px;
-                font-weight: bold;
-                display: inline-block;
-                margin: 5px;
-                text-align: center;
-            }
-        }
     </style>
 </head>
-
 <body>
     <div id="splash-screen">
         <div class="loading-box">
@@ -322,7 +236,6 @@
     </div>
     <div id="app" style="display:none;">
         <header>
-            <img src="profile.jpg" alt="Prem Kumar">
             <h1>Prem Kumar</h1>
             <p><b>Co-founder & CEO</b> at <b>TechoTians</b> | <b>Data Science Student</b> at <b>IIT Madras</b></p>
             <nav>
@@ -335,6 +248,7 @@
             </nav>
         </header>
         <section id="about" class="container about">
+            <img src="profile.jpg" alt="Prem Kumar">
             <div>
                 <h2>About Me</h2>
                 <p>Hey 👋🏻 I am <b>Prem Kumar</b>, currently pursuing a <b>Bachelor's Degree in Data Science & Applications</b> from the <b>Indian Institute of Technology Madras</b>. My technical skills include <b>Python</b>, <b>JavaScript</b>, <b>Vue.js</b>, <b>Flask</b>, and various <b>machine learning tools</b> like <b>scikit-learn</b> and <b>pandas</b>. I also have experience with <b>web development</b> using <b>HTML</b>, <b>CSS</b>, <b>Bootstrap</b>, and <b>Jinja2</b>, as well as <b>database management</b> with <b>SQL</b> and <b>Flask-SQLAlchemy</b>.</p>
@@ -393,7 +307,6 @@
         <section id="projects" class="container">
             <h2>Projects</h2>
             <div class="project" v-for="project in projects" :key="project.title">
-                <img :src="project.image" alt="Project Image">
                 <h3>{{ project.title }}</h3>
                 <p>{{ project.description }}</p>
                 <a :href="project.link" target="_blank"><button>View Project</button></a>
@@ -434,32 +347,27 @@
                     {
                         title: 'Food Recipe Rating Prediction',
                         link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
-                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy. 🤖',
-                        image: 'https://via.placeholder.com/600x200' // Placeholder image with shorter height
+                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy. 🤖'
                     },
                     {
                         title: 'Library Management System',
                         link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
-                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database. 📚',
-                        image: 'https://via.placeholder.com/600x200' // Placeholder image with shorter height
+                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database. 📚'
                     },
                     {
                         title: 'Diabeteasy',
                         link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
-                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript. 💊',
-                        image: 'https://via.placeholder.com/600x200' // Placeholder image with shorter height
+                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript. 💊'
                     },
                     {
                         title: 'Optimization of Operations at Shanvi General & Dairy Products Shop',
                         link: 'https://github.com/prem-kumar-sharma/BDM-Capstone-Projects',
-                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations. 📊',
-                        image: 'https://via.placeholder.com/600x200' // Placeholder image with shorter height
+                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations. 📊'
                     },
                     {
                         title: 'Grocery Store App',
                         link: 'https://github.com/prem-kumar-sharma/Grocery-Store-App',
-                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management. 🛒',
-                        image: 'https://via.placeholder.com/600x200' // Placeholder image with shorter height
+                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management. 🛒'
                     }
                 ],
                 experiences: [
@@ -479,7 +387,7 @@
             }
         });
         // Splash Screen Timeout
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             setTimeout(() => {
                 document.getElementById('splash-screen').style.display = 'none';
                 document.getElementById('app').style.display = 'block';
@@ -487,5 +395,4 @@
         });
     </script>
 </body>
-
 </html>
