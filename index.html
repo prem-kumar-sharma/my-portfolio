@@ -314,7 +314,7 @@
             <img src="My_pic.jpg" alt="Prem Kumar">
             <div>
                 <h2>About Me</h2>
-                <p>Hey 👋🏻 I'm <b>Prem Kumar</b>, a Data Science student at <b>IIT Madras</b> skilled in <b>Python</b>, <b>JavaScript</b>, <b>Vue.js</b>, <b>Flask</b>, and machine learning tools. I've developed projects like a <b>Grocery-Store-App</b>, <b>E-Library platform</b>, <b>Dibeteasy</b> (a diabetes management app), <b>Food Rating Predictions</b>, and a <b>Business Data Management project</b>. I have hands-on experience in <b>machine learning</b> and <b>Generative AI</b>. I worked as a <b>Web Developer </b> at <b>TechoTians</b> and a <b>Data Analyst Intern</b> at <b>Medical Network Pvt. Ltd.</b> I also led a 36-hour hackathon at IIT Madras, showcasing leadership and event management skills. Outside of work, I enjoy <b>reading</b>, <b>playing chess</b>, and <b>cricket</b>. Let's connect to discuss more about the latest tech.</p>
+                <p>Hey 👋🏻 I'm <b>Prem Kumar</b>, a Data Science student at <b>IIT Madras</b> skilled in <b>Python</b>, <b>JavaScript</b>, <b>Vue.js</b>, <b>Flask</b>, and various machine learning tools. I've developed projects like a <b>Grocery-Store-App</b>, <b>E-Library platform</b>, <b>Dibeteasy</b> (a diabetes management app), <b>Food Rating Predictions</b>, and a <b>Business Data Management project</b>. I have hands-on experience in <b>machine learning</b> and <b>Generative AI</b>. I worked as a <b>Web Developer </b> at <b>TechoTians</b> and a <b>Data Analyst Intern</b> at <b>Medical Network Pvt. Ltd.</b> I also led a 36-hour hackathon at IIT Madras, showcasing leadership and event management skills. Outside of work, I enjoy <b>reading</b>, <b>playing chess</b>, and <b>cricket</b>. Let's connect to discuss more about the latest tech.</p>
 
                 <div class="resume-download">
                     <a href="PREM- IITM BS.pdf" download><button>Download Resume</button></a>
@@ -415,6 +415,43 @@
         </footer>
     </div>
     <script>
+        window.addEventListener('load', function() {
+            // Vanta.NET background animation
+            VANTA.NET({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0xffdd57,  // Customize this color
+                backgroundColor: 0x121212,  // Match your dark theme
+                points: 12.00,
+                maxDistance: 20.00,
+                spacing: 18.00
+            });
+
+            // Splash Screen Timeout with Percentage Loader
+            let percentage = 0;
+            const loadingText = document.getElementById('loading-percentage');
+
+            function updatePercentage() {
+                loadingText.textContent = `${percentage}%`;
+                percentage++;
+
+                if (percentage <= 100) {
+                    setTimeout(updatePercentage, 20); // Adjust the timing for smoother or faster loading
+                } else {
+                    document.getElementById('splash-screen').style.display = 'none';
+                    document.getElementById('app').style.display = 'block';
+                }
+            }
+
+            updatePercentage();
+        });
+
         new Vue({
             el: '#app',
             data: {
@@ -423,7 +460,7 @@
                         title: 'Food Recipe Rating Prediction',
                         link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
                         description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy. 🤖',
-                        image: 'https://c.ndtvimg.com/2022-05/lktbe7no_dinner-indian-food_625x300_11_May_22.jpg?im=FeatureCrop,algorithm=dnn,width=620,height=350?im=FaceCrop,algorithm=dnn,width=1200,height=886/600x200'
+                        image: 'https://c.ndtvimg.com/2022-05/lktbe7no_dinner-indian-food_625x300_11_May_22.jpg'
                     },
                     {
                         title: 'Library Management System',
@@ -469,41 +506,6 @@
                     }
                 ]
             }
-        window.addEventListener('load', function() {
-            // Vanta.NET background animation
-            VANTA.NET({
-                el: "#vanta-bg",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0xffdd57,  // Customize this color
-                backgroundColor: 0x121212,  // Match your dark theme
-                points: 12.00,
-                maxDistance: 20.00,
-                spacing: 18.00
-            });
-
-            // Splash Screen Timeout with Percentage Loader
-            let percentage = 0;
-            const loadingText = document.getElementById('loading-percentage');
-
-            function updatePercentage() {
-                loadingText.textContent = `${percentage}%`;
-                percentage++;
-
-                if (percentage <= 100) {
-                    setTimeout(updatePercentage, 20); // Adjust the timing for smoother or faster loading
-                } else {
-                    document.getElementById('splash-screen').style.display = 'none';
-                    document.getElementById('app').style.display = 'block';
-                }
-            }
-
-            updatePercentage();
         });
     </script>
 </body>
