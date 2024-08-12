@@ -415,6 +415,60 @@
         </footer>
     </div>
     <script>
+        new Vue({
+            el: '#app',
+            data: {
+                projects: [
+                    {
+                        title: 'Food Recipe Rating Prediction',
+                        link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
+                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy. 🤖',
+                        image: 'https://c.ndtvimg.com/2022-05/lktbe7no_dinner-indian-food_625x300_11_May_22.jpg?im=FeatureCrop,algorithm=dnn,width=620,height=350?im=FaceCrop,algorithm=dnn,width=1200,height=886/600x200'
+                    },
+                    {
+                        title: 'Library Management System',
+                        link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
+                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database. 📚',
+                        image: 'https://images.indianexpress.com/2022/01/E-library.jpg'
+                    },
+                    {
+                        title: 'Diabeteasy',
+                        link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
+                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript. 💊',
+                        image: 'https://frontierhealthcare.com.sg/wp-content/uploads/2023/02/Diabetes-Complications-Banner.jpg'
+                    },
+                    {
+                        title: 'Optimization of Operations at Shanvi General & Dairy Products Shop',
+                        link: 'https://github.com/prem-kumar-sharma/BDM-Capstone-Projects',
+                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations. 📊',
+                        image: 'https://imageio.forbes.com/specials-images/imageserve/5fca87f3ce4ca55e8985a10a/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds'
+                    },
+                    {
+                        title: 'Grocery Store App',
+                        link: 'https://github.com/prem-kumar-sharma/Grocery-Store-App',
+                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management. 🛒',
+                        image: 'https://www.tastingtable.com/img/gallery/13-most-affordable-grocery-stores-in-2023/l-intro-1679073677.jpg'
+                    }
+                ],
+                experiences: [
+                     {
+                        title: 'Generative AI Engineer Intern | Loqo AI',
+                        description: 'Automated text-to-video conversion using AI models. Streamlined prompt generation, audio and image creation, and video editing. Worked with models like GPT-4o, Turbo, and LLAMA2, utilizing LangChain for flexible applications. 🤖'
+                    },
+                    {
+                        title: 'WebOps Intern | Medical Network Pvt. Ltd.',
+                        description: 'As a WebOps Team Intern, I maintained website functionality, resolved technical issues, and optimized digital infrastructure. I also collaborated with the data team to analyze leads, marketing, and inventory data, providing insights for improved processes and decision-making. 💼'
+                    },
+                    {
+                        title: 'Web Developer & Designer | TechoTians',
+                        description: 'Developed and maintained websites and landing pages for optimal performance and user experience. Analyzed market trends and user engagement to improve marketing strategies. Designed engaging social media posts and conducted content research to support marketing campaigns.🚀'
+                    },
+                    {
+                        title: 'Graphic Designer & Content Researcher | LearnEverythingAI',
+                        description: 'Created visually engaging content and conducted in-depth research. Designed graphics, analyzed trends, and crafted compelling content to enhance user experience and drive engagement. 🎨'
+                    }
+                ]
+            }
         window.addEventListener('load', function() {
             // Vanta.NET background animation
             VANTA.NET({
