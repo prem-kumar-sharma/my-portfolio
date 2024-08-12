@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prem Kumar - Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
@@ -15,6 +17,7 @@
             color: #fff;
             transition: background-color 0.5s, color 0.5s;
         }
+
         /* Splash Screen */
         #splash-screen {
             position: fixed;
@@ -25,40 +28,56 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            flex-direction: column;
         }
-        .loading-box {
-            width: 150px;
-            height: 20px;
-            border: 2px solid #ffdd57;
-            position: relative;
-            overflow: hidden;
+
+        .loading-text {
+            font-size: 24px;
+            color: #ffdd57;
+            font-weight: bold;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
         }
-        .loading-bar {
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Vanta.js background container */
+        #vanta-bg {
+            position: fixed;
             width: 100%;
             height: 100%;
-            background-color: #ffdd57;
-            animation: loading 1s linear infinite;
+            z-index: -1; /* Ensure it stays behind other content */
+            top: 0;
+            left: 0;
         }
-        @keyframes loading {
-            0% {transform: translateX(-100%);}
-            100% {transform: translateX(100%);}
+
+        header, .container, footer {
+            position: relative; /* Ensure they stay on top of the background */
         }
+
+        /* Additional styles omitted for brevity */
         header {
             background-color: #1f1f1f;
             color: #fff;
             padding: 20px 0;
             text-align: center;
         }
+
         header h1 {
             margin: 0;
             font-size: 36px;
             text-shadow: 0 0 10px #ffdd57;
         }
+
         header p {
             margin: 10px 0 0;
             font-size: 18px;
             text-shadow: 0 0 5px #ffdd57;
         }
+
         nav ul {
             list-style: none;
             padding: 0;
@@ -67,34 +86,39 @@
             justify-content: center;
             flex-wrap: nowrap;
             overflow-x: auto;
-            gap: 10px; /* Add this line for spacing between buttons */
+            gap: 10px;
         }
+
         nav ul li {
             margin: 0;
             display: inline-block;
             white-space: nowrap;
         }
+
         nav ul li a {
             color: #ffdd57;
             text-decoration: none;
             font-size: 16px;
-            padding: 10px 20px; /* Adjust padding for a more button-like appearance */
+            padding: 10px 20px;
             border: 2px solid #ffdd57;
             border-radius: 12px;
             transition: background-color 0.3s, color 0.3s;
             font-weight: bold;
-            display: block; /* Ensure full button area is clickable */
-            background-color: #1f1f1f; /* Background color for buttons */
+            display: block;
+            background-color: #1f1f1f;
         }
+
         nav ul li a:hover {
             background-color: #ffdd57;
             color: #121212;
         }
+
         .container {
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 20px;
         }
+
         h2 {
             font-size: 28px;
             margin-bottom: 20px;
@@ -102,11 +126,13 @@
             padding-bottom: 10px;
             text-shadow: 0 0 5px #ffdd57;
         }
+
         .about {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
         }
+
         .about img {
             border-radius: 50%;
             margin-right: 20px;
@@ -116,15 +142,18 @@
             transition: transform 0.5s;
             box-shadow: 0 0 15px #ffdd57;
         }
+
         .about img:hover {
             transform: scale(1.1);
         }
+
         .skills {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             margin: 20px 0;
         }
+
         .skill {
             background-color: #1f1f1f;
             padding: 10px 20px;
@@ -134,15 +163,18 @@
             align-items: center;
             transition: transform 0.3s, box-shadow 0.3s;
         }
+
         .skill:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
         }
+
         .skill img {
             width: 24px;
             height: 24px;
             margin-right: 10px;
         }
+
         .project, .experience {
             background-color: #1f1f1f;
             padding: 20px;
@@ -151,10 +183,12 @@
             box-shadow: 0 0 15px rgba(255, 221, 87, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
         }
+
         .project:hover, .experience:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
         }
+
         .project img {
             width: 100%;
             max-width: 600px;
@@ -164,14 +198,17 @@
             transition: transform 0.3s;
             margin-bottom: 15px;
         }
+
         .project img:hover {
             transform: scale(1.05);
         }
+
         .project h3, .experience h3 {
             margin-top: 0;
             font-size: 24px;
             text-shadow: 0 0 5px #ffdd57;
         }
+
         .project button, .resume-download button {
             display: inline-block;
             margin-top: 10px;
@@ -184,18 +221,22 @@
             text-decoration: none;
             transition: background-color 0.3s;
         }
+
         .project button:hover, .resume-download button:hover {
             background-color: #fff;
             color: #121212;
         }
+
         .contact p, .contact a {
             font-size: 16px;
             color: #ffdd57;
             text-decoration: none;
         }
+
         .contact a:hover {
             text-decoration: underline;
         }
+
         footer {
             background-color: #1f1f1f;
             color: #ffdd57;
@@ -203,9 +244,11 @@
             padding: 10px 0;
             text-shadow: 0 0 5px #ffdd57;
         }
+
         .social-icons {
             margin-top: 20px;
         }
+
         .social-icons a {
             margin: 0 10px;
             color: #ffdd57;
@@ -213,27 +256,33 @@
             font-size: 24px;
             transition: color 0.3s;
         }
+
         .social-icons a:hover {
             color: #fff;
             text-shadow: 0 0 5px #ffdd57;
         }
+
         @media (max-width: 768px) {
             .about {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
             }
+
             .about img {
                 margin: 0 0 20px;
             }
+
             nav ul {
                 justify-content: center;
                 overflow-x: auto;
                 padding: 10px 0;
             }
+
             nav ul li {
                 margin: 5px;
             }
+
             nav ul li a {
                 font-size: 14px;
                 padding: 6px 10px;
@@ -241,24 +290,12 @@
                 font-weight: bold;
             }
         }
-        /* Background Animation */
-        #background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Ensure it stays behind other content */
-            background-color: #121212; /* Fallback background color */
-        }
     </style>
 </head>
 <body>
-    <canvas id="background-animation"></canvas>
+    <div id="vanta-bg"></div>
     <div id="splash-screen">
-        <div class="loading-box">
-            <div class="loading-bar"></div>
-        </div>
+        <div class="loading-text">Loading <span id="loading-percentage">0%</span></div>
     </div>
     <div id="app" style="display:none;">
         <header>
@@ -278,7 +315,7 @@
             <div>
                 <h2>About Me</h2>
                 <p>Hey 👋🏻 I'm <b>Prem Kumar</b>, a Data Science student at <b>IIT Madras</b> skilled in <b>Python</b>, <b>JavaScript</b>, <b>Vue.js</b>, <b>Flask</b>, and machine learning tools. I've developed projects like a <b>Grocery-Store-App</b>, <b>E-Library platform</b>, <b>Dibeteasy</b> (a diabetes management app), <b>Food Rating Predictions</b>, and a <b>Business Data Management project</b>. I have hands-on experience in <b>machine learning</b> and <b>Generative AI</b>. I worked as a <b>Web Developer </b> at <b>TechoTians</b> and a <b>Data Analyst Intern</b> at <b>Medical Network Pvt. Ltd.</b> I also led a 36-hour hackathon at IIT Madras, showcasing leadership and event management skills. Outside of work, I enjoy <b>reading</b>, <b>playing chess</b>, and <b>cricket</b>. Let's connect to discuss more about the latest tech.</p>
-                
+
                 <div class="resume-download">
                     <a href="PREM- IITM BS.pdf" download><button>Download Resume</button></a>
                 </div>
@@ -360,7 +397,7 @@
         <section id="contact" class="container contact">
             <h2>Contact</h2>
             <p>Email: <a href="mailto:viratprem4321@gmail.com">viratprem4321@gmail.com</a></p>
-         
+
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/prem-kumar-a499b1201/" target="_blank">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="32" height="32">
@@ -378,139 +415,42 @@
         </footer>
     </div>
     <script>
-        new Vue({
-            el: '#app',
-            data: {
-                projects: [
-                    {
-                        title: 'Food Recipe Rating Prediction',
-                        link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
-                        description: 'Developed a predictive model to forecast food recipe ratings using Logistic Regression, achieving over 77% accuracy. 🤖',
-                        image: 'https://c.ndtvimg.com/2022-05/lktbe7no_dinner-indian-food_625x300_11_May_22.jpg?im=FeatureCrop,algorithm=dnn,width=620,height=350?im=FaceCrop,algorithm=dnn,width=1200,height=886/600x200'
-                    },
-                    {
-                        title: 'Library Management System',
-                        link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
-                        description: 'Created a system for managing e-books with functionalities for both users and librarians. Used Flask for API, VueJS for UI, and SQLite for database. 📚',
-                        image: 'https://images.indianexpress.com/2022/01/E-library.jpg'
-                    },
-                    {
-                        title: 'Diabeteasy',
-                        link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
-                        description: 'Developed a machine learning application to assist individuals in managing diabetes. Implemented features like medication tracking, dietary advice, and local doctor suggestions using Flask, HTML, CSS, and JavaScript. 💊',
-                        image: 'https://frontierhealthcare.com.sg/wp-content/uploads/2023/02/Diabetes-Complications-Banner.jpg'
-                    },
-                    {
-                        title: 'Optimization of Operations at Shanvi General & Dairy Products Shop',
-                        link: 'https://github.com/prem-kumar-sharma/BDM-Capstone-Projects',
-                        description: 'Used statistical tools for trend analysis to reduce stockouts and cut customer service response times. Delivered a comprehensive report with recommendations. 📊',
-                        image: 'https://imageio.forbes.com/specials-images/imageserve/5fca87f3ce4ca55e8985a10a/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds'
-                    },
-                    {
-                        title: 'Grocery Store App',
-                        link: 'https://github.com/prem-kumar-sharma/Grocery-Store-App',
-                        description: 'Developed a full-stack application to manage grocery store inventory and sales with features like product management, sales tracking, and customer management. 🛒',
-                        image: 'https://www.tastingtable.com/img/gallery/13-most-affordable-grocery-stores-in-2023/l-intro-1679073677.jpg'
-                    }
-                ],
-                experiences: [
-                     {
-                        title: 'Generative AI Engineer Intern | Loqo AI',
-                        description: 'Automated text-to-video conversion using AI models. Streamlined prompt generation, audio and image creation, and video editing. Worked with models like GPT-4o, Turbo, and LLAMA2, utilizing LangChain for flexible applications. 🤖'
-                    },
-                    {
-                        title: 'WebOps Intern | Medical Network Pvt. Ltd.',
-                        description: 'As a WebOps Team Intern, I maintained website functionality, resolved technical issues, and optimized digital infrastructure. I also collaborated with the data team to analyze leads, marketing, and inventory data, providing insights for improved processes and decision-making. 💼'
-                    },
-                    {
-                        title: 'Web Developer & Designer | TechoTians',
-                        description: 'Developed and maintained websites and landing pages for optimal performance and user experience. Analyzed market trends and user engagement to improve marketing strategies. Designed engaging social media posts and conducted content research to support marketing campaigns.🚀'
-                    },
-                    {
-                        title: 'Graphic Designer & Content Researcher | LearnEverythingAI',
-                        description: 'Created visually engaging content and conducted in-depth research. Designed graphics, analyzed trends, and crafted compelling content to enhance user experience and drive engagement. 🎨'
-                    }
-                ]
-            }
-        });
-
-        // Splash Screen Timeout
         window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('splash-screen').style.display = 'none';
-                document.getElementById('app').style.display = 'block';
-            }, 1000);
-        });
+            // Vanta.NET background animation
+            VANTA.NET({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0xffdd57,  // Customize this color
+                backgroundColor: 0x121212,  // Match your dark theme
+                points: 12.00,
+                maxDistance: 20.00,
+                spacing: 18.00
+            });
 
-        // Background Animation
-        const canvas = document.getElementById('background-animation');
-        const ctx = canvas.getContext('2d');
-        let particlesArray = [];
+            // Splash Screen Timeout with Percentage Loader
+            let percentage = 0;
+            const loadingText = document.getElementById('loading-percentage');
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+            function updatePercentage() {
+                loadingText.textContent = `${percentage}%`;
+                percentage++;
 
-        window.addEventListener('resize', function(){
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        class Particle {
-            constructor(x, y, directionX, directionY, size, color) {
-                this.x = x;
-                this.y = y;
-                this.directionX = directionX;
-                this.directionY = directionY;
-                this.size = size;
-                this.color = color;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = '#ffdd57';
-                ctx.fill();
-            }
-
-            update() {
-                if (this.x + this.size > canvas.width || this.x - this.size < 0) {
-                    this.directionX = -this.directionX;
+                if (percentage <= 100) {
+                    setTimeout(updatePercentage, 20); // Adjust the timing for smoother or faster loading
+                } else {
+                    document.getElementById('splash-screen').style.display = 'none';
+                    document.getElementById('app').style.display = 'block';
                 }
-                if (this.y + this.size > canvas.height || this.y - this.size < 0) {
-                    this.directionY = -this.directionY;
-                }
-                this.x += this.directionX;
-                this.y += this.directionY;
-                this.draw();
             }
-        }
 
-        function init() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.width * canvas.height) / 9000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 1) + 1;
-                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * 0.4) - 0.2;
-                let directionY = (Math.random() * 0.4) - 0.2;
-                let color = '#ffdd57';
-
-                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-            }
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-            }
-        }
-
-        init();
-        animate();
+            updatePercentage();
+        });
     </script>
 </body>
 </html>
