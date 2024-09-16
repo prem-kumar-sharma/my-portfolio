@@ -417,20 +417,21 @@
     <script>
         window.addEventListener('load', function() {
             // Vanta.NET background animation
-            VANTA.NET({
-                el: "#vanta-bg",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0xffdd57,  // Customize this color
-                backgroundColor: 0x121212,  // Match your dark theme
-                points: 12.00,
-                maxDistance: 20.00,
-                spacing: 18.00
+            VANTA.GLOBE({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xff0044,  // Customize color to match the red
+            color2: 0x00ffff,  // Add a second color for the blue effect
+            backgroundColor: 0x121212,  // Dark background theme
+            size: 1.2,  // Adjust size
+            points: 10.00,  // Adjust points (or keep this based on effect)
+            maxDistance: 20.00,  // Adjust for spacing of points
             });
 
             // Splash Screen Timeout with Percentage Loader
