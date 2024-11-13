@@ -150,32 +150,53 @@
         }
 
         .skills {
-            background-color: #16213e;  /* Changed from #1f1f1f */
-            padding: 10px 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);  /* Changed color */
-            color: #ffffff;
+            display: flex;
+            flex-wrap: wrap;  /* Allows items to wrap to next line */
+            gap: 10px;       /* Space between skills */
+            margin: 20px 0;
+            padding: 10px;
         }
 
         .skill {
-            background-color: #1f1f1f;
-            padding: 10px 20px;
+            background-color: rgba(22, 33, 62, 0.7);  /* Semi-transparent dark background */
+            padding: 8px 15px;
             border-radius: 5px;
-            box-shadow: 0 0 15px rgba(255, 221, 87, 0.2);
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);  /* Adds a slight blur effect */
+            border: 1px solid rgba(0, 180, 216, 0.2);  /* Subtle border */
+
         }
 
         .skill:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
+            background-color: rgba(22, 33, 62, 0.9);
+            border-color: rgba(0, 180, 216, 0.4);
         }
 
         .skill img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            object-fit: contain;
+
+        }
+
+        }
+
+        .skill span {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Section title styling */
+        h2.skills-title {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #00b4d8;
+            padding-bottom: 5px;
+            width: fit-content;
         }
 
         .project, .experience {
