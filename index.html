@@ -58,6 +58,15 @@
             position: relative; /* Ensure they stay on top of the background */
         }
 
+        header .header-tagline {
+            margin: 8px 0 0;
+            font-size: 16px;
+            color: #e2e2e2;
+            text-shadow: 0 0 5px #00b4d8;
+            font-weight: 500;
+          }
+          
+
         header {
             background-color: #16213e;  /* Changed from #1f1f1f */
             color: #ffffff;
@@ -110,7 +119,7 @@
         }
 
         nav ul li a:hover {
-            background-color: #00b4d8;  /* Changed from #ffdd57 */
+            background-color: #ffffff;  /* Changed from #ffdd57 */
             color: #16213e;
         }
 
@@ -142,52 +151,107 @@
             height: 150px;
             object-fit: cover;
             transition: transform 0.5s;
-            box-shadow: 0 0 15px #ffdd57;
+            box-shadow: 0 0 15px #00b4d8;
         }
 
         .about img:hover {
             transform: scale(1.1);
         }
+
+        /* ── YouTube Videos Section ───────────────────────── */
+        .videos-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        
+        .videos-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+        .videos-gallery::-webkit-scrollbar-thumb {
+            background-color: rgba(0,180,216,0.4);
+            border-radius: 4px;
+        }
+        
+        .video-card {
+            flex: 0 0 auto;
+            width: 320px;       /* standard 16:9 iframe */
+            background-color: #16213e;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 0 10px rgba(0,180,216,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 18px rgba(0,180,216,0.7);
+        }
+        
+        .video-card iframe {
+            width: 100%;
+            height: 180px;
+            border-radius: 8px;
+        }
+        
+        .video-card p {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 14px; 
+            margin-top: 8px;
+            text-align: center;
+        }
+        
+        /* ── Certifications: card styling ─────────────────── */
         .certifications-gallery {
             display: flex;
             overflow-x: auto;
             gap: 20px;
-            padding-bottom: 10px;
-            /* hide scrollbar in WebKit if you like: */
-            /* scrollbar-width: none; -moz-scrollbars-none; */
-          }
-          .certifications-gallery::-webkit-scrollbar {
-            display: none;
-          }
-          
-          .certification-card {
+            padding: 20px 0;
+        }
+        
+        .certification-card {
             flex: 0 0 auto;
-            min-width: 250px;
+            width: 200px;           /* a bit narrower */
+            /* let height grow based on content */
             background-color: #16213e;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);
+            border-radius: 16px;
+            padding: 12px 16px;     /* less padding */
+            box-shadow: 0 0 8px rgba(0,180,216,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            transition: transform 0.3s;
           }
-          .certification-card:hover {
-            transform: translateY(-5px);
+        
+        .certification-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 0 18px rgba(0,180,216,0.7);
           }
-          .certification-card img {
+        
+        .certification-card img {
             width: 100%;
             height: auto;
-            border-radius: 5px;
-            margin-bottom: 10px;
+            max-height: 140px;      
+            object-fit: contain;
+            margin-bottom: 12px;
+            border-radius: 6px;
           }
-          .certification-card h3 {
-            margin: 0 0 5px;
-            font-size: 18px;
-          }
-          .certification-card p {
-            font-size: 14px;
-            color: #e2e2e2;
+        
+        .certification-card h3 {
+            font-size: 17px;
+            margin: 8px 0 4px;
           }
           
+        .certification-card p {
+            font-size: 13px;
+          }
+        
 
         .skills {
             display: flex;
@@ -197,21 +261,35 @@
             padding: 10px;
         }
 
+        /* give every badge a soft teal glow */
         .skill {
-            background-color: rgba(22, 33, 62, 0.7);  /* Semi-transparent dark background */
+            background-color: rgba(22, 33, 62, 0.7);
             padding: 8px 15px;
             border-radius: 5px;
             display: inline-flex;
             align-items: center;
-            backdrop-filter: blur(5px);  /* Adds a slight blur effect */
-            border: 1px solid rgba(0, 180, 216, 0.2);  /* Subtle border */
-
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            box-shadow: 0 0 5px rgba(0, 180, 216, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
+        
+        /* pulse and scale on hover */
+        @keyframes pulseGlow {
+            from {
+            box-shadow: 0 0 5px rgba(0,180,216,0.4);
+            }
+            to {
+            box-shadow: 0 0 20px rgba(0,180,216,0.8);
+            }
+        }
+        
         .skill:hover {
-            background-color: rgba(22, 33, 62, 0.9);
-            border-color: rgba(0, 180, 216, 0.4);
+            transform: scale(1.05);
+            animation: pulseGlow 1s infinite alternate;
         }
+  
+
 
         .skill img {
             width: 20px;
@@ -238,7 +316,7 @@
             width: fit-content;
         }
 
-        .project, .experience {
+        .project{
             background-color: #16213e;  /* Changed from #1f1f1f */
             padding: 20px;
             margin-bottom: 20px;
@@ -246,10 +324,9 @@
             box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);  /* Changed color */
             color: #ffffff;
         }
-
         .project:hover, .experience:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(255, 221, 87, 0.4);
+            box-shadow: 0 0 25px rgba(0,180,216,0.4);
         }
 
         .project img {
@@ -257,7 +334,7 @@
             max-width: 600px;
             height: auto;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(255, 221, 87, 0.2);
+            box-shadow: 0 0 25px rgba(0,180,216,0.4);
             transition: transform 0.3s;
             margin-bottom: 15px;
         }
@@ -269,7 +346,7 @@
         .project h3, .experience h3 {
             margin-top: 0;
             font-size: 24px;
-            text-shadow: 0 0 5px #ffdd57;
+            text-shadow: 0 0 5px #00b4d8;  /* Changed from #ffdd57 */
         }
 
         .project button, .resume-download button {
@@ -290,9 +367,76 @@
             color: #121212;
         }
 
+        /* ── Experience Section Styling ─────────────────────── */
+        .experience {
+            background-color: #16213e;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0,180,216,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+          }
+          .experience:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0,180,216,0.4);
+          }
+          .experience h3 {
+            font-size: 24px;
+            margin-top: 0;
+            color: #ffffff;
+            text-shadow: 0 0 5px #00b4d8;
+          }
+          .experience h3 .company {
+            color: #ffffff;
+            font-weight: 500;
+            margin-left: 6px;
+          }
+          .exp-meta {
+            font-size: 14px;
+            color: #e2e2e2;
+            margin: 6px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px;
+          }
+          .exp-dot {
+            margin: 0 2px;
+            color: #00b4d8;
+          }
+          .exp-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+          }
+          .exp-skill {
+            background-color: rgba(0,180,216,0.15);
+            color: #00b4d8;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 500;
+          }
+          .exp-gif {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 10px rgba(0,180,216,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+          }
+          .exp-gif:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0,180,216,0.8);
+          }
+        
+  
+
         .contact p, .contact a {
             font-size: 16px;
-            color: #00b4d8;  /* Changed from #ffdd57 */
+            color: #ffffff;  /* Changed from #ffdd57 */
             text-decoration: none;
         }
 
@@ -363,7 +507,9 @@
     <div id="app" style="display:none;">
         <header>
             <h1>Prem Kumar</h1>
-            <p>| <b>Data Science Student</b> at | <b>IIT Madras'25</b></p>
+            <p class="header-tagline">
+                IIT Madras Graduate 🎓 | Generative AI Engineer @ Loqo AI | Mentor 500+ Students | Data Science & GenAI Educator | Hackathon Lead at Paradox'23
+            </p>
             <script
         src="https://topmate-embed.s3.ap-south-1.amazonaws.com/v1/topmate-embed.js"
         user-profile="https://topmate.io/embed/profile/prem_kumar_sharma?theme=D5534D"
@@ -400,33 +546,110 @@
                 </div>
             </div>
         </section>
+                <!-- YouTube Videos Section -->
+        <section id="youtube-videos" class="container">
+            <h2>YouTube Videos</h2>
+            <div class="videos-gallery">
+            <div
+                class="video-card"
+                v-for="video in videos"   
+                :key="video.link"
+            >
+                <iframe
+                    :src="getEmbedUrl(video.link)"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+                <p>{{ video.title }}</p>
+            </div>
+            </div>
+        </section>
         <section id="skills" class="container">
             <h2>Skills</h2>
-            <div class="skills">
+            
                 <div class="skill">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
-                    <span>Python</span>
-                </div>
-                <div class="skill">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-                    <span>JavaScript</span>
-                </div>
-                <div class="skill">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js">
-                    <span>Vue.js</span>
-                </div>
-                <div class="skill">
-                    <img src="https://cdn.worldvectorlogo.com/logos/java.svg" alt="Java">
-                    <span>Java</span>
-                </div>
-                <div class="skill">
-                    <img src="https://nyesteventuretech.com/images/Machine-Learning.jpg" alt="ML">
-                    <span>Machine Learning</span>
-                </div>
-                <div class="skill">
-                    <img src="https://www.learnsimpli.com/wp-content/uploads/2021/05/Data-structure-and-algorithms.png" alt="DSA">
-                    <span>DSA</span>
-                </div>
+                    <div class="skills">
+                      <!-- existing skills… -->
+                      <div class="skills">
+                        <div class="skill">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+                            <span>Python</span>
+                        </div>
+                        <div class="skill">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js">
+                            <span>Vue.js</span>
+                        </div>
+                        <div class="skill">
+                            <img src="https://cdn.worldvectorlogo.com/logos/java.svg" alt="Java">
+                            <span>Java</span>
+                        </div>
+                        <div class="skill">
+                            <img src="https://nyesteventuretech.com/images/Machine-Learning.jpg" alt="ML">
+                            <span>Machine Learning</span>
+                        </div>
+                        <div class="skill">
+                            <img src="https://www.learnsimpli.com/wp-content/uploads/2021/05/Data-structure-and-algorithms.png" alt="DSA">
+                            <span>DSA</span>
+                        </div>
+                      <div class="skill">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
+                        <span>React</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="Bootstrap">
+                        <span>Bootstrap</span>
+                      </div>
+                      <div class="skill">
+                        <img src="data:image/png;base64,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" alt="NumPy">
+                        <span>NumPy</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://matplotlib.org/_static/images/logo2.svg" alt="Matplotlib">
+                        <span>Matplotlib</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" alt="Seaborn">
+                        <span>Seaborn</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://www.postgresql.org/media/img/about/press/elephant.png" alt="PostgreSQL">
+                        <span>PostgreSQL</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://miro.medium.com/v2/resize:fit:1200/1*i1d88Q8NNrRv6kjf7Ssw4g.png" alt="Redis">
+                        <span>Redis</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" alt="Docker">
+                        <span>Docker</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt="Git">
+                        <span>Git</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://code.visualstudio.com/assets/images/code-stable.png" alt="VS Code">
+                        <span>VS Code</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf6j7rtIRUVQBvKmf1-BCrTEK_YZcU6tNfzw&s" alt="LangChain">
+                        <span>LangChain</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://avatars.githubusercontent.com/u/9001821?s=200&v=4" alt="RAG">
+                        <span>RAG</span>
+                      </div>
+                      <div class="skill">
+                        <img src="https://tamerlan.dev/content/images/2021/12/celery-overview.png" alt="Celery">
+                        <span>Celery</span>
+                      </div>
+                    
+                  
                 <div class="skill">
                     <img src="https://nexla.com/n3x_ctx/uploads/2023/02/article-data-management-best-practices_Img0.png" alt="BDM">
                     <span>Business Data Management</span>
@@ -468,11 +691,51 @@
         </section>
         <section id="experience" class="container">
             <h2>Experience</h2>
-            <div class="experience" v-for="experience in experiences" :key="experience.title">
-                <h3>{{ experience.title }}</h3>
-                <p>{{ experience.description }}</p>
+          
+            <div
+              class="experience"
+              v-for="exp in experiences"
+              :key="exp.company + exp.role"
+            >
+              <!-- animated GIF -->
+              <img
+                v-if="exp.gif"
+                :src="exp.gif"
+                alt="Role Animation"
+                class="exp-gif"
+              />
+          
+              <!-- Role @ Company -->
+              <h3>
+                {{ exp.role }}
+                <span class="company">@ {{ exp.company }}</span>
+              </h3>
+          
+              <!-- Type · Date · Location -->
+              <div class="exp-meta">
+                <span class="exp-type">{{ exp.type }}</span>
+                <span class="exp-dot">·</span>
+                <span class="exp-date">{{ exp.date }}</span>
+                <span v-if="exp.location" class="exp-dot">·</span>
+                <span v-if="exp.location" class="exp-location">{{ exp.location }}</span>
+              </div>
+          
+              <!-- Skills tags -->
+              <div class="exp-skills">
+                <span
+                  class="exp-skill"
+                  v-for="skill in exp.skills"
+                  :key="exp.company + skill"
+                >
+                  {{ skill }}
+                </span>
+              </div>
+          
+              <!-- Description -->
+              <p v-if="exp.description">{{ exp.description }}</p>
             </div>
-        </section>
+          </section>
+          
         <section id="certifications" class="container">
             <h2>Certifications</h2>
             <div class="certifications-gallery">
@@ -491,6 +754,8 @@
             <p>Email: <a href="mailto:viratprem4321@gmail.com">viratprem4321@gmail.com</a></p>
 
             <div class="social-icons">
+                <a href="https://www.youtube.com/@insightbyprem" target="_blank">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKfPimrl1lwgrW3OHOuuyReVPqtc_Hd7mp4A&s" alt="YouTube" width="32" height="32">
                 <a href="https://www.linkedin.com/in/prem-kumar-a499b1201/" target="_blank">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="32" height="32">
                 </a>
@@ -547,6 +812,33 @@
         new Vue({
             el: '#app',
             data: {
+
+                videos: [
+                    {
+                        title: 'Complete Flask CRUD Application Tutorial',
+                        link: 'https://www.youtube.com/watch?v=Jnf2X6t3xbo&t=1216s'
+                    },
+                    {
+                        title: 'IIT Madras EXPERT Shares Top Fresher Resume Tips',
+                        link: 'https://youtu.be/dOtwWAx_BEc?si=QdgIwJXkv4DhgywP'
+                    },
+                    {
+                        title: 'STOP Making These Common Mistakes At Hackathons',
+                        link: 'https://youtu.be/BuwF8LAdZcg?si=RzChhymiidBY7iox'
+                    },
+                    {
+                        title: '3 Degrees in 5 Years & Ph.D Without GATE/NET | The Knowledge Exchange Ep. 1',
+                        link: 'https://youtu.be/uZBHNj66500?si=jlVUJ99PfkKz75E_'
+                    },
+                    {
+                        title: 'Journalism Showdown: Data vs Traditional Reporting in Cricket',
+                        link: 'https://youtu.be/1l3CMBacafA?si=8izzC7AGRDUJRA79'
+                    },
+                    {
+                        title: 'I Mastered GitHub and Created My FIRST Project Like a PRO!',
+                        link: 'https://youtu.be/WhviDVE1Qkk?si=K38EiFb6UBSlpEoh'
+                    }
+                ],
                 projects: [
                     {
                         title: 'WonCourse - AI-Powered Learning Platform',
@@ -604,84 +896,154 @@
                     }
                 ],
                 experiences: [
-                    {
-                        title: 'Generative AI Engineer Intern | Loqo AI (Jul. 2024 - Present. 2024)',
-                        description: 'Developed a text-to-video generator app using AI models like GPT-4, BERT, and T5. Fine-tuned GPT-3.5 and OpenAI Codex to enhance performance.'
-                    },
-                    {
-                        title: 'Software Developer Intern | 7 Miles Per Second (Aug. 2024 - Nov. 2024)',
-                        description: 'Led app development projects from design to deployment, collaborating across teams. Enhanced technical and leadership skills through innovative projects.'
-                    },
-                    {
-                        title: 'WebOps Intern | Medical Network Pvt. Ltd. (Jan. 2024 - Jun. 2024)',
-                        description: 'Maintained website functionality and optimized digital infrastructure. Provided insights from lead, marketing, and inventory data.'
-                    },
-                    {
-                        title: 'Web Developer Intern | TechoTians (Aug. 2023 - Dec. 2023)',
-                        description: 'Developed websites focusing on user experience and performance. Analyzed trends to improve marketing strategies.'
-                    },
-                    {
-                        title: 'WordPress Developer & Graphics Designer | Learn Everything AI (Jan. 2023 - Aug. 2023)',
-                        description: 'Designed WordPress websites to improve user experience and engagement.'
-                    }
+                {
+                    company: 'Loqo AI',
+                    role: 'Generative AI Engineer',
+                    type: 'Full‑time',
+                    date: 'Apr 2025 – Present · 1 mo',
+                    location: 'New Delhi, Delhi, India · Remote',
+                    skills: [
+                      'Python (Programming Language)',
+                      'Data Science',
+                      'Machine Learning',
+                      'Artificial Intelligence (AI)',
+                        'Deep Learning',
+                        'Natural Language Processing (NLP)',
+                        'Large Language Models (LLM)',
+                        'Generative AI',
+                        'Computer Vision'
+                    ],
+                    description: ' Built AI Agents for task automation, leveraging RAG models and multi-modal capabilities.Automated workflows using Selenium, AI-driven scripts, and optimized prompt engineering for image generation and text generation.',
+                    gif: 'https://cdn.dribbble.com/userupload/23731317/file/original-5eb2f9967073700b38a31280cc2c32e0.gif'
+                  },
+                  {
+                    company: 'Loqo AI',
+                    role: 'Generative AI Engineer Intern',
+                    type: 'Internship',
+                    date: 'Jul 2024 – Mar 2025 · 9 mos',
+                    location: '',
+                    skills: [
+                      'Artificial Intelligence (AI)',
+                      'Large Language Models (LLM)',
+                      'Generative AI',
+                      'Computer Vision',
+                      'Git',
+                      'Python (Programming Language)',
+                      'Docker',
+                        'Machine Learning',
+                        'Deep Learning',
+                        'Flask'
+                    ],
+                    description:
+                      'Developing a text‑to‑video generator app, integrating advanced AI models to generate high‑quality visual content…',
+                    gif: 'https://miro.medium.com/v2/resize:fit:1400/1*TlbU0F-waQf7_zOfhUNldQ.gif'
+                  },
+                  {
+                    company: '7 Miles Per Second',
+                    role: 'Software Developer Intern',
+                    type: 'Internship',
+                    date: 'Aug 2024 – Nov 2024 · 4 mos',
+                    location: 'Chennai, Tamil Nadu · Remote',
+                    skills: ['App Development', 'Team Collaboration', 'Leadership'],
+                    description:
+                      'Led app development projects from design to deployment, collaborating across teams. Enhanced technical and leadership skills through innovative projects.',
+                    gif: 'https://i.pinimg.com/originals/81/17/8b/81178b47a8598f0c81c4799f2cdd4057.gif'
+                  },
+                  {
+                    company: 'Medical Network Pvt. Ltd.',
+                    role: 'WebOps Intern',
+                    type: 'Internship',
+                    date: 'Jan 2024 – Jun 2024 · 6 mos',
+                    location: 'Patna, Bihar · On‑site',
+                    skills: ['Website Maintenance', 'Data Insights'],
+                    description:
+                      'Maintained website functionality and optimized digital infrastructure. Provided insights from lead, marketing, and inventory data.',
+                    gif: 'https://user-images.githubusercontent.com/74038190/212749447-bfb7e725-6987-49d9-ae85-2015e3e7cc41.gif'
+                  },
+                  {
+                    company: 'TechoTians',
+                    role: 'Web Developer Intern',
+                    type: 'Internship',
+                    date: 'Aug 2023 – Dec 2023 · 5 mos',
+                    location: 'Patna, Bihar · On‑site',
+                    skills: ['UI/UX', 'Performance Optimization'],
+                    description:
+                      'Developed websites focusing on user experience and performance. Analyzed trends to improve marketing strategies.',
+                    gif: 'https://user-images.githubusercontent.com/115187902/230603133-52eedb90-6313-41ef-86a6-122ec3848e19.gif'
+                  },
+                  {
+                    company: 'Learn Everything AI',
+                    role: 'WordPress Developer & Graphics Designer',
+                    type: 'Part‑time',
+                    date: 'Jan 2023 – Aug 2023 · 8 mos',
+                    location: 'India · Hybrid',
+                    skills: ['WordPress', 'Graphic Design'],
+                    description:
+                      'Designed WordPress websites to improve user experience and engagement.',
+                    gif: 'https://i.pinimg.com/originals/32/9b/63/329b63886c58f6f4915b8642f52ec8b3.gif'
+                  }
                 ],
                 certifications: [
                     {
                         title: 'SQL (Advanced) & SQL (Intermediate)',
                         issuer: 'HackerRank',
                         date: 'Jan 2025',
-                        image: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/HackerRank_logo.png'
+                        image: 'sql.png'
                     },
                     {
                         title: 'NPTEL Believers',
                         issuer: 'IIT Madras',
                         date: 'Dec 2024',
-                        image: 'https://www.nptel.ac.in/nptel.png'
+                        image: 'nptel_beliver.png'
                     },
                     {
                         title: 'Cloud Computing',
                         issuer: 'IIT Kharagpur',
                         date: 'Nov 2024',
-                        image: 'https://iitkgp.ac.in/themes/custom/iitk/assets/images/logo.png'
+                        image: 'cloud_computing.png'
                     },
                     {
                         title: 'Software Conceptual Design',
                         issuer: 'IIT Bombay',
                         date: 'Nov 2024',
-                        image: 'https://www.iitb.ac.in/themes/custom/iitb/assets/images/iit-blogo.png'
+                        image: 'scd.png'
                     },
                     {
                         title: 'Machine Learning using NumPy',
                         issuer: 'IIT Madras',
                         date: 'Oct 2024',
-                        image: 'https://www.iitm.ac.in/themes/custom/iitm/assets/images/logo.png'
+                        image: 'oppe_ml.png'
                     },
                     {
                         title: 'Soft Skill Development',
                         issuer: 'NPTEL (IIT Kharagpur)',
                         date: 'Oct 2024',
-                        image: 'https://www.nptel.ac.in/nptel.png'
+                        image: 'ssd.png'
                     },
                     {
                         title: 'AI/ML for Geodata Analysis',
                         issuer: 'ISRO',
                         date: 'Sep 2024',
-                        image: 'https://www.isro.gov.in/sites/default/files/isro_logo.jpg'
+                        image: 'aiml.png'
                     },
                     {
                         title: 'BATM using Python',
                         issuer: 'NPTEL (IIT Roorkee)',
                         date: 'Sep 2024',
-                        image: 'https://www.nptel.ac.in/nptel.png'
-                    },
-                    {
-                        title: 'Python for Data Science and AI',
-                        issuer: 'Coursera',
-                        date: 'Jan 2023',
-                        image: 'https://about.coursera.org/static/95df5bb107bbbb8ed984a843aedc5f0f/coursera-logo.svg'
+                        image: 'batm.png'
                     }
                     ]
 
+            
+        },
+        methods: {
+          getEmbedUrl(url) {
+            // matches both “youtube.com/watch?v=…” and “youtu.be/…”
+            const m = url.match(/(?:v=|\.be\/)([^&]+)/);
+            return m
+              ? `https://www.youtube.com/embed/${m[1]}`
+              : url;
+          }
             }
         });
     </script>
