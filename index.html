@@ -573,6 +573,7 @@ header .header-tagline {
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#education">Education</a></li> 
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -712,10 +713,7 @@ header .header-tagline {
                     <img src="https://logowik.com/content/uploads/images/pandas8580.logowik.com.webp" alt="Pandas">
                     <span>Pandas</span>
                 </div>
-                <div class="skill">
-                    <img src="https://numpy.org/images/numpy-image.jpg" alt="NumPy">
-                    <span>NumPy</span>
-                </div>
+                
                 <div class="skill">
                     <img src="https://banner2.cleanpng.com/20180526/oqt/avq6683ud.webp" alt="SQL">
                     <span>SQL</span>
@@ -790,7 +788,43 @@ header .header-tagline {
               </div>
             </div>
           </section>
-          
+        <!-- … your Certifications section … -->
+
+    <section id="education" class="container">
+        <h2>Education</h2>
+        <div
+        class="experience"
+        v-for="edu in educations"
+        :key="edu.institution + edu.date"
+        >
+        <!-- animated GIF for each entry -->
+        <img
+            v-if="edu.gif"
+            :src="edu.gif"
+            alt="Education GIF"
+            class="exp-gif"
+        />
+    
+        <!-- Degree @ Institution -->
+        <h3>
+            {{ edu.degree }}
+            <span class="company">@ {{ edu.institution }}</span>
+        </h3>
+    
+        <!-- Type · Date · Location -->
+        <div class="exp-meta">
+            <span class="exp-type">Academic</span>
+            <span class="exp-dot">·</span>
+            <span class="exp-date">{{ edu.date }}</span>
+            <span v-if="edu.location" class="exp-dot">·</span>
+            <span v-if="edu.location" class="exp-location">{{ edu.location }}</span>
+        </div>
+  
+      <!-- Extra details (skills, grade, etc.) -->
+      <p v-if="edu.details">{{ edu.details }}</p>
+    </div>
+  </section>
+  
         <section id="contact" class="container contact">
             <h2>Contact</h2>
             <p>Email: <a href="mailto:viratprem4321@gmail.com">viratprem4321@gmail.com</a></p>
@@ -1074,7 +1108,38 @@ header .header-tagline {
                         date: 'Sep 2024',
                         image: 'batm.png'
                     }
-                    ]
+                    ],
+                    educations: [
+                    {
+                      institution: 'Indian Institute of Technology, Madras',
+                      degree: 'BS in Data Science & Application',
+                      date: 'Jan 2021 – Apr 2025',
+                      location: 'Chennai, Tamil Nadu',
+                      details: 'Skills: Machine Learning · Data Structure & Algorithm · Vue.js · AI · Back‑End Web Development · Bash · Business Data Management · Business Analytics · Communication · Data Analysis · Data Presentation · Data Science · Deep Learning · DBMS · Data Visualization · Flask · Java · JavaScript · LLM',
+                      gif: 'https://classroomclipart.com/images/gallery/Animations/Graduation/animated-clipart-graduation-throwing-cap-in-air-04c.gif'
+                    },
+                    {
+                      institution: 'State Board of Technical Education (SBTE), Bihar',
+                      degree: 'Diploma in Civil Engineering, Govt. Polytechnic Patna 07',
+                      date: 'Oct 2020 – Oct 2023',
+                      details: 'Grade: 8.25 CGPA',
+                      gif: 'https://media.tenor.com/Ze8lxl-TgaEAAAAM/engineering.gif'
+                    },
+                    {
+                      institution: 'R.K.D. College',
+                      degree: 'Senior Secondary, PCM',
+                      date: 'Mar 2017 – Apr 2019',
+                      details: 'Grade: 84.6%',
+                      gif: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Exciting_-_Idil_Keysan_-_Wikimedia_Giphy_stickers_2019.gif/1200px-Exciting_-_Idil_Keysan_-_Wikimedia_Giphy_stickers_2019.gif'
+                    },
+                    {
+                      institution: 'Gyan Bharti Public School, Gaya',
+                      degree: 'Secondary School',
+                      date: 'Mar 2012 – Apr 2017',
+                      details: 'Grade: 9.6 CGPA',
+                      gif: 'https://media.tenor.com/2XYVf11lS-cAAAAM/school-work-angry.gif'
+                    }
+                  ]
 
             
         },
@@ -1087,6 +1152,8 @@ header .header-tagline {
               : url;
           }
             }
+
+        
         });
     </script>
 </body>
