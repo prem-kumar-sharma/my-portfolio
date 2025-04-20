@@ -148,6 +148,46 @@
         .about img:hover {
             transform: scale(1.1);
         }
+        .certifications-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 10px;
+            /* hide scrollbar in WebKit if you like: */
+            /* scrollbar-width: none; -moz-scrollbars-none; */
+          }
+          .certifications-gallery::-webkit-scrollbar {
+            display: none;
+          }
+          
+          .certification-card {
+            flex: 0 0 auto;
+            min-width: 250px;
+            background-color: #16213e;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);
+            text-align: center;
+            transition: transform 0.3s;
+          }
+          .certification-card:hover {
+            transform: translateY(-5px);
+          }
+          .certification-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+          }
+          .certification-card h3 {
+            margin: 0 0 5px;
+            font-size: 18px;
+          }
+          .certification-card p {
+            font-size: 14px;
+            color: #e2e2e2;
+          }
+          
 
         .skills {
             display: flex;
@@ -180,8 +220,7 @@
             object-fit: contain;
 
         }
-
-        }
+        /* Skill text styling */
 
         .skill span {
             color: #ffffff;
@@ -345,6 +384,7 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -433,6 +473,19 @@
                 <p>{{ experience.description }}</p>
             </div>
         </section>
+        <section id="certifications" class="container">
+            <h2>Certifications</h2>
+            <div class="certifications-gallery">
+              <div class="certification-card" v-for="cert in certifications" :key="cert.title">
+                <a :href="cert.link" target="_blank">
+                  <img :src="cert.image" :alt="cert.title" />
+                  <h3>{{ cert.title }}</h3>
+                  <p>{{ cert.issuer }} – {{ cert.date }}</p>
+                </a>
+              </div>
+            </div>
+          </section>
+          
         <section id="contact" class="container contact">
             <h2>Contact</h2>
             <p>Email: <a href="mailto:viratprem4321@gmail.com">viratprem4321@gmail.com</a></p>
@@ -571,7 +624,64 @@
                         title: 'WordPress Developer & Graphics Designer | Learn Everything AI (Jan. 2023 - Aug. 2023)',
                         description: 'Designed WordPress websites to improve user experience and engagement.'
                     }
-                ]
+                ],
+                certifications: [
+                    {
+                        title: 'SQL (Advanced) & SQL (Intermediate)',
+                        issuer: 'HackerRank',
+                        date: 'Jan 2025',
+                        image: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/HackerRank_logo.png'
+                    },
+                    {
+                        title: 'NPTEL Believers',
+                        issuer: 'IIT Madras',
+                        date: 'Dec 2024',
+                        image: 'https://www.nptel.ac.in/nptel.png'
+                    },
+                    {
+                        title: 'Cloud Computing',
+                        issuer: 'IIT Kharagpur',
+                        date: 'Nov 2024',
+                        image: 'https://iitkgp.ac.in/themes/custom/iitk/assets/images/logo.png'
+                    },
+                    {
+                        title: 'Software Conceptual Design',
+                        issuer: 'IIT Bombay',
+                        date: 'Nov 2024',
+                        image: 'https://www.iitb.ac.in/themes/custom/iitb/assets/images/iit-blogo.png'
+                    },
+                    {
+                        title: 'Machine Learning using NumPy',
+                        issuer: 'IIT Madras',
+                        date: 'Oct 2024',
+                        image: 'https://www.iitm.ac.in/themes/custom/iitm/assets/images/logo.png'
+                    },
+                    {
+                        title: 'Soft Skill Development',
+                        issuer: 'NPTEL (IIT Kharagpur)',
+                        date: 'Oct 2024',
+                        image: 'https://www.nptel.ac.in/nptel.png'
+                    },
+                    {
+                        title: 'AI/ML for Geodata Analysis',
+                        issuer: 'ISRO',
+                        date: 'Sep 2024',
+                        image: 'https://www.isro.gov.in/sites/default/files/isro_logo.jpg'
+                    },
+                    {
+                        title: 'BATM using Python',
+                        issuer: 'NPTEL (IIT Roorkee)',
+                        date: 'Sep 2024',
+                        image: 'https://www.nptel.ac.in/nptel.png'
+                    },
+                    {
+                        title: 'Python for Data Science and AI',
+                        issuer: 'Coursera',
+                        date: 'Jan 2023',
+                        image: 'https://about.coursera.org/static/95df5bb107bbbb8ed984a843aedc5f0f/coursera-logo.svg'
+                    }
+                    ]
+
             }
         });
     </script>
