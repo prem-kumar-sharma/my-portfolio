@@ -9,12 +9,21 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #64ffda;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --highlight: #64ffda;
+            --dark-bg: #0a1624;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a2e;  /* Changed from #121212 */
-            color: #ffffff;
+            background-color: var(--primary-color);
+            color: var(--text-primary);
             transition: background-color 0.5s, color 0.5s;
         }
 
@@ -23,7 +32,7 @@
             position: fixed;
             width: 100%;
             height: 100%;
-            background-color: #1a1a2e;  /* Changed from #121212 */
+            background-color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -33,7 +42,7 @@
 
         .loading-text {
             font-size: 24px;
-            color: #00b4d8;  /* Changed from #ffdd57 */
+            color: var(--secondary-color);
             font-weight: bold;
             text-align: center;
             animation: fadeIn 1s ease-in-out;
@@ -68,8 +77,8 @@
           
 
         header {
-            background-color: #16213e;  /* Changed from #1f1f1f */
-            color: #ffffff;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
             padding: 20px 0;
             text-align: center;
 
@@ -78,14 +87,14 @@
         header h1 {
             margin: 0;
             font-size: 36px;
-            text-shadow: 0 0 10px #00b4d8;  /* Changed from #ffdd57 */
+            text-shadow: 0 0 10px var(--secondary-color);
         }
 
         header p {
             margin: 10px 0 0;
             font-size: 18px;
-            text-shadow: 0 0 5px #00b4d8;  /* Changed from #ffdd57 */
-            color: #e2e2e2;
+            text-shadow: 0 0 5px var(--secondary-color);
+            color: var(--text-secondary);
         }
 
         nav ul {
@@ -106,21 +115,21 @@
         }
 
         nav ul li a {
-            color: #00b4d8;  /* Changed from #ffdd57 */
+            color: var(--secondary-color);
             text-decoration: none;
             font-size: 16px;
             padding: 10px 20px;
-            border: 2px solid #00b4d8;  /* Changed from #ffdd57 */
+            border: 2px solid var(--secondary-color);
             border-radius: 12px;
             transition: background-color 0.3s, color 0.3s;
             font-weight: bold;
             display: block;
-            background-color: #16213e;  /* Changed from #1f1f1f */
+            background-color: var(--dark-bg);
         }
 
         nav ul li a:hover {
-            background-color: #ffffff;  /* Changed from #ffdd57 */
-            color: #16213e;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
         }
 
         .container {
@@ -132,10 +141,10 @@
         h2 {
             font-size: 28px;
             margin-bottom: 20px;
-            border-bottom: 2px solid #00b4d8;  /* Changed from #ffdd57 */
+            border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 10px;
-            text-shadow: 0 0 5px #00b4d8;  /* Changed from #ffdd57 */
-            color: #ffffff;
+            text-shadow: 0 0 5px var(--secondary-color);
+            color: var(--text-primary);
         }
 
         .about {
@@ -151,7 +160,7 @@
             height: 150px;
             object-fit: cover;
             transition: transform 0.5s;
-            box-shadow: 0 0 15px #00b4d8;
+            box-shadow: 0 0 15px var(--secondary-color);
         }
 
         .about img:hover {
@@ -317,16 +326,16 @@
         }
 
         .project{
-            background-color: #16213e;  /* Changed from #1f1f1f */
+            background-color: var(--dark-bg);
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);  /* Changed color */
-            color: #ffffff;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
+            color: var(--text-primary);
         }
         .project:hover, .experience:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0,180,216,0.4);
+            box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
         }
 
         .project img {
@@ -334,7 +343,7 @@
             max-width: 600px;
             height: auto;
             border-radius: 5px;
-            box-shadow: 0 0 25px rgba(0,180,216,0.4);
+            box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
             transition: transform 0.3s;
             margin-bottom: 15px;
         }
@@ -346,7 +355,7 @@
         .project h3, .experience h3 {
             margin-top: 0;
             font-size: 24px;
-            text-shadow: 0 0 5px #00b4d8;  /* Changed from #ffdd57 */
+            text-shadow: 0 0 5px var(--secondary-color);
         }
 
         .project button, .resume-download button {
@@ -354,8 +363,8 @@
             margin-top: 10px;
             padding: 10px 15px;
             font-size: 14px;
-            color: #16213e;
-            background-color: #00b4d8;  /* Changed from #ffdd57 */
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
             border: none;
             border-radius: 5px;
             text-decoration: none;
@@ -363,28 +372,29 @@
         }
 
         .project button:hover, .resume-download button:hover {
-            background-color: #fff;
-            color: #121212;
+            background-color: var(--text-primary);
+            color: var(--primary-color);
+            box-shadow: 0 0 15px var(--secondary-color);
         }
 
         /* ── Experience Section Styling ─────────────────────── */
         .experience {
-            background-color: #16213e;
+            background-color: var(--dark-bg);
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(0,180,216,0.2);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
           }
           .experience:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0,180,216,0.4);
+            box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
           }
           .experience h3 {
             font-size: 24px;
             margin-top: 0;
-            color: #ffffff;
-            text-shadow: 0 0 5px #00b4d8;
+            color: var(--text-primary);
+            text-shadow: 0 0 5px var(--secondary-color);
           }
           .experience h3 .company {
             color: #ffffff;
@@ -393,7 +403,7 @@
           }
           .exp-meta {
             font-size: 14px;
-            color: #e2e2e2;
+            color: var(--text-secondary);
             margin: 6px 0;
             display: flex;
             flex-wrap: wrap;
@@ -402,7 +412,7 @@
           }
           .exp-dot {
             margin: 0 2px;
-            color: #00b4d8;
+            color: var(--secondary-color);
           }
           .exp-skills {
             display: flex;
@@ -411,8 +421,8 @@
             margin-bottom: 10px;
           }
           .exp-skill {
-            background-color: rgba(0,180,216,0.15);
-            color: #00b4d8;
+            background-color: rgba(100, 255, 218, 0.15);
+            color: var(--secondary-color);
             padding: 4px 8px;
             border-radius: 5px;
             font-size: 13px;
@@ -445,11 +455,11 @@
         }
 
         footer {
-            background-color: #16213e;  /* Changed from #1f1f1f */
-            color: #ffffff;  /* Changed from #ffdd57 */
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
             text-align: center;
             padding: 10px 0;
-            text-shadow: 0 0 5px #00b4d8;  /* Changed from #ffdd57 */
+            text-shadow: 0 0 5px var(--secondary-color);
         }
 
         .social-icons {
@@ -458,15 +468,15 @@
 
         .social-icons a {
             margin: 0 10px;
-            color: #ffdd57;
+            color: var(--secondary-color);
             text-decoration: none;
             font-size: 24px;
             transition: color 0.3s;
         }
 
         .social-icons a:hover {
-            color: #fff;
-            text-shadow: 0 0 5px #ffdd57;
+            color: var(--text-primary);
+            text-shadow: 0 0 5px var(--secondary-color);
         }
 
         @media (max-width: 768px) {
@@ -783,7 +793,7 @@ header .header-tagline {
                 <a :href="cert.link" target="_blank">
                   <img :src="cert.image" :alt="cert.title" />
                   <h3>{{ cert.title }}</h3>
-                  <p>{{ cert.issuer }} – {{ cert.date }}</p>
+                  <p>{{ cert.issuer }} – {{ cert.date }}</p>
                 </a>
               </div>
             </div>
@@ -859,8 +869,8 @@ header .header-tagline {
                 minWidth: 200.00,
                 scale: 1.00,
                 scaleMobile: 1.00,
-                color: 0x00b4d8,  // Changed from 0xffdd57
-                backgroundColor: 0x1a1a2e,  // Changed from 0x121212
+                color: 0x64ffda,
+                backgroundColor: 0x0a192f,
                 points: 12.00,
                 maxDistance: 20.00,
                 spacing: 18.00
@@ -976,8 +986,8 @@ header .header-tagline {
                     company: 'Loqo AI',
                     role: 'Generative AI Engineer',
                     type: 'Full‑time',
-                    date: 'Apr 2025 – Present · 1 mo',
-                    location: 'New Delhi, Delhi, India · Remote',
+                    date: 'Apr 2025 – Present · 1 mo',
+                    location: 'New Delhi, Delhi, India · Remote',
                     skills: [
                       'Python (Programming Language)',
                       'Data Science',
@@ -996,7 +1006,7 @@ header .header-tagline {
                     company: 'Loqo AI',
                     role: 'Generative AI Engineer Intern',
                     type: 'Internship',
-                    date: 'Jul 2024 – Mar 2025 · 9 mos',
+                    date: 'Jul 2024 – Mar 2025 · 9 mos',
                     location: '',
                     skills: [
                       'Artificial Intelligence (AI)',
@@ -1018,7 +1028,7 @@ header .header-tagline {
                     company: '7 Miles Per Second',
                     role: 'Software Developer Intern',
                     type: 'Internship',
-                    date: 'Aug 2024 – Nov 2024 · 4 mos',
+                    date: 'Aug 2024 – Nov 2024 · 4 mos',
                     location: 'Chennai, Tamil Nadu · Remote',
                     skills: ['App Development', 'Team Collaboration', 'Leadership'],
                     description:
@@ -1029,7 +1039,7 @@ header .header-tagline {
                     company: 'Medical Network Pvt. Ltd.',
                     role: 'WebOps Intern',
                     type: 'Internship',
-                    date: 'Jan 2024 – Jun 2024 · 6 mos',
+                    date: 'Jan 2024 – Jun 2024 · 6 mos',
                     location: 'Patna, Bihar · On‑site',
                     skills: ['Website Maintenance', 'Data Insights'],
                     description:
@@ -1040,7 +1050,7 @@ header .header-tagline {
                     company: 'TechoTians',
                     role: 'Web Developer Intern',
                     type: 'Internship',
-                    date: 'Aug 2023 – Dec 2023 · 5 mos',
+                    date: 'Aug 2023 – Dec 2023 · 5 mos',
                     location: 'Patna, Bihar · On‑site',
                     skills: ['UI/UX', 'Performance Optimization'],
                     description:
@@ -1051,7 +1061,7 @@ header .header-tagline {
                     company: 'Learn Everything AI',
                     role: 'WordPress Developer & Graphics Designer',
                     type: 'Part‑time',
-                    date: 'Jan 2023 – Aug 2023 · 8 mos',
+                    date: 'Jan 2023 – Aug 2023 · 8 mos',
                     location: 'India · Hybrid',
                     skills: ['WordPress', 'Graphic Design'],
                     description:
@@ -1063,49 +1073,49 @@ header .header-tagline {
                     {
                         title: 'SQL (Advanced) & SQL (Intermediate)',
                         issuer: 'HackerRank',
-                        date: 'Jan 2025',
+                        date: 'Jan 2025',
                         image: 'sql.png'
                     },
                     {
                         title: 'NPTEL Believers',
                         issuer: 'IIT Madras',
-                        date: 'Dec 2024',
+                        date: 'Dec 2024',
                         image: 'nptel_beliver.png'
                     },
                     {
                         title: 'Cloud Computing',
                         issuer: 'IIT Kharagpur',
-                        date: 'Nov 2024',
+                        date: 'Nov 2024',
                         image: 'cloud_computing.png'
                     },
                     {
                         title: 'Software Conceptual Design',
                         issuer: 'IIT Bombay',
-                        date: 'Nov 2024',
+                        date: 'Nov 2024',
                         image: 'scd.png'
                     },
                     {
                         title: 'Machine Learning using NumPy',
                         issuer: 'IIT Madras',
-                        date: 'Oct 2024',
+                        date: 'Oct 2024',
                         image: 'oppe_ml.png'
                     },
                     {
                         title: 'Soft Skill Development',
                         issuer: 'NPTEL (IIT Kharagpur)',
-                        date: 'Oct 2024',
+                        date: 'Oct 2024',
                         image: 'ssd.png'
                     },
                     {
                         title: 'AI/ML for Geodata Analysis',
                         issuer: 'ISRO',
-                        date: 'Sep 2024',
+                        date: 'Sep 2024',
                         image: 'aiml.png'
                     },
                     {
                         title: 'BATM using Python',
                         issuer: 'NPTEL (IIT Roorkee)',
-                        date: 'Sep 2024',
+                        date: 'Sep 2024',
                         image: 'batm.png'
                     }
                     ],
@@ -1113,7 +1123,7 @@ header .header-tagline {
                     {
                       institution: 'Indian Institute of Technology, Madras',
                       degree: 'BS in Data Science & Application',
-                      date: 'Jan 2021 – Apr 2025',
+                      date: 'Jan 2021 – Apr 2025',
                       location: 'Chennai, Tamil Nadu',
                       details: 'Skills: Machine Learning · Data Structure & Algorithm · Vue.js · AI · Back‑End Web Development · Bash · Business Data Management · Business Analytics · Communication · Data Analysis · Data Presentation · Data Science · Deep Learning · DBMS · Data Visualization · Flask · Java · JavaScript · LLM',
                       gif: 'https://classroomclipart.com/images/gallery/Animations/Graduation/animated-clipart-graduation-throwing-cap-in-air-04c.gif'
@@ -1121,22 +1131,22 @@ header .header-tagline {
                     {
                       institution: 'State Board of Technical Education (SBTE), Bihar',
                       degree: 'Diploma in Civil Engineering, Govt. Polytechnic Patna 07',
-                      date: 'Oct 2020 – Oct 2023',
-                      details: 'Grade: 8.25 CGPA',
+                      date: 'Oct 2020 – Oct 2023',
+                      details: 'Grade: 8.25 CGPA',
                       gif: 'https://media.tenor.com/Ze8lxl-TgaEAAAAM/engineering.gif'
                     },
                     {
                       institution: 'R.K.D. College',
                       degree: 'Senior Secondary, PCM',
-                      date: 'Mar 2017 – Apr 2019',
-                      details: 'Grade: 84.6%',
+                      date: 'Mar 2017 – Apr 2019',
+                      details: 'Grade: 84.6%',
                       gif: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Exciting_-_Idil_Keysan_-_Wikimedia_Giphy_stickers_2019.gif/1200px-Exciting_-_Idil_Keysan_-_Wikimedia_Giphy_stickers_2019.gif'
                     },
                     {
                       institution: 'Gyan Bharti Public School, Gaya',
                       degree: 'Secondary School',
-                      date: 'Mar 2012 – Apr 2017',
-                      details: 'Grade: 9.6 CGPA',
+                      date: 'Mar 2012 – Apr 2017',
+                      details: 'Grade: 9.6 CGPA',
                       gif: 'https://media.tenor.com/2XYVf11lS-cAAAAM/school-work-angry.gif'
                     }
                   ]
@@ -1145,7 +1155,7 @@ header .header-tagline {
         },
         methods: {
           getEmbedUrl(url) {
-            // matches both “youtube.com/watch?v=…” and “youtu.be/…”
+            // matches both "youtube.com/watch?v=" and "youtu.be/"
             const m = url.match(/(?:v=|\.be\/)([^&]+)/);
             return m
               ? `https://www.youtube.com/embed/${m[1]}`
