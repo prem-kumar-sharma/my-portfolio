@@ -65,14 +65,14 @@
 
         header, .container, footer {
             position: relative; /* Ensure they stay on top of the background */
-        }
-
-        header .header-tagline {
+        }        header .header-tagline {
             margin: 8px 0 0;
             font-size: 16px;
-            font-weight: bold;
-            color: #e2e2e2;
-            text-shadow: 0 0 5px #a6dce7;
+            font-weight: 500;
+            color: #7fffd4;
+            text-shadow: 0 0 12px rgba(127, 255, 212, 0.6);
+            letter-spacing: 0.5px;
+            line-height: 1.4;
           }
           
 
@@ -87,7 +87,9 @@
         header h1 {
             margin: 0;
             font-size: 36px;
-            text-shadow: 0 0 10px var(--secondary-color);
+            color: #7fffd4;
+            text-shadow: 0 0 15px rgba(127, 255, 212, 0.7);
+            letter-spacing: 1px;
         }
 
         header p {
@@ -136,15 +138,15 @@
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 20px;
-        }
-
-        h2 {
+        }        h2 {
             font-size: 28px;
             margin-bottom: 20px;
             border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 10px;
-            text-shadow: 0 0 5px var(--secondary-color);
-            color: var(--text-primary);
+            color: #7fffd4;
+            text-shadow: 0 0 15px rgba(127, 255, 212, 0.6);
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
         .about {
@@ -315,14 +317,15 @@
             font-weight: 500;
         }
         
-        /* Section title styling */
-        h2.skills-title {
-            color: #ffffff;
+        /* Section title styling */        h2.skills-title {
+            color: #7fffd4;
             font-size: 24px;
             margin-bottom: 15px;
             border-bottom: 2px solid #00b4d8;
             padding-bottom: 5px;
             width: fit-content;
+            text-shadow: 0 0 12px rgba(127, 255, 212, 0.6);
+            letter-spacing: 0.8px;
         }
 
         .project{
@@ -358,6 +361,36 @@
             text-shadow: 0 0 5px var(--secondary-color);
         }
 
+        /* Project title with enhanced glow */
+        .project-title {
+            color: #7fffd4;
+            text-shadow: 0 0 15px rgba(127, 255, 212, 0.7);
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        /* Section headers with glow */
+        .section-header {
+            color: #7fffd4;
+            text-shadow: 0 0 15px rgba(127, 255, 212, 0.7);
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* Experience title with glow */
+        .experience-title {
+            color: #7fffd4;
+            text-shadow: 0 0 15px rgba(127, 255, 212, 0.7);
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
         .project button, .resume-download button {
             display: inline-block;
             margin-top: 10px;
@@ -389,12 +422,13 @@
           .experience:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
-          }
-          .experience h3 {
+          }        .experience h3 {
             font-size: 24px;
             margin-top: 0;
-            color: var(--text-primary);
-            text-shadow: 0 0 5px var(--secondary-color);
+            color: #7fffd4;
+            text-shadow: 0 0 12px rgba(127, 255, 212, 0.6);
+            letter-spacing: 0.8px;
+            font-weight: 600;
           }
           .experience h3 .company {
             color: #ffffff;
@@ -479,6 +513,40 @@
             text-shadow: 0 0 5px var(--secondary-color);
         }
 
+        /* Main text styling with glow effect */
+        .glow-text {
+            color: #7fffd4;
+            text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        h2.section-title {
+            font-size: 32px;
+            color: #7fffd4;
+            text-shadow: 0 0 15px rgba(127, 255, 212, 0.6);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .company-name {
+            color: #7fffd4;
+            text-shadow: 0 0 12px rgba(127, 255, 212, 0.6);
+            font-weight: 600;
+            letter-spacing: 0.8px;
+        }
+
+        .role-title {
+            color: #7fffd4;
+            text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
         @media (max-width: 768px) {
             .about {
                 flex-direction: column;
@@ -560,7 +628,7 @@ header .header-tagline {
         <header>
             <h1>Prem Kumar</h1>
             <p class="header-tagline">
-                IIT Madras Graduate 🎓 | Generative AI Engineer @ Loqo AI | Mentor 500+ Students | Data Science & GenAI Educator | Hackathon Lead at Paradox'23
+                Associate Research Fellow @IIT Bombay 🧑🏻‍💻 | Alumnus @IIT Madras🎓 | Generative AI Engineer @ Loqo AI | Mentor 500+ Students | Hackathon Lead at Paradox'23
             </p>
             <script
         src="https://topmate-embed.s3.ap-south-1.amazonaws.com/v1/topmate-embed.js"
@@ -591,7 +659,7 @@ header .header-tagline {
         <section id="about" class="container about">
             <img src="MYPIC.JPG" alt="Prem Kumar">
             <div>
-                <h2>About Me</h2>
+                <h2 class="section-header">About Me</h2>
                 <p>Fueled by a passion for <b>Data Science</b> and <b>AI</b>, I love turning raw data into meaningful insights. With experience in <b>Machine Learning</b>, <b>Web Development</b>, and <b>AI automation</b>, I work on <b>fine-tuning models</b>, <b>RAG</b>, <b>API development</b>, and <b>image generation</b>. My journey with <b>Generative AI</b> and <b>Large Language Models</b> has inspired me to create <b>smart, automated solutions</b> that improve efficiency and drive innovation. Beyond my technical work, I enjoy <b>mentoring</b> aspiring professionals, helping them build the skills they need to succeed in the world of <b>Data</b> and <b>AI</b>.</p>
 
                 <div class="resume-download">
@@ -601,7 +669,7 @@ header .header-tagline {
         </section>
                 <!-- YouTube Videos Section -->
         <section id="youtube-videos" class="container">
-            <h2>YouTube Videos</h2>
+            <h2 class="section-header">YouTube Videos</h2>
             <div class="videos-gallery">
             <div
                 class="video-card"
@@ -619,7 +687,7 @@ header .header-tagline {
             </div>
         </section>
         <section id="skills" class="container">
-            <h2>Skills</h2>
+            <h2 class="section-header">Skills</h2>
             
                 <div class="skill">
                     <div class="skills">
@@ -708,7 +776,7 @@ header .header-tagline {
                     <span>Business Data Management</span>
                 </div>
                 <div class="skill">
-                    <img src="https://repository-images.githubusercontent.com/994551/2ba89c40-184d-45ec-8ffe-f9e155aaf702" alt="Jinja2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Jinja_software_logo.svg/2560px-Jinja_software_logo.svg.png" alt="Jinja2">
                     <span>Jinja2</span>
                 </div>
                 <div class="skill">
@@ -731,16 +799,15 @@ header .header-tagline {
             </div>
         </section>
         <section id="projects" class="container">
-            <h2>Projects</h2>
-            <div class="project" v-for="project in projects" :key="project.title">
+            <h2 class="section-header">Projects</h2>            <div class="project" v-for="project in projects" :key="project.title">
                 <img :src="project.image" :alt="project.title">
-                <h3>{{ project.title }}</h3>
+                <h3 class="project-title">{{ project.title }}</h3>
                 <p>{{ project.description }}</p>
                 <a :href="project.link" target="_blank"><button>View Project</button></a>
             </div>
         </section>
         <section id="experience" class="container">
-            <h2>Experience</h2>
+            <h2 class="section-header">Experience</h2>
           
             <div
               class="experience"
@@ -930,7 +997,7 @@ header .header-tagline {
                         title: 'WonCourse - AI-Powered Learning Platform',
                         link: 'https://github.com/prem-kumar-sharma/WonCourse-soft-engg-project-may-2024-se-may-27',
                         description: 'Developed WonCourse, an AI-powered learning platform integrating GenAI technologies to enhance the learning experience. Implemented features like video lectures, coding assistance, and AI-powered chatbots for course queries. Used RAG (Retrieval-Augmented Generation) for contextual support.',
-                        image: 'https://www.portal.itcourses.com/sites/default/files/AI%20Fundamentals%20for%20Business%20Professionals%281%29.png'
+                        image: 'https://nearlearn.com/public/images/ai-training-in-bangalore.jpeg'
                     },
                     {
                         title: 'EduBridge: Design Thinking Project',
