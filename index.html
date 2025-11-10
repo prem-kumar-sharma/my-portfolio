@@ -4,11 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prem Kumar - Portfolio</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
+
+        /* make the YouTube link match nav buttons */
+        .nav-style {
+          color: var(--secondary-color);
+          text-decoration: none;
+          font-size: 16px;
+          padding: 10px 20px;
+          border: 2px solid var(--secondary-color);
+          border-radius: 12px;
+          transition: background-color 0.3s, color 0.3s;
+          font-weight: bold;
+          display: inline-block;
+          background-color: var(--dark-bg);
+        }
+        .nav-style:hover {
+          background-color: var(--secondary-color);
+          color: var(--primary-color);
+        }
+        #dots-bg {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        }
+
         :root {
             --primary-color: #0a192f;
             --secondary-color: #64ffda;
@@ -620,7 +645,7 @@ header .header-tagline {
     </style>
 </head>
 <body>
-    <div id="vanta-bg"></div>
+    <canvas id="dots-bg"></canvas>
     <div id="splash-screen">
         <div class="loading-text">Loading <span id="loading-percentage">0%</span></div>
     </div>
@@ -662,9 +687,11 @@ header .header-tagline {
                 <h2 class="section-header">About Me</h2>
                 <p>Fueled by a passion for <b>Data Science</b> and <b>AI</b>, I love turning raw data into meaningful insights. With experience in <b>Machine Learning</b>, <b>Web Development</b>, and <b>AI automation</b>, I work on <b>fine-tuning models</b>, <b>RAG</b>, <b>API development</b>, and <b>image generation</b>. My journey with <b>Generative AI</b> and <b>Large Language Models</b> has inspired me to create <b>smart, automated solutions</b> that improve efficiency and drive innovation. Beyond my technical work, I enjoy <b>mentoring</b> aspiring professionals, helping them build the skills they need to succeed in the world of <b>Data</b> and <b>AI</b>.</p>
 
+                <!-- NEW: visually matches nav buttons -->
                 <div class="YouTube">
-                    <a href="https://yt.openinapp.co/1dapt"view><button>YouTube</button></a>
+                  <a class="nav-style" href="https://yt.openinapp.co/1dapt" target="_blank" rel="noopener noreferrer">YouTube</a>
                 </div>
+
             </div>
         </section>
                 <!-- YouTube Videos Section -->
@@ -925,34 +952,16 @@ header .header-tagline {
         </footer>
     </div>
     <script>
+        /* Splash loader (keep or replace existing loader logic) */
         window.addEventListener('load', function() {
-            // Vanta.NET background animation
-            VANTA.NET({
-                el: "#vanta-bg",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0x64ffda,
-                backgroundColor: 0x0a192f,
-                points: 12.00,
-                maxDistance: 20.00,
-                spacing: 18.00
-            });
-
-            // Splash Screen Timeout with Percentage Loader
             let percentage = 0;
             const loadingText = document.getElementById('loading-percentage');
 
             function updatePercentage() {
                 loadingText.textContent = `${percentage}%`;
                 percentage++;
-
                 if (percentage <= 100) {
-                    setTimeout(updatePercentage, 20); // Adjust the timing for smoother or faster loading
+                    setTimeout(updatePercentage, 12);
                 } else {
                     document.getElementById('splash-screen').style.display = 'none';
                     document.getElementById('app').style.display = 'block';
@@ -961,7 +970,101 @@ header .header-tagline {
 
             updatePercentage();
         });
+        /* Lightweight dot/particle background (canvas) */
+        (function initDots() {
+            const canvas = document.getElementById('dots-bg');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
 
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            const DPR = window.devicePixelRatio || 1;
+            canvas.width = width * DPR;
+            canvas.height = height * DPR;
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+            ctx.scale(DPR, DPR);
+
+            const particles = [];
+            const PARTICLE_COUNT = Math.max(30, Math.floor((width * height) / 80000)); // adaptive count
+            const COLORS = ['rgba(100,255,218,0.95)', 'rgba(100,255,218,0.6)', 'rgba(100,255,218,0.35)'];
+
+            function rand(min, max) { return Math.random() * (max - min) + min; }
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push({
+                    x: rand(0, width),
+                    y: rand(0, height),
+                    vx: rand(-0.3, 0.3),
+                    vy: rand(-0.3, 0.3),
+                    r: rand(1.4, 3.2),
+                    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+                    life: rand(60, 300)
+                });
+            }
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+                canvas.width = width * DPR;
+                canvas.height = height * DPR;
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+                ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+            }
+            window.addEventListener('resize', resize);
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < -10) p.x = width + 10;
+                    if (p.x > width + 10) p.x = -10;
+                    if (p.y < -10) p.y = height + 10;
+                    if (p.y > height + 10) p.y = -10;
+
+                    p.life--;
+                    if (p.life <= 0) {
+                        p.r = rand(1.4, 3.2);
+                        p.vx = rand(-0.3, 0.3);
+                        p.vy = rand(-0.3, 0.3);
+                        p.life = rand(60, 300);
+                    }
+
+                    ctx.beginPath();
+                    ctx.fillStyle = p.color;
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // subtle lines between nearby dots (very faint)
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const a = particles[i];
+                        const b = particles[j];
+                        const dx = a.x - b.x;
+                        const dy = a.y - b.y;
+                        const d = Math.sqrt(dx * dx + dy * dy);
+                        if (d < 90) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = 'rgba(100,255,218,' + (0.009 * (90 - d)).toFixed(3) + ')';
+                            ctx.lineWidth = 0.6;
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                requestAnimationFrame(draw);
+            }
+
+            draw();
+        })();
         new Vue({
             el: '#app',
             data: {
