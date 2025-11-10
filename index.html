@@ -4,645 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prem Kumar - Portfolio</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2" defer></script>
+    
+    <link rel="stylesheet" href="style.css">
 
-        /* make the YouTube link match nav buttons */
-        .nav-style {
-          color: var(--secondary-color);
-          text-decoration: none;
-          font-size: 16px;
-          padding: 10px 20px;
-          border: 2px solid var(--secondary-color);
-          border-radius: 12px;
-          transition: background-color 0.3s, color 0.3s;
-          font-weight: bold;
-          display: inline-block;
-          background-color: var(--dark-bg);
-        }
-        .nav-style:hover {
-          background-color: var(--secondary-color);
-          color: var(--primary-color);
-        }
-        #dots-bg {
-          position: fixed;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          z-index: -1;
-        }
-
-        :root {
-            --primary-color: #0a192f;
-            --secondary-color: #64ffda;
-            --text-primary: #ccd6f6;
-            --text-secondary: #8892b0;
-            --highlight: #64ffda;
-            --dark-bg: #0a1624;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--primary-color);
-            color: var(--text-primary);
-            transition: background-color 0.5s, color 0.5s;
-        }
-
-        /* Splash Screen */
-        #splash-screen {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            flex-direction: column;
-        }
-
-        .loading-text {
-            font-size: 24px;
-            color: var(--secondary-color);
-            font-weight: bold;
-            text-align: center;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Vanta.js background container */
-        #vanta-bg {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Ensure it stays behind other content */
-            top: 0;
-            left: 0;
-        }
-
-        header, .container, footer {
-            position: relative; /* Ensure they stay on top of the background */
-        }        header .header-tagline {
-            margin: 8px 0 0;
-            font-size: 16px;
-            font-weight: 500;
-            color: #7fffd4;
-            text-shadow: 0 0 12px rgba(127, 255, 212, 0.6);
-            letter-spacing: 0.5px;
-            line-height: 1.4;
-          }
-          
-
-        header {
-            background-color: var(--dark-bg);
-            color: var(--text-primary);
-            padding: 20px 0;
-            text-align: center;
-
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-            color: #7fffd4;
-            text-shadow: 0 0 15px rgba(127, 255, 212, 0.7);
-            letter-spacing: 1px;
-        }
-
-        header p {
-            margin: 10px 0 0;
-            font-size: 18px;
-            text-shadow: 0 0 5px var(--secondary-color);
-            color: var(--text-secondary);
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 25px 0 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            gap: 10px;
-        }
-
-        nav ul li {
-            margin: 0;
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        nav ul li a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-size: 16px;
-            padding: 10px 20px;
-            border: 2px solid var(--secondary-color);
-            border-radius: 12px;
-            transition: background-color 0.3s, color 0.3s;
-            font-weight: bold;
-            display: block;
-            background-color: var(--dark-bg);
-        }
-
-        nav ul li a:hover {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }        h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-            color: #7fffd4;
-            text-shadow: 0 0 15px rgba(127, 255, 212, 0.6);
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .about {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .about img {
-            border-radius: 50%;
-            margin-right: 20px;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            transition: transform 0.5s;
-            box-shadow: 0 0 15px var(--secondary-color);
-        }
-
-        .about img:hover {
-            transform: scale(1.1);
-        }
-
-        /* ── YouTube Videos Section ───────────────────────── */
-        .videos-gallery {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 20px 0;
-        }
-        
-        .videos-gallery::-webkit-scrollbar {
-            height: 8px;
-        }
-        .videos-gallery::-webkit-scrollbar-thumb {
-            background-color: rgba(0,180,216,0.4);
-            border-radius: 4px;
-        }
-        
-        .video-card {
-            flex: 0 0 auto;
-            width: 320px;       /* standard 16:9 iframe */
-            background-color: #16213e;
-            border-radius: 12px;
-            padding: 12px;
-            box-shadow: 0 0 10px rgba(0,180,216,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .video-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 0 18px rgba(0,180,216,0.7);
-        }
-        
-        .video-card iframe {
-            width: 100%;
-            height: 180px;
-            border-radius: 8px;
-        }
-        
-        .video-card p {
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 14px; 
-            margin-top: 8px;
-            text-align: center;
-        }
-        
-        /* ── Certifications: card styling ─────────────────── */
-        .certifications-gallery {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 20px 0;
-        }
-        
-        .certification-card {
-            flex: 0 0 auto;
-            width: 200px;           /* a bit narrower */
-            /* let height grow based on content */
-            background-color: #16213e;
-            border-radius: 16px;
-            padding: 12px 16px;     /* less padding */
-            box-shadow: 0 0 8px rgba(0,180,216,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-          }
-        
-        .certification-card:hover {
-            transform: translateY(-6px) scale(1.03);
-            box-shadow: 0 0 18px rgba(0,180,216,0.7);
-          }
-        
-        .certification-card img {
-            width: 100%;
-            height: auto;
-            max-height: 140px;      
-            object-fit: contain;
-            margin-bottom: 12px;
-            border-radius: 6px;
-          }
-        
-        .certification-card h3 {
-            font-size: 17px;
-            margin: 8px 0 4px;
-          }
-          
-        .certification-card p {
-            font-size: 13px;
-          }
-        
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;  /* Allows items to wrap to next line */
-            gap: 10px;       /* Space between skills */
-            margin: 20px 0;
-            padding: 10px;
-        }
-
-        /* give every badge a soft teal glow */
-        .skill {
-            background-color: rgba(22, 33, 62, 0.7);
-            padding: 8px 15px;
-            border-radius: 5px;
-            display: inline-flex;
-            align-items: center;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(0, 180, 216, 0.2);
-            box-shadow: 0 0 5px rgba(0, 180, 216, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        /* pulse and scale on hover */
-        @keyframes pulseGlow {
-            from {
-            box-shadow: 0 0 5px rgba(0,180,216,0.4);
-            }
-            to {
-            box-shadow: 0 0 20px rgba(0,180,216,0.8);
-            }
-        }
-        
-        .skill:hover {
-            transform: scale(1.05);
-            animation: pulseGlow 1s infinite alternate;
-        }
-  
-
-
-        .skill img {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-            object-fit: contain;
-
-        }
-        /* Skill text styling */
-
-        .skill span {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        /* Section title styling */        h2.skills-title {
-            color: #7fffd4;
-            font-size: 24px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #00b4d8;
-            padding-bottom: 5px;
-            width: fit-content;
-            text-shadow: 0 0 12px rgba(127, 255, 212, 0.6);
-            letter-spacing: 0.8px;
-        }
-
-        .project{
-            background-color: var(--dark-bg);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
-            color: var(--text-primary);
-        }
-        .project:hover, .experience:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
-        }
-
-        .project img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 5px;
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
-            transition: transform 0.3s;
-            margin-bottom: 15px;
-        }
-
-        .project img:hover {
-            transform: scale(1.05);
-        }
-
-        .project h3, .experience h3 {
-            margin-top: 0;
-            font-size: 24px;
-            text-shadow: 0 0 5px var(--secondary-color);
-        }
-
-        /* Project title with enhanced glow */
-        .project-title {
-            color: #7fffd4;
-            text-shadow: 0 0 15px rgba(127, 255, 212, 0.7);
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        /* Section headers with glow */
-        .section-header {
-            color: #7fffd4;
-            text-shadow: 0 0 15px rgba(127, 255, 212, 0.7);
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        /* Experience title with glow */
-        .experience-title {
-            color: #7fffd4;
-            text-shadow: 0 0 15px rgba(127, 255, 212, 0.7);
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .project button, .resume-download button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            font-size: 14px;
-            color: var(--primary-color);
-            background-color: var(--secondary-color);
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .project button:hover, .resume-download button:hover {
-            background-color: var(--text-primary);
-            color: var(--primary-color);
-            box-shadow: 0 0 15px var(--secondary-color);
-        }
-
-        /* ── Experience Section Styling ─────────────────────── */
-        .experience {
-            background-color: var(--dark-bg);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-          }
-          .experience:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
-          }        .experience h3 {
-            font-size: 24px;
-            margin-top: 0;
-            color: #7fffd4;
-            text-shadow: 0 0 12px rgba(127, 255, 212, 0.6);
-            letter-spacing: 0.8px;
-            font-weight: 600;
-          }
-          .experience h3 .company {
-            color: #ffffff;
-            font-weight: 500;
-            margin-left: 6px;
-          }
-          .exp-meta {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin: 6px 0;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 4px;
-          }
-          .exp-dot {
-            margin: 0 2px;
-            color: var(--secondary-color);
-          }
-          .exp-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 10px;
-          }
-          .exp-skill {
-            background-color: rgba(100, 255, 218, 0.15);
-            color: var(--secondary-color);
-            padding: 4px 8px;
-            border-radius: 5px;
-            font-size: 13px;
-            font-weight: 500;
-          }
-          .exp-gif {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            box-shadow: 0 0 10px rgba(0,180,216,0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-          }
-          .exp-gif:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0,180,216,0.8);
-          }
-        
-  
-
-        .contact p, .contact a {
-            font-size: 16px;
-            color: #ffffff;  /* Changed from #ffdd57 */
-            text-decoration: none;
-        }
-
-        .contact a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            background-color: var(--dark-bg);
-            color: var(--text-primary);
-            text-align: center;
-            padding: 10px 0;
-            text-shadow: 0 0 5px var(--secondary-color);
-        }
-
-        .social-icons {
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            margin: 0 10px;
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-size: 24px;
-            transition: color 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: var(--text-primary);
-            text-shadow: 0 0 5px var(--secondary-color);
-        }
-
-        /* Main text styling with glow effect */
-        .glow-text {
-            color: #7fffd4;
-            text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        h2.section-title {
-            font-size: 32px;
-            color: #7fffd4;
-            text-shadow: 0 0 15px rgba(127, 255, 212, 0.6);
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-        }
-
-        .company-name {
-            color: #7fffd4;
-            text-shadow: 0 0 12px rgba(127, 255, 212, 0.6);
-            font-weight: 600;
-            letter-spacing: 0.8px;
-        }
-
-        .role-title {
-            color: #7fffd4;
-            text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
-            font-size: 24px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 768px) {
-            .about {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .about img {
-                margin: 0 0 20px;
-            }
-
-            nav ul {
-                justify-content: center;
-                overflow-x: auto;
-                padding: 10px 0;
-            }
-
-            nav ul li {
-                margin: 5px;
-            }
-
-            nav ul li a {
-                font-size: 14px;
-                padding: 6px 10px;
-                border-radius: 8px;
-                font-weight: bold;
-            }
-        }
-
-        /* Make heading & tagline wrap */
-header h1,
-header .header-tagline {
-  white-space: normal;
-  overflow-wrap: break-word;
-}
-
-/* Mobile adjustments */
-@media (max-width: 600px) {
-  /* Reduce side padding on everything */
-  .container {
-    padding: 0 10px;
-  }
-
-  /* Shrink the main title */
-  header h1 {
-    font-size: 28px;
-    line-height: 1.2;
-  }
-
-  /* Shrink & pad the tagline */
-  header .header-tagline {
-    font-size: 12px;
-    margin-top: 6px;
-    padding: 0 5px;
-    line-height: 1.3;
-  }
-
-  /* Allow nav buttons to wrap */
-  nav ul {
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-
-  /* Make each nav link smaller */
-  nav ul li a {
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-}
-
-    </style>
 </head>
 <body>
     <canvas id="dots-bg"></canvas>
@@ -683,23 +49,21 @@ header .header-tagline {
             </nav>
         </header>
         <section id="about" class="container about">
-            <img src="MYPIC.JPG" alt="Prem Kumar">
+            <img src="MYPIC.webp" alt="Prem Kumar" width="150" height="150">
             <div>
                 <h2 class="section-header">About Me</h2>
                 <p>Fueled by a passion for <b>Data Science</b> and <b>AI</b>, I love turning raw data into meaningful insights. With experience in <b>Machine Learning</b>, <b>Web Development</b>, and <b>AI automation</b>, I work on <b>fine-tuning models</b>, <b>RAG</b>, <b>API development</b>, and <b>image generation</b>. My journey with <b>Generative AI</b> and <b>Large Language Models</b> has inspired me to create <b>smart, automated solutions</b> that improve efficiency and drive innovation. Beyond my technical work, I enjoy <b>mentoring</b> aspiring professionals, helping them build the skills they need to succeed in the world of <b>Data</b> and <b>AI</b>.</p>
 
-                <!-- NEW: visually matches nav buttons -->
                 <div class="YouTube">
                   <a class="nav-style" href="https://yt.openinapp.co/1dapt" target="_blank" rel="noopener noreferrer">YouTube</a>
                 </div>
 
             </div>
 
-        <!-- Services Section -->
         <section id="services" class="container">
           <h2 class="section-header">Services</h2>
           <div class="project" v-for="service in services" :key="service.title">
-            <img :src="service.image" :alt="service.title">
+            <img :src="service.image" :alt="service.title" loading="lazy" decoding="async">
             <h3 class="project-title">{{ service.title }}</h3>
             <p>{{ service.description }}</p>
             <a :href="service.link" target="_blank">
@@ -709,8 +73,7 @@ header .header-tagline {
         </section>  
 
         </section>
-                <!-- YouTube Videos Section -->
-        <section id="youtube-videos" class="container">
+                <section id="youtube-videos" class="container">
             <h2 class="section-header">YouTube Videos</h2>
             <div class="videos-gallery">
             <div
@@ -723,6 +86,7 @@ header .header-tagline {
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen
+                    loading="lazy"
                 ></iframe>
                 <p>{{ video.title }}</p>
             </div>
@@ -733,7 +97,6 @@ header .header-tagline {
             
                 <div class="skill">
                     <div class="skills">
-                      <!-- existing skills… -->
                       <div class="skills">
                         <div class="skill">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
@@ -768,7 +131,7 @@ header .header-tagline {
                         <span>Bootstrap</span>
                       </div>
                       <div class="skill">
-                        <img src="data:image/png;base64,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" alt="NumPy">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/NumPy_logo_2020.svg/512px-NumPy_logo_2020.svg.png" alt="NumPy" style="width: 20px; height: 20px; object-fit: contain;">
                         <span>NumPy</span>
                       </div>
                       <div class="skill">
@@ -841,8 +204,9 @@ header .header-tagline {
             </div>
         </section>
         <section id="projects" class="container">
-            <h2 class="section-header">Projects</h2>            <div class="project" v-for="project in projects" :key="project.title">
-                <img :src="project.image" :alt="project.title">
+            <h2 class="section-header">Projects</h2>
+            <div class="project" v-for="project in projects" :key="project.title">
+                <img :src="project.image" :alt="project.title" loading="lazy" decoding="async">
                 <h3 class="project-title">{{ project.title }}</h3>
                 <p>{{ project.description }}</p>
                 <a :href="project.link" target="_blank"><button>View Project</button></a>
@@ -856,21 +220,20 @@ header .header-tagline {
               v-for="exp in experiences"
               :key="exp.company + exp.role"
             >
-              <!-- animated GIF -->
               <img
                 v-if="exp.gif"
                 :src="exp.gif"
                 alt="Role Animation"
                 class="exp-gif"
+                loading="lazy"
+                decoding="async"
               />
           
-              <!-- Role @ Company -->
               <h3>
                 {{ exp.role }}
                 <span class="company">@ {{ exp.company }}</span>
               </h3>
           
-              <!-- Type · Date · Location -->
               <div class="exp-meta">
                 <span class="exp-type">{{ exp.type }}</span>
                 <span class="exp-dot">·</span>
@@ -879,7 +242,6 @@ header .header-tagline {
                 <span v-if="exp.location" class="exp-location">{{ exp.location }}</span>
               </div>
           
-              <!-- Skills tags -->
               <div class="exp-skills">
                 <span
                   class="exp-skill"
@@ -890,7 +252,6 @@ header .header-tagline {
                 </span>
               </div>
           
-              <!-- Description -->
               <p v-if="exp.description">{{ exp.description }}</p>
             </div>
           </section>
@@ -900,37 +261,34 @@ header .header-tagline {
             <div class="certifications-gallery">
               <div class="certification-card" v-for="cert in certifications" :key="cert.title">
                 <a :href="cert.link" target="_blank">
-                  <img :src="cert.image" :alt="cert.title" />
+                  <img :src="cert.image" :alt="cert.title" loading="lazy" decoding="async" />
                   <h3>{{ cert.title }}</h3>
                   <p>{{ cert.issuer }} – {{ cert.date }}</p>
                 </a>
               </div>
             </div>
           </section>
-        <!-- … your Certifications section … -->
-
-    <section id="education" class="container">
+        <section id="education" class="container">
         <h2>Education</h2>
         <div
         class="experience"
         v-for="edu in educations"
         :key="edu.institution + edu.date"
         >
-        <!-- animated GIF for each entry -->
         <img
             v-if="edu.gif"
             :src="edu.gif"
             alt="Education GIF"
             class="exp-gif"
+            loading="lazy"
+            decoding="async"
         />
     
-        <!-- Degree @ Institution -->
         <h3>
             {{ edu.degree }}
             <span class="company">@ {{ edu.institution }}</span>
         </h3>
     
-        <!-- Type · Date · Location -->
         <div class="exp-meta">
             <span class="exp-type">Academic</span>
             <span class="exp-dot">·</span>
@@ -939,7 +297,6 @@ header .header-tagline {
             <span v-if="edu.location" class="exp-location">{{ edu.location }}</span>
         </div>
   
-      <!-- Extra details (skills, grade, etc.) -->
       <p v-if="edu.details">{{ edu.details }}</p>
     </div>
   </section>
@@ -966,440 +323,7 @@ header .header-tagline {
             <p>&copy; 2024 Prem Kumar. All rights reserved.</p>
         </footer>
     </div>
-    <script>
-        /* Splash loader (keep or replace existing loader logic) */
-        window.addEventListener('load', function() {
-            let percentage = 0;
-            const loadingText = document.getElementById('loading-percentage');
 
-            function updatePercentage() {
-                loadingText.textContent = `${percentage}%`;
-                percentage++;
-                if (percentage <= 100) {
-                    setTimeout(updatePercentage, 12);
-                } else {
-                    document.getElementById('splash-screen').style.display = 'none';
-                    document.getElementById('app').style.display = 'block';
-                }
-            }
-
-            updatePercentage();
-        });
-        /* Lightweight dot/particle background (canvas) */
-        (function initDots() {
-            const canvas = document.getElementById('dots-bg');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-
-            let width = canvas.width = window.innerWidth;
-            let height = canvas.height = window.innerHeight;
-            const DPR = window.devicePixelRatio || 1;
-            canvas.width = width * DPR;
-            canvas.height = height * DPR;
-            canvas.style.width = width + 'px';
-            canvas.style.height = height + 'px';
-            ctx.scale(DPR, DPR);
-
-            const particles = [];
-            const PARTICLE_COUNT = Math.max(30, Math.floor((width * height) / 80000)); // adaptive count
-            const COLORS = ['rgba(100,255,218,0.95)', 'rgba(100,255,218,0.6)', 'rgba(100,255,218,0.35)'];
-
-            function rand(min, max) { return Math.random() * (max - min) + min; }
-
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-                particles.push({
-                    x: rand(0, width),
-                    y: rand(0, height),
-                    vx: rand(-0.3, 0.3),
-                    vy: rand(-0.3, 0.3),
-                    r: rand(1.4, 3.2),
-                    color: COLORS[Math.floor(Math.random() * COLORS.length)],
-                    life: rand(60, 300)
-                });
-            }
-
-            function resize() {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-                canvas.width = width * DPR;
-                canvas.height = height * DPR;
-                canvas.style.width = width + 'px';
-                canvas.style.height = height + 'px';
-                ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-            }
-            window.addEventListener('resize', resize);
-
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-
-                for (let i = 0; i < particles.length; i++) {
-                    const p = particles[i];
-                    p.x += p.vx;
-                    p.y += p.vy;
-
-                    if (p.x < -10) p.x = width + 10;
-                    if (p.x > width + 10) p.x = -10;
-                    if (p.y < -10) p.y = height + 10;
-                    if (p.y > height + 10) p.y = -10;
-
-                    p.life--;
-                    if (p.life <= 0) {
-                        p.r = rand(1.4, 3.2);
-                        p.vx = rand(-0.3, 0.3);
-                        p.vy = rand(-0.3, 0.3);
-                        p.life = rand(60, 300);
-                    }
-
-                    ctx.beginPath();
-                    ctx.fillStyle = p.color;
-                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-
-                // subtle lines between nearby dots (very faint)
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const a = particles[i];
-                        const b = particles[j];
-                        const dx = a.x - b.x;
-                        const dy = a.y - b.y;
-                        const d = Math.sqrt(dx * dx + dy * dy);
-                        if (d < 90) {
-                            ctx.beginPath();
-                            ctx.strokeStyle = 'rgba(100,255,218,' + (0.009 * (90 - d)).toFixed(3) + ')';
-                            ctx.lineWidth = 0.6;
-                            ctx.moveTo(a.x, a.y);
-                            ctx.lineTo(b.x, b.y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-
-                requestAnimationFrame(draw);
-            }
-
-            draw();
-        })();
-        new Vue({
-            el: '#app',
-            data: {
-                services: [
-                  {
-                    title: 'Mentorship: Projects, Career & Portfolio',
-                    description: 'I help students and early professionals figure out the right path in tech from choosing good projects to building a solid portfolio and getting interview-ready. We’ll go through your goals, improve your LinkedIn and resume, and plan how you can reach the next level step by step. You can book a short call with me on Topmate to get started and I’ll share a clear 3-month roadmap for you.',
-                    link: 'https://topmate.io/prem_kumar_sharma',
-                    image: 'https://www.aihr.com/wp-content/uploads/mentorship-programs-cover.png'
-                  },
-                  {
-                    title: 'AI Product Development, MVP to Production',
-                    description: 'If you have an idea and want to turn it into a real AI product, I can help you build it end-to-end from concept and prototype to a working deployment. I’ve worked with RAG models, APIs, chatbots, and full AI systems for startups and projects. Just message me on LinkedIn, tell me a bit about what you’re building, and we can explore how to bring it to life.',
-                    link: 'https://www.linkedin.com/in/prem-kumar-sharma-a499b1201/',
-                    image: 'https://newvision-software.com/wp-content/uploads/2024/10/Building-the-winning-AI-products.png'
-                  },
-                  {
-                    title: 'Content & Social Media Development',
-                    description: 'I work with creators and founders to plan and grow their online presence. From short video scripts and thumbnail ideas to complete posting schedules, I help you stay consistent and build a personal brand that actually connects with people. If you want to discuss your content or get a few quick suggestions, just drop me a message on LinkedIn I reply to every genuine query.',
-                    link: 'https://www.linkedin.com/in/prem-kumar-sharma-a499b1201/',
-                    image: 'https://www.socialchamp.com/blog/wp-content/uploads/2024/03/Content-Blog-Banner_Q1-2024_1125x600_081_Social-Media-Growth.png'
-                  },
-                  {
-                    title: 'Cinematic AI Content Making: Full Production + BGM',
-                    description: 'I create fully automated, AI-generated cinematic videos from script writing and visuals to voice-over, background music, and editing. Everything is done end-to-end using AI tools, yet crafted carefully to look natural, emotional, and visually stunning. Whether you want short clips or full storytelling videos, I can help you bring your ideas to life. Just message me on LinkedIn, and we’ll plan something creative for your channel.',
-                    link: 'https://www.linkedin.com/in/prem-kumar-sharma-a499b1201/',
-                    image: 'https://smartclick.ai/wp-content/uploads/2020/08/shutterstock_1356497663-scaled.jpg'
-                  }
-                ],
-
-                videos: [
-                    {
-                        title: 'Complete Flask CRUD Application Tutorial',
-                        link: 'https://www.youtube.com/watch?v=Jnf2X6t3xbo&t=1216s'
-                    },
-                    {
-                        title: 'IIT Madras EXPERT Shares Top Fresher Resume Tips',
-                        link: 'https://youtu.be/dOtwWAx_BEc?si=QdgIwJXkv4DhgywP'
-                    },
-                    {
-                        title: 'STOP Making These Common Mistakes At Hackathons',
-                        link: 'https://youtu.be/BuwF8LAdZcg?si=RzChhymiidBY7iox'
-                    },
-                    {
-                        title: '3 Degrees in 5 Years & Ph.D Without GATE/NET | The Knowledge Exchange Ep. 1',
-                        link: 'https://youtu.be/uZBHNj66500?si=jlVUJ99PfkKz75E_'
-                    },
-                    {
-                        title: 'Journalism Showdown: Data vs Traditional Reporting in Cricket',
-                        link: 'https://youtu.be/1l3CMBacafA?si=8izzC7AGRDUJRA79'
-                    },
-                    {
-                        title: 'I Mastered GitHub and Created My FIRST Project Like a PRO!',
-                        link: 'https://youtu.be/WhviDVE1Qkk?si=K38EiFb6UBSlpEoh'
-                    }
-                ],
-                projects: [
-                    {
-                        title: 'WonCourse - AI-Powered Learning Platform',
-                        link: 'https://github.com/prem-kumar-sharma/WonCourse-soft-engg-project-may-2024-se-may-27',
-                        description: 'Developed WonCourse, an AI-powered learning platform integrating GenAI technologies to enhance the learning experience. Implemented features like video lectures, coding assistance, and AI-powered chatbots for course queries. Used RAG (Retrieval-Augmented Generation) for contextual support.',
-                        image: 'https://nearlearn.com/public/images/ai-training-in-bangalore.jpeg'
-                    },
-                    {
-                        title: 'EduBridge: Design Thinking Project',
-                        link: 'https://github.com/prem-kumar-sharma/Edubridge',
-                        description: 'An LMS tailored for educational institutions, designed to simplify administrative tasks, enhance teacher-student communication, and optimize learning outcomes. Developed using the KDT-EAST framework, this project prioritizes user-centric design, scalability, and technological feasibility.',
-                        image: 'https://topsoftwarecompanies.co/front_assets/img/blog/IN_DEsignthinking_Design-Thinking-2.png'
-                    },
-                    {
-                        title: 'Food Recipe Rating Prediction',
-                        link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
-                        description: 'Built predictive models to forecast food recipe ratings using logistic regression and random forest, achieving over 77% accuracy.',
-                        image: 'https://proveg.org/wp-content/uploads/2022/12/AdobeStock_493066768-scaled-1.jpeg'
-                    },
-                    {
-                        title: 'Food Log App',
-                        link: 'https://github.com/prem-kumar-sharma/food-log-app',
-                        description: 'Developed a responsive meal tracking app using Edamam API for nutritional data.',
-                        image: 'https://superiorfs.com.au/Documents/banner-blog-superior-current_trends-1-@2x.jpg'
-                    },
-                    {
-                        title: 'Library Management System',
-                        link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
-                        description: 'Created a full-stack library management system with caching for efficient operations.',
-                        image: 'https://www.vervelogic.com/blog/wp-content/uploads/2019/08/LMS-01.png'
-                    },
-                    {
-                        title: 'Diabeteasy',
-                        link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
-                        description: 'Developed an ML-based diabetes management tool with Google Maps integration for doctor suggestions.',
-                        image: 'https://sa1s3optim.patientpop.com/assets/images/provider/photos/2421932.jpg'
-                    },
-                    {
-                        title: 'IITM Resume Analyzer',
-                        link: 'https://github.com/prem-kumar-sharma/IITM-Resume-Feedbacks',
-                        description: 'Developed a resume analyzer tool for generating actionable feedback based on IITM BS Resume Guidelines, using OpenAI model.',
-                        image: 'https://squeezegrowth.com/wp-content/uploads/2022/01/Best-Resume-Scanning-Software-scaled.webp'
-                    },
-                    {
-                        title: 'Strategies-for-Professional-Growth Projects',
-                        link: 'https://github.com/prem-kumar-sharma/Strategies-for-Professional-Growth-Project',
-                        description: 'A research project that delves into the realities of entrepreneurship beyond the glamour, providing practical insights and strategies essential for startup success.',
-                        image: 'https://epaouydin3q.exactdn.com/wp-content/uploads/2024/02/Personalized-Career-Development.jpg?strip=all&lossy=1&ssl=1'
-                    },
-                    {
-                        title: 'Business Data Management(BDM) Capstone Projects',
-                        link: 'https://github.com/prem-kumar-sharma/BDM-Capstone-Projects',
-                        description: 'Conducted in-depth data analysis to support decision-making processes for business development.',
-                        image: 'https://www.blue-pencil.ca/wp-content/uploads/2020/04/laptops.png'
-                    }
-                ],
-                experiences: [
-              {
-                company: 'Indian Institute of Technology, Bombay',
-                role: 'Research Associate',
-                type: 'Full-time',
-                date: 'July, 2025 – Present',
-                location: 'Mumbai, India · on-site',
-                skills: [
-                  'Signal Processing',
-                  'Data Science',
-                  'Machine Learning',
-                  'Artificial Intelligence (AI)',
-                  'Deep Learning',
-                  'Natural Language Processing (NLP)',
-                  'Large Language Models (LLM)',
-                  'Generative AI',
-                  'Computer Vision'
-                ],
-                description:
-                  'Working as an Associate Research Fellow under the Post-Baccalaureate/Pre-Doc Fellowship program at IIT Bombay, under the mentorship of Prof. Vikram M. Gadre. The project involves integrating advanced signal and image processing techniques including wavelets and time-frequency analysis with modern machine learning and deep learning frameworks.',
-                gif: 'https://images.squarespace-cdn.com/content/v1/5bcfdf91e8ba4404c104e52e/1540936480836-3I7EOTSP4CDJT97QQLUL/electrocute.gif'
-              },
-              {
-                company: 'Loqo AI',
-                role: 'Generative AI Engineer',
-                type: 'Full-time',
-                date: 'Apr 2025 – Oct 2025 · 7 mos',
-                location: 'New Delhi, Delhi, India · Remote',
-                skills: [
-                  'Python (Programming Language)',
-                  'Data Science',
-                  'Machine Learning',
-                  'Artificial Intelligence (AI)',
-                  'Deep Learning',
-                  'Natural Language Processing (NLP)',
-                  'Large Language Models (LLM)',
-                  'Generative AI',
-                  'Computer Vision'
-                ],
-                description:
-                  'Built AI Agents for task automation, leveraging RAG models and multi-modal capabilities. Automated workflows using Selenium, AI-driven scripts, and optimized prompt engineering for image generation and text generation.',
-                gif: 'https://cdn.dribbble.com/userupload/23731317/file/original-5eb2f9967073700b38a31280cc2c32e0.gif'
-              },
-                  {
-                    company: 'Loqo AI',
-                    role: 'Generative AI Engineer Intern',
-                    type: 'Internship',
-                    date: 'Jul 2024 – Mar 2025 · 9 mos',
-                    location: '',
-                    skills: [
-                      'Artificial Intelligence (AI)',
-                      'Large Language Models (LLM)',
-                      'Generative AI',
-                      'Computer Vision',
-                      'Git',
-                      'Python (Programming Language)',
-                      'Docker',
-                        'Machine Learning',
-                        'Deep Learning',
-                        'Flask'
-                    ],
-                    description:
-                      'Developing a text‑to‑video generator app, integrating advanced AI models to generate high‑quality visual content…',
-                    gif: 'https://miro.medium.com/v2/resize:fit:1400/1*TlbU0F-waQf7_zOfhUNldQ.gif'
-                  },
-                  {
-                    company: '7 Miles Per Second',
-                    role: 'Software Developer Intern',
-                    type: 'Internship',
-                    date: 'Aug 2024 – Nov 2024 · 4 mos',
-                    location: 'Chennai, Tamil Nadu · Remote',
-                    skills: ['App Development', 'Team Collaboration', 'Leadership'],
-                    description:
-                      'Led app development projects from design to deployment, collaborating across teams. Enhanced technical and leadership skills through innovative projects.',
-                    gif: 'https://i.pinimg.com/originals/81/17/8b/81178b47a8598f0c81c4799f2cdd4057.gif'
-                  },
-                  {
-                    company: 'Medical Network Pvt. Ltd.',
-                    role: 'WebOps Intern',
-                    type: 'Internship',
-                    date: 'Jan 2024 – Jun 2024 · 6 mos',
-                    location: 'Patna, Bihar · On‑site',
-                    skills: ['Website Maintenance', 'Data Insights'],
-                    description:
-                      'Maintained website functionality and optimized digital infrastructure. Provided insights from lead, marketing, and inventory data.',
-                    gif: 'https://user-images.githubusercontent.com/74038190/212749447-bfb7e725-6987-49d9-ae85-2015e3e7cc41.gif'
-                  },
-                  {
-                    company: 'TechoTians',
-                    role: 'Web Developer Intern',
-                    type: 'Internship',
-                    date: 'Aug 2023 – Dec 2023 · 5 mos',
-                    location: 'Patna, Bihar · On‑site',
-                    skills: ['UI/UX', 'Performance Optimization'],
-                    description:
-                      'Developed websites focusing on user experience and performance. Analyzed trends to improve marketing strategies.',
-                    gif: 'https://user-images.githubusercontent.com/115187902/230603133-52eedb90-6313-41ef-86a6-122ec3848e19.gif'
-                  },
-                  {
-                    company: 'Learn Everything AI',
-                    role: 'WordPress Developer & Graphics Designer',
-                    type: 'Part‑time',
-                    date: 'Jan 2023 – Aug 2023 · 8 mos',
-                    location: 'India · Hybrid',
-                    skills: ['WordPress', 'Graphic Design'],
-                    description:
-                      'Designed WordPress websites to improve user experience and engagement.',
-                    gif: 'https://i.pinimg.com/originals/32/9b/63/329b63886c58f6f4915b8642f52ec8b3.gif'
-                  }
-                ],
-                certifications: [
-                    {
-                        title: 'SQL (Advanced) & SQL (Intermediate)',
-                        issuer: 'HackerRank',
-                        date: 'Jan 2025',
-                        image: 'sql.png'
-                    },
-                    {
-                        title: 'NPTEL Believers',
-                        issuer: 'IIT Madras',
-                        date: 'Dec 2024',
-                        image: 'nptel_beliver.png'
-                    },
-                    {
-                        title: 'Cloud Computing',
-                        issuer: 'IIT Kharagpur',
-                        date: 'Nov 2024',
-                        image: 'cloud_computing.png'
-                    },
-                    {
-                        title: 'Software Conceptual Design',
-                        issuer: 'IIT Bombay',
-                        date: 'Nov 2024',
-                        image: 'scd.png'
-                    },
-                    {
-                        title: 'Machine Learning using NumPy',
-                        issuer: 'IIT Madras',
-                        date: 'Oct 2024',
-                        image: 'oppe_ml.png'
-                    },
-                    {
-                        title: 'Soft Skill Development',
-                        issuer: 'NPTEL (IIT Kharagpur)',
-                        date: 'Oct 2024',
-                        image: 'ssd.png'
-                    },
-                    {
-                        title: 'AI/ML for Geodata Analysis',
-                        issuer: 'ISRO',
-                        date: 'Sep 2024',
-                        image: 'aiml.png'
-                    },
-                    {
-                        title: 'BATM using Python',
-                        issuer: 'NPTEL (IIT Roorkee)',
-                        date: 'Sep 2024',
-                        image: 'batm.png'
-                    }
-                    ],
-                    educations: [
-                    {
-                      institution: 'Indian Institute of Technology, Madras',
-                      degree: 'BS in Data Science & Application',
-                      date: 'Jan 2021 – Apr 2025',
-                      location: 'Chennai, Tamil Nadu',
-                      details: 'Skills: Machine Learning · Data Structure & Algorithm · Vue.js · AI · Back‑End Web Development · Bash · Business Data Management · Business Analytics · Communication · Data Analysis · Data Presentation · Data Science · Deep Learning · DBMS · Data Visualization · Flask · Java · JavaScript · LLM',
-                      gif: 'https://classroomclipart.com/images/gallery/Animations/Graduation/animated-clipart-graduation-throwing-cap-in-air-04c.gif'
-                    },
-                    {
-                      institution: 'State Board of Technical Education (SBTE), Bihar',
-                      degree: 'Diploma in Civil Engineering, Govt. Polytechnic Patna 07',
-                      date: 'Oct 2020 – Oct 2023',
-                      details: 'Grade: 8.25 CGPA',
-                      gif: 'https://media.tenor.com/Ze8lxl-TgaEAAAAM/engineering.gif'
-                    },
-                    {
-                      institution: 'R.K.D. College',
-                      degree: 'Senior Secondary, PCM',
-                      date: 'Mar 2017 – Apr 2019',
-                      details: 'Grade: 84.6%',
-                      gif: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Exciting_-_Idil_Keysan_-_Wikimedia_Giphy_stickers_2019.gif/1200px-Exciting_-_Idil_Keysan_-_Wikimedia_Giphy_stickers_2019.gif'
-                    },
-                    {
-                      institution: 'Gyan Bharti Public School, Gaya',
-                      degree: 'Secondary School',
-                      date: 'Mar 2012 – Apr 2017',
-                      details: 'Grade: 9.6 CGPA',
-                      gif: 'https://media.tenor.com/2XYVf11lS-cAAAAM/school-work-angry.gif'
-                    }
-                  ]
-
-            
-        },
-        methods: {
-          getEmbedUrl(url) {
-            // matches both "youtube.com/watch?v=" and "youtu.be/"
-            const m = url.match(/(?:v=|\.be\/)([^&]+)/);
-            return m
-              ? `https://www.youtube.com/embed/${m[1]}`
-              : url;
-          }
-            }
-
-        
-        });
-    </script>
+    <script src="app.js" defer></script>
 </body>
 </html>
-
-
