@@ -126,7 +126,8 @@ body {
     background-size: 200% 100%;
     border-radius: 10px;
     width: 0%;
-    animation: progressAnimate 2.5s ease-in-out infinite;
+    /* fill controlled by JS; smooth transition for visual polish */
+    transition: width 300ms ease;
     box-shadow: 0 0 15px rgba(100, 255, 218, 0.8);
 }
 
@@ -857,5 +858,58 @@ header .header-tagline {
         width: 44px;
         height: 44px;
         font-size: 18px;
+    }
+}
+
+/* Responsive tweaks for splash screen and touch targets */
+@media (max-width: 600px) {
+    .splash-title {
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+
+    .splash-subtitle {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .splash-progress-bar {
+        width: 160px;
+        height: 5px;
+    }
+
+    .splash-dots span {
+        width: 7px;
+        height: 7px;
+    }
+}
+
+@media (max-width: 420px) {
+    .splash-title {
+        font-size: 22px;
+    }
+
+    .splash-subtitle {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+
+    .splash-progress-bar {
+        width: 140px;
+        height: 5px;
+    }
+
+    .splash-dots span {
+        width: 6px;
+        height: 6px;
+    }
+
+    /* Make scroll-up easier to tap on small screens */
+    #scroll-up {
+        right: 14px;
+        bottom: 16px;
+        width: 56px;
+        height: 56px;
+        font-size: 20px;
     }
 }

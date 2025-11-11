@@ -5,13 +5,19 @@ window.addEventListener('load', function() {
 
     function updatePercentage() {
         loadingText.textContent = `${percentage}%`;
-        percentage++;
-        if (percentage <= 100) {
-            setTimeout(updatePercentage, 12);
-        } else {
-            document.getElementById('splash-screen').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
-        }
+    // update visual progress bar to match numeric percentage
+    var progressFill = document.getElementById('progress-fill');
+    if (progressFill) progressFill.style.width = percentage + '%';
+
+    percentage++;
+    if (percentage <= 100) {
+      setTimeout(updatePercentage, 12);
+    } else {
+      // ensure final 100% fill
+      if (progressFill) progressFill.style.width = '100%';
+      document.getElementById('splash-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+    }
     }
 
     updatePercentage();
