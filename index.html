@@ -13,7 +13,21 @@
 <body>
     <canvas id="dots-bg"></canvas>
     <div id="splash-screen">
-        <div class="loading-text">Loading <span id="loading-percentage">0%</span></div>
+        <div class="splash-container">
+            <h1 class="splash-title">Prem Kumar Sharma</h1>
+            <p class="splash-subtitle">AI & ML Engineer</p>
+            <div class="splash-progress-wrapper">
+                <div class="splash-progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            <div class="loading-text">Loading <span id="loading-percentage">0%</span></div>
+            <div class="splash-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
     <div id="app" style="display:none;">
         <header>
@@ -52,7 +66,8 @@
             <img src="MYPIC.webp" alt="Prem Kumar" width="150" height="150">
             <div>
                 <h2 class="section-header">About Me</h2>
-                <p>Fueled by a passion for <b>Data Science</b> and <b>AI</b>, I love turning raw data into meaningful insights. With experience in <b>Machine Learning</b>, <b>Web Development</b>, and <b>AI automation</b>, I work on <b>fine-tuning models</b>, <b>RAG</b>, <b>API development</b>, and <b>image generation</b>. My journey with <b>Generative AI</b> and <b>Large Language Models</b> has inspired me to create <b>smart, automated solutions</b> that improve efficiency and drive innovation. Beyond my technical work, I enjoy <b>mentoring</b> aspiring professionals, helping them build the skills they need to succeed in the world of <b>Data</b> and <b>AI</b>.</p>
+                <p>I have always been fascinated by how <b>data</b> can tell stories, stories that guide decisions, inspire innovation, and even automate entire systems. My journey in <b>Data Science</b> and <b>AI</b> has been all about turning those stories into real solutions.</p>
+                <p>With experience in <b>Machine Learning</b>, <b>Web Development</b>, and <b>AI Automation</b>, I love working on <b>fine-tuning models</b>, <b>building RAG pipelines</b>, <b>designing software systems</b>, and <b>crafting prompts</b> that make AI think smarter. <b>Generative AI</b> and <b>Large Language Models</b> constantly push me to explore how technology can solve problems more creatively and efficiently.</p>
 
                 <div class="YouTube">
                   <a class="nav-style" href="https://yt.openinapp.co/1dapt" target="_blank" rel="noopener noreferrer">YouTube</a>
@@ -325,5 +340,40 @@
     </div>
 
     <script src="app.js" defer></script>
+    <!-- Scroll-to-top button -->
+    <button id="scroll-up" aria-label="Scroll to top" title="Back to top">↑</button>
+
+    <script>
+      // Show the "scroll-up" button after scrolling and handle click to smoothly scroll to top
+      (function () {
+        function ready(fn) {
+          if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn);
+        }
+
+        ready(function () {
+          var btn = document.getElementById('scroll-up');
+          if (!btn) return;
+
+          // Toggle visibility after the user scrolls down 300px
+          function toggle() {
+            if (window.scrollY > 300) btn.classList.add('visible'); else btn.classList.remove('visible');
+          }
+
+          // Smooth scroll to top on click
+          btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // hide after click for instant feedback on some browsers
+            btn.classList.remove('visible');
+          });
+
+          // Listen to scroll and resize
+          window.addEventListener('scroll', toggle, { passive: true });
+          window.addEventListener('resize', toggle);
+
+          // initial check
+          toggle();
+        });
+      })();
+    </script>
 </body>
 </html>
