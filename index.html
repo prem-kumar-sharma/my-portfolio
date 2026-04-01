@@ -3,377 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prem Kumar - Portfolio</title>
-    
-    <script src="https://cdn.jsdelivr.net/npm/vue@2" defer></script>
-    
-    <link rel="stylesheet" href="style.css">
+    <title>Prem Kumar Sharma — AI Researcher, GenAI Engineer, Content Creator</title>
+    <meta name="description" content="Portfolio of Prem Kumar Sharma — Research Associate at IIT Bombay, IIT Madras BS '25, ex-Generative AI Engineer at LOQO AI. Building AI systems, researching explainability, and creating honest content.">
+    <meta name="keywords" content="Prem Kumar Sharma, IIT Bombay, IIT Madras, Generative AI Engineer, Research Associate, RAG, LLMs, AI Agents, deepfake detection, wavelet transforms, insightbyprem">
+    <meta property="og:title" content="Prem Kumar Sharma — AI Researcher & GenAI Engineer">
+    <meta property="og:description" content="Research Associate at IIT Bombay. Building AI systems, researching explainability, creating content.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://prem-kumar-sharma.github.io/my-portfolio/">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div id="scroll-progress-bar"></div>
     <canvas id="dots-bg"></canvas>
+
+    <!-- Splash Screen -->
     <div id="splash-screen">
-        <div class="splash-container">
-            <h1 class="splash-title">Prem Kumar Sharma</h1>
-            <p class="splash-subtitle">AI & ML Engineer</p>
-            <div class="splash-progress-wrapper">
-                <div class="splash-progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
+        <div class="splash-wrap">
+            <div class="splash-terminal">
+                <div class="splash-term-header">
+                    <span class="tdot tdot-r"></span>
+                    <span class="tdot tdot-y"></span>
+                    <span class="tdot tdot-g"></span>
+                    <span class="splash-term-title">prem@portfolio ~ </span>
                 </div>
-            </div>
-            <div class="loading-text">Loading <span id="loading-percentage">0%</span></div>
-            <div class="splash-dots">
-                <span></span>
-                <span></span>
-                <span></span>
+                <div class="splash-term-body">
+                    <div class="splash-line"><span class="sp-prompt">$</span><span class="sp-cmd"> ./load-portfolio.sh</span></div>
+                    <div class="splash-line sp-info">Initializing AI portfolio...</div>
+                    <div class="splash-line sp-ok">✓ Systems online</div>
+                    <div class="splash-progress-row">
+                        <span class="sp-label">Loading</span>
+                        <div class="splash-progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <span id="loading-percentage" class="sp-pct">0%</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Main App -->
     <div id="app" style="display:none;">
-        <header>
-            <h1>Prem Kumar</h1>
-            <p class="header-tagline">
-                Research associate @IIT Bombay 🧑🏻‍💻 | alumnus @IIT Madras🎓 | Generative AI & ML Engineer | Freelancer
-            </p>
-            <script
-        src="https://topmate-embed.s3.ap-south-1.amazonaws.com/v1/topmate-embed.js"
-        user-profile="https://topmate.io/embed/profile/prem_kumar_sharma?theme=D5534D"
-        btn-style='{"backgroundColor":"#000","color":"#fff","border":"1px solid #000"}'
-        embed-version="v1"
-        button-text="Let's Connect"
-        position-right="30px"
-        position-bottom="30px"
-        custom-padding="0px"
-        custom-font-size="16px"
-        custom-font-weight="500"
-        custom-width="200px"
-        async=""
-        defer=""
-      ></script>
-            <nav>
-                <ul>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#education">Education</a></li> 
-                    <li><a href="#contact">Contact</a></li>
+
+        <!-- Navbar -->
+        <nav id="navbar">
+            <div class="nav-inner">
+                <a href="#hero" class="nav-brand">PK<span class="brand-dot">.</span></a>
+                <ul class="nav-menu">
+                    <li><a href="#about"      class="nav-link" data-nav="about">About</a></li>
+                    <li><a href="#experience" class="nav-link" data-nav="experience">Experience</a></li>
+                    <li><a href="#projects"   class="nav-link" data-nav="projects">Projects</a></li>
+                    <li><a href="#skills"     class="nav-link" data-nav="skills">Skills</a></li>
+                    <li><a href="#content"    class="nav-link" data-nav="content">Content</a></li>
+                    <li><a href="#contact"    class="nav-link" data-nav="contact">Contact</a></li>
                 </ul>
-            </nav>
-        </header>
-        <section id="about" class="container about">
-            <img src="MYPIC.webp" alt="Prem Kumar" width="150" height="150">
-            <div>
-                <h2 class="section-header">About Me</h2>
-                <p>I have always been fascinated by how <b>data</b> can tell stories, stories that guide decisions, inspire innovation, and even automate entire systems. My journey in <b>Data Science</b> and <b>AI</b> has been all about turning those stories into real solutions.</p>
-                <p>With experience in <b>Machine Learning</b>, <b>Web Development</b>, and <b>AI Automation</b>, I love working on <b>fine-tuning models</b>, <b>building RAG pipelines</b>, <b>designing software systems</b>, and <b>crafting prompts</b> that make AI think smarter. <b>Generative AI</b> and <b>Large Language Models</b> constantly push me to explore how technology can solve problems more creatively and efficiently.</p>
+                <a href="#contact" class="nav-cta">Get In Touch</a>
+                <button class="nav-burger" id="nav-burger" aria-label="Open menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
 
-                <div class="YouTube">
-                  <a class="nav-style" href="https://yt.openinapp.co/1dapt" target="_blank" rel="noopener noreferrer">YouTube</a>
-                </div>
-
-            </div>
-
-        <section id="services" class="container">
-          <h2 class="section-header">Services</h2>
-          <div class="project" v-for="service in services" :key="service.title">
-            <img :src="service.image" :alt="service.title" loading="lazy" decoding="async">
-            <h3 class="project-title">{{ service.title }}</h3>
-            <p>{{ service.description }}</p>
-            <a :href="service.link" target="_blank">
-              <button>Book Now</button>
-            </a>
-          </div>
-        </section>  
-
-        </section>
-                <section id="youtube-videos" class="container">
-            <h2 class="section-header">YouTube Videos</h2>
-            <div class="videos-gallery">
-            <div
-                class="video-card"
-                v-for="video in videos"   
-                :key="video.link"
-            >
-                <iframe
-                    :src="getEmbedUrl(video.link)"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    loading="lazy"
-                ></iframe>
-                <p>{{ video.title }}</p>
-            </div>
-            </div>
-        </section>
-        <section id="skills" class="container">
-            <h2 class="section-header">Skills</h2>
-            
-                <div class="skill">
-                    <div class="skills">
-                      <div class="skills">
-                        <div class="skill">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
-                            <span>Python</span>
-                        </div>
-                        <div class="skill">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="skill">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" alt="Vue.js">
-                            <span>Vue.js</span>
-                        </div>
-                        <div class="skill">
-                            <img src="https://cdn.worldvectorlogo.com/logos/java.svg" alt="Java">
-                            <span>Java</span>
-                        </div>
-                        <div class="skill">
-                            <img src="https://nyesteventuretech.com/images/Machine-Learning.jpg" alt="ML">
-                            <span>Machine Learning</span>
-                        </div>
-                        <div class="skill">
-                            <img src="https://www.learnsimpli.com/wp-content/uploads/2021/05/Data-structure-and-algorithms.png" alt="DSA">
-                            <span>DSA</span>
-                        </div>
-                      <div class="skill">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
-                        <span>React</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="Bootstrap">
-                        <span>Bootstrap</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/NumPy_logo_2020.svg/512px-NumPy_logo_2020.svg.png" alt="NumPy" style="width: 20px; height: 20px; object-fit: contain;">
-                        <span>NumPy</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://studyopedia.com/wp-content/uploads/2022/12/Matplotlib-featured-image-studyopedia.png" alt="Matplotlib">
-                        <span>Matplotlib</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://seaborn.pydata.org/_static/logo-wide-lightbg.svg" alt="Seaborn">
-                        <span>Seaborn</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://www.postgresql.org/media/img/about/press/elephant.png" alt="PostgreSQL">
-                        <span>PostgreSQL</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://miro.medium.com/v2/resize:fit:1200/1*i1d88Q8NNrRv6kjf7Ssw4g.png" alt="Redis">
-                        <span>Redis</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" alt="Docker">
-                        <span>Docker</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt="Git">
-                        <span>Git</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://repository-images.githubusercontent.com/657248114/d3c7b91a-b285-4d1e-8429-5de1acc5f61e" alt="VS Code">
-                        <span>VS Code</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf6j7rtIRUVQBvKmf1-BCrTEK_YZcU6tNfzw&s" alt="LangChain">
-                        <span>LangChain</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://avatars.githubusercontent.com/u/9001821?s=200&v=4" alt="RAG">
-                        <span>RAG</span>
-                      </div>
-                      <div class="skill">
-                        <img src="https://tamerlan.dev/content/images/2021/12/celery-overview.png" alt="Celery">
-                        <span>Celery</span>
-                      </div>
-                    
-                  
-                <div class="skill">
-                    <img src="https://nexla.com/n3x_ctx/uploads/2023/02/article-data-management-best-practices_Img0.png" alt="BDM">
-                    <span>Business Data Management</span>
-                </div>
-                <div class="skill">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Jinja_software_logo.svg/2560px-Jinja_software_logo.svg.png" alt="Jinja2">
-                    <span>Jinja2</span>
-                </div>
-                <div class="skill">
-                    <img src="https://miro.medium.com/v2/resize:fit:438/1*0G5zu7CnXdMT9pGbYUTQLQ.png" alt="Flask">
-                    <span>Flask</span>
-                </div>
-                <div class="skill">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn">
-                    <span>Scikit-learn</span>
-                </div>
-                <div class="skill">
-                    <img src="https://logowik.com/content/uploads/images/pandas8580.logowik.com.webp" alt="Pandas">
-                    <span>Pandas</span>
-                </div>
-                
-                <div class="skill">
-                    <img src="https://banner2.cleanpng.com/20180526/oqt/avq6683ud.webp" alt="SQL">
-                    <span>SQL</span>
-                </div>
-            </div>
-        </section>
-        <section id="projects" class="container">
-            <h2 class="section-header">Projects</h2>
-            <div class="project" v-for="project in projects" :key="project.title">
-                <img :src="project.image" :alt="project.title" loading="lazy" decoding="async">
-                <h3 class="project-title">{{ project.title }}</h3>
-                <p>{{ project.description }}</p>
-                <a :href="project.link" target="_blank"><button>View Project</button></a>
-            </div>
-        </section>
-        <section id="experience" class="container">
-            <h2 class="section-header">Experience</h2>
-          
-            <div
-              class="experience"
-              v-for="exp in experiences"
-              :key="exp.company + exp.role"
-            >
-              <img
-                v-if="exp.gif"
-                :src="exp.gif"
-                alt="Role Animation"
-                class="exp-gif"
-                loading="lazy"
-                decoding="async"
-              />
-          
-              <h3>
-                {{ exp.role }}
-                <span class="company">@ {{ exp.company }}</span>
-              </h3>
-          
-              <div class="exp-meta">
-                <span class="exp-type">{{ exp.type }}</span>
-                <span class="exp-dot">·</span>
-                <span class="exp-date">{{ exp.date }}</span>
-                <span v-if="exp.location" class="exp-dot">·</span>
-                <span v-if="exp.location" class="exp-location">{{ exp.location }}</span>
-              </div>
-          
-              <div class="exp-skills">
-                <span
-                  class="exp-skill"
-                  v-for="skill in exp.skills"
-                  :key="exp.company + skill"
-                >
-                  {{ skill }}
-                </span>
-              </div>
-          
-              <p v-if="exp.description">{{ exp.description }}</p>
-            </div>
-          </section>
-          
-        <section id="certifications" class="container">
-            <h2>Certifications</h2>
-            <div class="certifications-gallery">
-              <div class="certification-card" v-for="cert in certifications" :key="cert.title">
-                <a :href="cert.link" target="_blank">
-                  <img :src="cert.image" :alt="cert.title" loading="lazy" decoding="async" />
-                  <h3>{{ cert.title }}</h3>
-                  <p>{{ cert.issuer }} – {{ cert.date }}</p>
-                </a>
-              </div>
-            </div>
-          </section>
-        <section id="education" class="container">
-        <h2>Education</h2>
-        <div
-        class="experience"
-        v-for="edu in educations"
-        :key="edu.institution + edu.date"
-        >
-        <img
-            v-if="edu.gif"
-            :src="edu.gif"
-            alt="Education GIF"
-            class="exp-gif"
-            loading="lazy"
-            decoding="async"
-        />
-    
-        <h3>
-            {{ edu.degree }}
-            <span class="company">@ {{ edu.institution }}</span>
-        </h3>
-    
-        <div class="exp-meta">
-            <span class="exp-type">Academic</span>
-            <span class="exp-dot">·</span>
-            <span class="exp-date">{{ edu.date }}</span>
-            <span v-if="edu.location" class="exp-dot">·</span>
-            <span v-if="edu.location" class="exp-location">{{ edu.location }}</span>
+        <!-- Mobile Drawer -->
+        <div class="mob-drawer" id="mob-drawer">
+            <ul>
+                <li><a href="#about"      class="drawer-link">About</a></li>
+                <li><a href="#experience" class="drawer-link">Experience</a></li>
+                <li><a href="#projects"   class="drawer-link">Projects</a></li>
+                <li><a href="#skills"     class="drawer-link">Skills</a></li>
+                <li><a href="#content"    class="drawer-link">Content</a></li>
+                <li><a href="#contact"    class="drawer-link">Contact</a></li>
+            </ul>
         </div>
-  
-      <p v-if="edu.details">{{ edu.details }}</p>
-    </div>
-  </section>
-  
-        <section id="contact" class="container contact">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:viratprem4321@gmail.com">viratprem4321@gmail.com</a></p>
 
-            <div class="social-icons">
-                <a href="https://www.youtube.com/@insightbyprem" target="_blank">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKfPimrl1lwgrW3OHOuuyReVPqtc_Hd7mp4A&s" alt="YouTube" width="32" height="32">
-                <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201/" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="32" height="32">
-                </a>
-                <a href="https://github.com/prem-kumar-sharma/prem-kumar-sharma" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Github-desktop-logo-symbol.svg/2048px-Github-desktop-logo-symbol.svg.png" alt="GitHub" width="32" height="32">
-                </a>
-                <a href="https://www.instagram.com/prem.kr_sharma/" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="32" height="32">
-                </a>
+        <!-- ═══ HERO ═══ -->
+        <section id="hero">
+            <script
+                src="https://topmate-embed.s3.ap-south-1.amazonaws.com/v1/topmate-embed.js"
+                user-profile="https://topmate.io/embed/profile/prem_kumar_sharma?theme=D5534D"
+                btn-style='{"backgroundColor":"#000","color":"#fff","border":"1px solid #000"}'
+                embed-version="v1"
+                button-text="Let's Connect"
+                position-right="30px"
+                position-bottom="80px"
+                custom-padding="0px"
+                custom-font-size="16px"
+                custom-font-weight="500"
+                custom-width="200px"
+                async=""
+                defer=""
+            ></script>
+
+            <div class="hero-content">
+                <p class="hero-hi reveal">Hi, I'm</p>
+                <h1 class="hero-name reveal">Prem Kumar Sharma</h1>
+                <div class="hero-role reveal">
+                    <span class="role-static">I'm a </span><span id="typewriter-el"></span><span class="type-cursor">|</span>
+                </div>
+                <p class="hero-tagline reveal">
+                    I build AI systems, research how they work under the hood,<br class="hero-br"> and help others do both.
+                </p>
+                <div class="hero-btns reveal">
+                    <a href="#projects" class="btn-primary">View My Work</a>
+                    <a href="#contact"  class="btn-outline">Get In Touch</a>
+                </div>
+                <div class="hero-socials reveal">
+                    <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener" aria-label="LinkedIn" class="hsoc">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="https://github.com/prem-kumar-sharma" target="_blank" rel="noopener" aria-label="GitHub" class="hsoc">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener" aria-label="YouTube" class="hsoc">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                    </a>
+                    <a href="mailto:premksharma@alumni.iitm.ac.in" aria-label="Email" class="hsoc">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                </div>
+                <div class="hero-status reveal">
+                    <span class="live-dot"></span>
+                    Currently: Research Associate @ IIT Bombay &nbsp;·&nbsp; Open to consulting
+                </div>
+            </div>
+            <a href="#about" class="hero-scroll" aria-label="Scroll down">↓</a>
+        </section>
+
+        <!-- ═══ ABOUT ═══ -->
+        <section id="about" class="sec-wrap">
+            <div class="container">
+                <h2 class="sec-title reveal"><span class="sec-num">01.</span> About Me</h2>
+                <div class="about-layout">
+                    <div class="about-left reveal">
+                        <div class="profile-wrap">
+                            <img src="MYPIC.webp" alt="Prem Kumar Sharma" class="profile-img">
+                        </div>
+                        <div class="quick-facts">
+                            <div class="qf"><span>📍</span> Mumbai, India</div>
+                            <div class="qf"><span>🎓</span> BS Data Science · IIT Madras '25</div>
+                            <div class="qf"><span>📊</span> Minor: Economics & Finance</div>
+                            <div class="qf"><span>🔬</span> Research Associate @ IIT Bombay</div>
+                            <div class="qf"><span>💼</span> Open to consulting & collaboration</div>
+                        </div>
+                    </div>
+                    <div class="about-right reveal">
+                        <p>I build AI systems, research how they work under the hood, and help others do both.</p>
+                        <p>Currently a <strong>Research Associate at IIT Bombay</strong>, working under Prof. Vikram M. Gadre on AI explainability, deepfake detection in biometric fingerprints, and signal/image processing using wavelets, time-frequency methods, and machine learning.</p>
+                        <p>Previously a <strong>Generative AI Engineer at LOQO AI</strong> for 1 year 4 months, where I built text-to-video pipelines, worked with GPT-4, LLaMA, BERT, Stable Diffusion, and applied RAG, fine-tuning, and prompt engineering to ship production GenAI systems.</p>
+                        <p>I also <strong>consult businesses and startups</strong> on AI product strategy: scoping problems, writing PRDs, defining architecture, and bridging the gap between what AI can do and what a business actually needs.</p>
+                        <p>On the side, I teach and create content. I mentor students in Python, SQL, data analysis, and career planning. On YouTube and LinkedIn, I share what I'm learning. <em>No polished narratives, just the real process of figuring it out.</em></p>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-row reveal">
+                    <div class="stat-card">
+                        <div class="stat-val" data-count="13" data-suffix="+">0</div>
+                        <div class="stat-lbl">Research Projects Coordinated</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" data-count="100" data-suffix="+">0</div>
+                        <div class="stat-lbl">Researchers in Network</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" data-count="500" data-suffix="+">0</div>
+                        <div class="stat-lbl">Students Mentored</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-val" data-count="7300" data-suffix="+">0</div>
+                        <div class="stat-lbl">LinkedIn Followers</div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="edu-strip reveal">
+                    <h3 class="sub-title">Education</h3>
+                    <div class="edu-row">
+                        <div class="edu-card">
+                            <div class="edu-deg">BS in Data Science & Applications</div>
+                            <div class="edu-inst">Indian Institute of Technology, Madras</div>
+                            <div class="edu-meta">2021 – 2025 · Minor: Economics & Finance</div>
+                        </div>
+                        <div class="edu-sep"></div>
+                        <div class="edu-card">
+                            <div class="edu-deg">Diploma in Civil Engineering</div>
+                            <div class="edu-inst">Government Polytechnic Patna 07, SBTE Bihar</div>
+                            <div class="edu-meta">2020 – 2023 · 8.25 CGPA</div>
+                        </div>
+                        <div class="edu-sep"></div>
+                        <div class="edu-card">
+                            <div class="edu-deg">Senior Secondary (PCM)</div>
+                            <div class="edu-inst">R.K.D. College</div>
+                            <div class="edu-meta">2017 – 2019 · 84.6%</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- ═══ EXPERIENCE ═══ -->
+        <section id="experience" class="sec-wrap sec-alt">
+            <div class="container">
+                <h2 class="sec-title reveal"><span class="sec-num">02.</span> Experience</h2>
+                <div class="timeline">
+                    <div class="tl-item reveal" v-for="(exp, idx) in experiences" :key="exp.company + exp.role + idx">
+                        <div class="tl-dot-col">
+                            <div class="tl-dot" :class="{ 'tl-dot-live': exp.current }"></div>
+                        </div>
+                        <div class="tl-card">
+                            <div class="tl-card-head">
+                                <div>
+                                    <h3 class="tl-role">{{ exp.role }}</h3>
+                                    <div class="tl-company-row">
+                                        <span class="tl-company">{{ exp.company }}</span>
+                                        <span v-if="exp.current" class="curr-pill">● Current</span>
+                                    </div>
+                                </div>
+                                <div class="tl-date">{{ exp.date }}</div>
+                            </div>
+                            <div class="tl-meta-row">
+                                <span class="tl-type">{{ exp.type }}</span>
+                                <span v-if="exp.location" class="tl-loc">· {{ exp.location }}</span>
+                            </div>
+                            <ul v-if="exp.bullets && exp.bullets.length" class="tl-bullets">
+                                <li v-for="b in exp.bullets" :key="b">{{ b }}</li>
+                            </ul>
+                            <p v-else-if="exp.description" class="tl-desc">{{ exp.description }}</p>
+                            <div class="tl-tags">
+                                <span class="tl-tag" v-for="s in exp.skills" :key="s">{{ s }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PROJECTS ═══ -->
+        <section id="projects" class="sec-wrap">
+            <div class="container">
+                <h2 class="sec-title reveal"><span class="sec-num">03.</span> Projects</h2>
+
+                <!-- Featured -->
+                <div class="featured-card reveal">
+                    <div class="feat-badge">⭐ Featured Project</div>
+                    <div class="feat-body">
+                        <div class="feat-info">
+                            <h3>WonCourse: AI-Enabled Learning Platform</h3>
+                            <p>Shipped a full-stack LMS with AI-powered contextual doubt resolution for video lectures, backed by modular REST APIs (Flask/SQLAlchemy) and CI/CD workflows via Git. Integrated GenAI-driven assistance into assignments and learning modules, enabling adaptive content recommendations and faster query resolution.</p>
+                            <div class="feat-stack">
+                                <span>GenAI</span><span>Flask</span><span>VueJS</span><span>SQLAlchemy</span><span>RAG</span><span>PostgreSQL</span>
+                            </div>
+                            <a href="https://github.com/prem-kumar-sharma/WonCourse-soft-engg-project-may-2024-se-may-27" target="_blank" class="btn-primary btn-sm">View on GitHub →</a>
+                        </div>
+                        <div class="feat-img">
+                            <img src="https://nearlearn.com/public/images/ai-training-in-bangalore.jpeg" alt="WonCourse" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid -->
+                <div class="proj-grid">
+                    <div class="proj-card reveal" v-for="p in projects" :key="p.title">
+                        <div class="proj-img-wrap">
+                            <img :src="p.image" :alt="p.title" loading="lazy" decoding="async">
+                            <div class="proj-overlay">
+                                <a :href="p.link" target="_blank" class="proj-overlay-btn">View Project</a>
+                            </div>
+                        </div>
+                        <div class="proj-body">
+                            <div class="proj-tags">
+                                <span v-for="t in p.tags" :key="t">{{ t }}</span>
+                            </div>
+                            <h3 class="proj-title">{{ p.title }}</h3>
+                            <p class="proj-desc">{{ p.description }}</p>
+                            <a :href="p.link" target="_blank" class="proj-gh-link">GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SKILLS ═══ -->
+        <section id="skills" class="sec-wrap sec-alt">
+            <div class="container">
+                <h2 class="sec-title reveal"><span class="sec-num">04.</span> Tech Stack</h2>
+                <div class="skill-cats">
+                    <div class="skill-cat reveal" v-for="cat in skillCategories" :key="cat.name">
+                        <h3 class="skill-cat-name">{{ cat.name }}</h3>
+                        <div class="skill-tags-wrap">
+                            <span class="stag" v-for="s in cat.skills" :key="s">{{ s }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="reveal" style="margin-top:3rem;">
+                    <h3 class="sub-title">Certifications</h3>
+                    <div class="certifications-gallery">
+                        <div class="certification-card" v-for="cert in certifications" :key="cert.title">
+                            <a :href="cert.link || '#'" target="_blank">
+                                <img :src="cert.image" :alt="cert.title" loading="lazy" decoding="async">
+                                <h4>{{ cert.title }}</h4>
+                                <p>{{ cert.issuer }} · {{ cert.date }}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CONTENT & COMMUNITY ═══ -->
+        <section id="content" class="sec-wrap">
+            <div class="container">
+                <h2 class="sec-title reveal"><span class="sec-num">05.</span> Content & Community</h2>
+                <p class="sec-sub reveal">Beyond engineering: building in public, teaching what I learn, and documenting the real journey.</p>
+
+                <div class="platforms-row reveal">
+                    <div class="platform-card yt-card">
+                        <div class="pc-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                        </div>
+                        <div class="pc-name">@insightbyprem</div>
+                        <div class="pc-stats">
+                            <div class="pcstat"><strong>2,900+</strong><span>Subscribers</span></div>
+                            <div class="pcstat"><strong>174K+</strong><span>Views (90d)</span></div>
+                            <div class="pcstat"><strong>5,800+</strong><span>Watch Hours</span></div>
+                        </div>
+                        <p class="pc-desc">AI, education, and career growth. Honest, unfiltered, behind-the-scenes of the journey.</p>
+                        <a href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener" class="btn-outline btn-sm">Visit Channel →</a>
+                    </div>
+
+                    <div class="platform-card li-card">
+                        <div class="pc-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </div>
+                        <div class="pc-name">Prem Kumar Sharma</div>
+                        <div class="pc-stats">
+                            <div class="pcstat"><strong>7,300+</strong><span>Followers</span></div>
+                            <div class="pcstat"><strong>500+</strong><span>Connections</span></div>
+                        </div>
+                        <p class="pc-desc">Regular posts on Generative AI, career insights, and the real process of building in tech.</p>
+                        <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener" class="btn-outline btn-sm">Connect →</a>
+                    </div>
+
+                    <div class="platform-card mentor-card">
+                        <div class="pc-icon" style="font-size:28px;line-height:1;">🎯</div>
+                        <div class="pc-name">Teaching & Mentorship</div>
+                        <div class="pc-stats">
+                            <div class="pcstat"><strong>500+</strong><span>Students</span></div>
+                            <div class="pcstat"><strong>250+</strong><span>Hackathon</span></div>
+                        </div>
+                        <p class="pc-desc">Python, SQL, data analysis, Power BI, career guidance, and real-world project mentoring.</p>
+                        <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="btn-outline btn-sm">Book a Session →</a>
+                    </div>
+                </div>
+
+                <h3 class="sub-title reveal" style="margin-top:3rem;">Latest Videos</h3>
+                <div class="videos-gallery">
+                    <div class="video-card" v-for="video in videos" :key="video.link">
+                        <iframe
+                            :src="getEmbedUrl(video.link)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"
+                        ></iframe>
+                        <p>{{ video.title }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CONTACT ═══ -->
+        <section id="contact" class="sec-wrap sec-alt">
+            <div class="container">
+                <h2 class="sec-title reveal"><span class="sec-num">06.</span> Let's Connect</h2>
+                <p class="contact-sub reveal">Whether you're building with AI, thinking through a product idea, or just want to talk shop, I'm always open to a conversation.</p>
+
+                <div class="contact-layout">
+                    <div class="contact-left reveal">
+                        <div class="avail-badge">
+                            <span class="live-dot"></span>
+                            Open to consulting & collaboration · Responds within 24h
+                        </div>
+                        <div class="contact-details">
+                            <a href="mailto:premksharma@alumni.iitm.ac.in" class="cd">
+                                <span>✉</span><span>premksharma@alumni.iitm.ac.in</span>
+                            </a>
+                            <div class="cd">
+                                <span>📍</span><span>Mumbai, Maharashtra, India</span>
+                            </div>
+                        </div>
+                        <div class="csoc-row">
+                            <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener" class="csoc-btn csoc-li">LinkedIn</a>
+                            <a href="https://github.com/prem-kumar-sharma" target="_blank" rel="noopener" class="csoc-btn csoc-gh">GitHub</a>
+                            <a href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener" class="csoc-btn csoc-yt">YouTube</a>
+                            <a href="https://www.instagram.com/prem.kr_sharma/" target="_blank" rel="noopener" class="csoc-btn csoc-ig">Instagram</a>
+                        </div>
+                    </div>
+                    <div class="contact-right reveal">
+                        <div class="work-card">
+                            <h3>Work With Me</h3>
+                            <div class="ww-opts">
+                                <div class="ww-opt">
+                                    <span class="ww-icon">🤖</span>
+                                    <div><strong>AI Product Consulting</strong><p>Scope, architect, and ship your AI product idea</p></div>
+                                </div>
+                                <div class="ww-opt">
+                                    <span class="ww-icon">🎓</span>
+                                    <div><strong>Mentorship</strong><p>Career, projects, portfolio, and interview prep</p></div>
+                                </div>
+                                <div class="ww-opt">
+                                    <span class="ww-icon">🔬</span>
+                                    <div><strong>Research Collaboration</strong><p>AI explainability, GenAI systems, signal processing</p></div>
+                                </div>
+                            </div>
+                            <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;margin-top:1.5rem;">
+                                Book a Call on Topmate →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
         <footer>
-            <p>&copy; 2024 Prem Kumar. All rights reserved.</p>
+            <div class="footer-inner">
+                <p class="footer-quote">"No polished narratives. Just the real process of figuring it out."</p>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/prem-kumar-sharma" target="_blank">GitHub</a>
+                    <a href="https://www.youtube.com/@insightbyprem" target="_blank">YouTube</a>
+                </div>
+                <p class="footer-copy">© 2025 Prem Kumar Sharma. Built with intention.</p>
+            </div>
         </footer>
     </div>
 
-    <script src="app.js" defer></script>
-    <!-- Scroll-to-top button -->
+    <!-- Terminal Easter Egg -->
+    <button id="term-btn" aria-label="Open terminal" title="Open terminal">&gt;_</button>
+    <div id="term-panel">
+        <div class="term-hdr">
+            <span class="tdot tdot-r"></span>
+            <span class="tdot tdot-y"></span>
+            <span class="tdot tdot-g"></span>
+            <span class="term-hdr-title">prem@portfolio ~ </span>
+            <button id="term-close">✕</button>
+        </div>
+        <div id="term-out">
+            <div class="tline">Type <span class="tcmd">help</span> to see available commands.</div>
+        </div>
+        <div class="term-input-row">
+            <span class="term-pr">~ $&nbsp;</span>
+            <input type="text" id="term-in" placeholder="enter command..." autocomplete="off" spellcheck="false">
+        </div>
+    </div>
+
+    <!-- Scroll to top -->
     <button id="scroll-up" aria-label="Scroll to top" title="Back to top">↑</button>
 
+    <script src="app.js" defer></script>
+
     <script>
-      // Show the "scroll-up" button after scrolling and handle click to smoothly scroll to top
-      (function () {
-        function ready(fn) {
-          if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn);
-        }
+        // Scroll to top
+        (function() {
+            var btn = document.getElementById('scroll-up');
+            if (!btn) return;
+            function toggle() { btn.classList.toggle('visible', window.scrollY > 300); }
+            btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            window.addEventListener('scroll', toggle, { passive: true });
+            toggle();
+        })();
 
-        ready(function () {
-          var btn = document.getElementById('scroll-up');
-          if (!btn) return;
+        // Scroll progress bar
+        (function() {
+            var bar = document.getElementById('scroll-progress-bar');
+            if (!bar) return;
+            window.addEventListener('scroll', function() {
+                var pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                bar.style.width = Math.min(pct, 100) + '%';
+            }, { passive: true });
+        })();
 
-          // Toggle visibility after the user scrolls down 300px
-          function toggle() {
-            if (window.scrollY > 300) btn.classList.add('visible'); else btn.classList.remove('visible');
-          }
+        // Hamburger / mobile drawer
+        (function() {
+            var h = document.getElementById('nav-burger');
+            var d = document.getElementById('mob-drawer');
+            if (!h || !d) return;
+            h.addEventListener('click', function() {
+                h.classList.toggle('open');
+                d.classList.toggle('open');
+            });
+            document.querySelectorAll('.drawer-link').forEach(function(l) {
+                l.addEventListener('click', function() {
+                    h.classList.remove('open');
+                    d.classList.remove('open');
+                });
+            });
+        })();
 
-          // Smooth scroll to top on click
-          btn.addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            // hide after click for instant feedback on some browsers
-            btn.classList.remove('visible');
-          });
+        // Active nav on scroll
+        (function() {
+            var secs = ['about','experience','projects','skills','content','contact'];
+            var links = document.querySelectorAll('.nav-link');
+            window.addEventListener('scroll', function() {
+                var y = window.scrollY + 120;
+                secs.forEach(function(id) {
+                    var el = document.getElementById(id);
+                    if (!el) return;
+                    if (el.offsetTop <= y && el.offsetTop + el.offsetHeight > y) {
+                        links.forEach(function(l) {
+                            l.classList.toggle('active', l.getAttribute('data-nav') === id);
+                        });
+                    }
+                });
+            }, { passive: true });
+        })();
 
-          // Listen to scroll and resize
-          window.addEventListener('scroll', toggle, { passive: true });
-          window.addEventListener('resize', toggle);
-
-          // initial check
-          toggle();
-        });
-      })();
+        // Navbar shrink on scroll
+        (function() {
+            var nav = document.getElementById('navbar');
+            if (!nav) return;
+            window.addEventListener('scroll', function() {
+                nav.classList.toggle('scrolled', window.scrollY > 60);
+            }, { passive: true });
+        })();
     </script>
 </body>
 </html>

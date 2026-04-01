@@ -1,150 +1,513 @@
-/* Splash loader (keep or replace existing loader logic) */
-window.addEventListener('load', function() {
-    let percentage = 0;
-    const loadingText = document.getElementById('loading-percentage');
+/* ═══════════════════════════════════════════════
+   SPLASH SCREEN — Terminal boot sequence
+   ═══════════════════════════════════════════════ */
+window.addEventListener('load', function () {
+    var pct = 0;
+    var pctEl = document.getElementById('loading-percentage');
+    var fill  = document.getElementById('progress-fill');
 
-    function updatePercentage() {
-        loadingText.textContent = `${percentage}%`;
-    // update visual progress bar to match numeric percentage
-    var progressFill = document.getElementById('progress-fill');
-    if (progressFill) progressFill.style.width = percentage + '%';
-
-    percentage++;
-    if (percentage <= 100) {
-      setTimeout(updatePercentage, 12);
-    } else {
-      // ensure final 100% fill
-      if (progressFill) progressFill.style.width = '100%';
-      document.getElementById('splash-screen').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
+    function tick() {
+        if (pctEl) pctEl.textContent = pct + '%';
+        if (fill)  fill.style.width  = pct + '%';
+        pct++;
+        if (pct <= 100) {
+            setTimeout(tick, 12);
+        } else {
+            if (fill) fill.style.width = '100%';
+            var splash = document.getElementById('splash-screen');
+            var app    = document.getElementById('app');
+            setTimeout(function () {
+                if (splash) {
+                    splash.style.opacity = '0';
+                    splash.style.transition = 'opacity 0.5s ease';
+                    setTimeout(function () {
+                        splash.style.display = 'none';
+                        if (app) app.style.display = 'block';
+                        initTypewriter();
+                        initScrollReveal();
+                        initCounters();
+                    }, 500);
+                }
+            }, 200);
+        }
     }
-    }
-
-    updatePercentage();
+    tick();
 });
-/* Lightweight dot/particle background (canvas) */
+
+/* ═══════════════════════════════════════════════
+   CANVAS PARTICLE BACKGROUND
+   ═══════════════════════════════════════════════ */
 (function initDots() {
-    const canvas = document.getElementById('dots-bg');
+    var canvas = document.getElementById('dots-bg');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
+    var DPR = window.devicePixelRatio || 1;
+    var width, height;
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-    const DPR = window.devicePixelRatio || 1;
-    canvas.width = width * DPR;
-    canvas.height = height * DPR;
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    ctx.scale(DPR, DPR);
+    function resize() {
+        width  = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width  = width  * DPR;
+        canvas.height = height * DPR;
+        canvas.style.width  = width  + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
 
-    const particles = [];
-    const PARTICLE_COUNT = Math.max(30, Math.floor((width * height) / 80000)); // adaptive count
-    const COLORS = ['rgba(100,255,218,0.95)', 'rgba(100,255,218,0.6)', 'rgba(100,255,218,0.35)'];
+    var COUNT = Math.max(25, Math.floor((width * height) / 100000));
+    var COLORS = ['rgba(0,245,212,0.8)', 'rgba(0,245,212,0.5)', 'rgba(0,180,216,0.4)'];
+    var particles = [];
 
-    function rand(min, max) { return Math.random() * (max - min) + min; }
+    function rand(a, b) { return Math.random() * (b - a) + a; }
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
+    for (var i = 0; i < COUNT; i++) {
         particles.push({
-            x: rand(0, width),
-            y: rand(0, height),
-            vx: rand(-0.3, 0.3),
-            vy: rand(-0.3, 0.3),
-            r: rand(1.4, 3.2),
+            x: rand(0, width), y: rand(0, height),
+            vx: rand(-0.25, 0.25), vy: rand(-0.25, 0.25),
+            r: rand(1.2, 2.8),
             color: COLORS[Math.floor(Math.random() * COLORS.length)],
             life: rand(60, 300)
         });
     }
 
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        canvas.width = width * DPR;
-        canvas.height = height * DPR;
-        canvas.style.width = width + 'px';
-        canvas.style.height = height + 'px';
-        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    }
-    window.addEventListener('resize', resize);
-
     function draw() {
         ctx.clearRect(0, 0, width, height);
-
-        for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-
+        for (var i = 0; i < particles.length; i++) {
+            var p = particles[i];
+            p.x += p.vx; p.y += p.vy;
             if (p.x < -10) p.x = width + 10;
             if (p.x > width + 10) p.x = -10;
             if (p.y < -10) p.y = height + 10;
             if (p.y > height + 10) p.y = -10;
-
             p.life--;
             if (p.life <= 0) {
-                p.r = rand(1.4, 3.2);
-                p.vx = rand(-0.3, 0.3);
-                p.vy = rand(-0.3, 0.3);
+                p.r = rand(1.2, 2.8);
+                p.vx = rand(-0.25, 0.25);
+                p.vy = rand(-0.25, 0.25);
                 p.life = rand(60, 300);
             }
-
             ctx.beginPath();
             ctx.fillStyle = p.color;
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
             ctx.fill();
         }
-
-        // subtle lines between nearby dots (very faint)
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const a = particles[i];
-                const b = particles[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
-                const d = Math.sqrt(dx * dx + dy * dy);
-                if (d < 90) {
+        // Faint connection lines
+        for (var i = 0; i < particles.length; i++) {
+            for (var j = i + 1; j < particles.length; j++) {
+                var dx = particles[i].x - particles[j].x;
+                var dy = particles[i].y - particles[j].y;
+                var d  = Math.sqrt(dx * dx + dy * dy);
+                if (d < 100) {
                     ctx.beginPath();
-                    ctx.strokeStyle = 'rgba(100,255,218,' + (0.009 * (90 - d)).toFixed(3) + ')';
-                    ctx.lineWidth = 0.6;
-                    ctx.moveTo(a.x, a.y);
-                    ctx.lineTo(b.x, b.y);
+                    ctx.strokeStyle = 'rgba(0,245,212,' + (0.006 * (100 - d)).toFixed(3) + ')';
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
                     ctx.stroke();
                 }
             }
         }
-
         requestAnimationFrame(draw);
     }
-
     draw();
 })();
+
+/* ═══════════════════════════════════════════════
+   TYPEWRITER EFFECT
+   ═══════════════════════════════════════════════ */
+function initTypewriter() {
+    var el = document.getElementById('typewriter-el');
+    if (!el) return;
+    var roles = [
+        'Research Associate @ IIT Bombay',
+        'Generative AI Engineer',
+        'AI Product Consultant',
+        'Content Creator',
+        'IIT Madras BS \'25'
+    ];
+    var roleIdx = 0, charIdx = 0, deleting = false;
+
+    function type() {
+        var current = roles[roleIdx];
+        if (!deleting) {
+            el.textContent = current.slice(0, charIdx + 1);
+            charIdx++;
+            if (charIdx === current.length) {
+                deleting = true;
+                setTimeout(type, 1800);
+                return;
+            }
+            setTimeout(type, 60);
+        } else {
+            el.textContent = current.slice(0, charIdx - 1);
+            charIdx--;
+            if (charIdx === 0) {
+                deleting = false;
+                roleIdx = (roleIdx + 1) % roles.length;
+                setTimeout(type, 400);
+                return;
+            }
+            setTimeout(type, 35);
+        }
+    }
+    setTimeout(type, 300);
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL — IntersectionObserver
+   ═══════════════════════════════════════════════ */
+function initScrollReveal() {
+    var els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+
+    // Stagger children within same parent
+    var groups = {};
+    els.forEach(function (el) {
+        var key = el.parentElement ? el.parentElement.dataset.revealGroup || 'default' : 'default';
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(el);
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(function (el, i) {
+        // Slight stagger for sibling elements
+        var siblings = el.parentElement ? el.parentElement.querySelectorAll('.reveal') : [];
+        var sibIdx = Array.from(siblings).indexOf(el);
+        el.style.transitionDelay = (sibIdx * 80) + 'ms';
+        observer.observe(el);
+    });
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATED COUNTERS
+   ═══════════════════════════════════════════════ */
+function initCounters() {
+    var els = document.querySelectorAll('.stat-val[data-count]');
+    if (!els.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var el     = entry.target;
+            var target = parseInt(el.getAttribute('data-count'), 10);
+            var suffix = el.getAttribute('data-suffix') || '';
+            var start  = 0;
+            var dur    = 1600;
+            var step   = 16;
+            var increment = target / (dur / step);
+
+            var timer = setInterval(function () {
+                start += increment;
+                if (start >= target) {
+                    el.textContent = target.toLocaleString() + suffix;
+                    clearInterval(timer);
+                } else {
+                    el.textContent = Math.floor(start).toLocaleString() + suffix;
+                }
+            }, step);
+
+            observer.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+
+    els.forEach(function (el) { observer.observe(el); });
+}
+
+/* ═══════════════════════════════════════════════
+   TERMINAL EASTER EGG
+   ═══════════════════════════════════════════════ */
+(function initTerminal() {
+    var btn   = document.getElementById('term-btn');
+    var panel = document.getElementById('term-panel');
+    var out   = document.getElementById('term-out');
+    var inp   = document.getElementById('term-in');
+    var close = document.getElementById('term-close');
+    if (!btn || !panel) return;
+
+    btn.addEventListener('click', function () {
+        panel.classList.toggle('open');
+        if (panel.classList.contains('open') && inp) inp.focus();
+    });
+    if (close) close.addEventListener('click', function () { panel.classList.remove('open'); });
+
+    var commands = {
+        help: function () {
+            return [
+                '  <span class="tline-acc">Available commands:</span>',
+                '  whoami           : who is prem?',
+                '  skills           : view tech stack',
+                '  experience       : recent roles',
+                '  contact          : get in touch',
+                '  research         : current research',
+                '  clear            : clear terminal'
+            ];
+        },
+        whoami: function () {
+            return [
+                '  <span class="tline-acc">Prem Kumar Sharma</span>',
+                '  Research Associate @ IIT Bombay',
+                '  IIT Madras BS \'25 · Minor: Economics & Finance',
+                '  Generative AI Engineer · AI Product Consultant',
+                '  Content Creator @ YouTube (@insightbyprem)',
+                '  Based in Mumbai, India'
+            ];
+        },
+        skills: function () {
+            return [
+                '  <span class="tline-acc">Top skills:</span>',
+                '  Languages   →  Python, SQL, JavaScript, Java',
+                '  GenAI       →  GPT-4/5, LLaMA, BERT, RAG, Fine-Tuning',
+                '  Agentic AI  →  CrewAI, LangChain, MCP, Claude Code',
+                '  ML/Research →  Scikit-learn, XGBoost, Wavelets, CV, NLP',
+                '  Infra       →  Docker, PostgreSQL, Redis, AWS, GCP'
+            ];
+        },
+        experience: function () {
+            return [
+                '  <span class="tline-acc">Recent experience:</span>',
+                '  2025–Now    Research Associate @ IIT Bombay (ANRF-PAIR)',
+                '  2025–Now    AI Strategy Consultant @ Thundergits',
+                '  2024–2025   Generative AI Engineer @ LOQO AI',
+                '  2024–2025   Educator at Programming Classes',
+                '  2024        Software Developer Intern @ 7 Miles/sec'
+            ];
+        },
+        contact: function () {
+            return [
+                '  <span class="tline-acc">Get in touch:</span>',
+                '  Email    →  premksharma@alumni.iitm.ac.in',
+                '  Phone    →  +91 7488680644',
+                '  LinkedIn →  linkedin.com/in/prem-kumar-sharma-a499b1201',
+                '  GitHub   →  github.com/prem-kumar-sharma',
+                '  YouTube  →  @insightbyprem'
+            ];
+        },
+        research: function () {
+            return [
+                '  <span class="tline-acc">Current research @ IIT Bombay:</span>',
+                '  · Deepfake detection in biometric fingerprints',
+                '  · Wavelet transforms & time-frequency analysis',
+                '  · AI explainability & post-hoc interpretability',
+                '  · ANRF-PAIR Program (INR 105 Cr) national initiative',
+                '  · 7 partner institutes · 100+ researchers · 13 projects'
+            ];
+        },
+        clear: function () { return null; }
+    };
+
+    function addLine(html, cls) {
+        var div = document.createElement('div');
+        div.className = 'tline ' + (cls || '');
+        div.innerHTML = html;
+        out.appendChild(div);
+        out.scrollTop = out.scrollHeight;
+    }
+
+    if (inp) {
+        inp.addEventListener('keydown', function (e) {
+            if (e.key !== 'Enter') return;
+            var cmd = inp.value.trim().toLowerCase();
+            inp.value = '';
+            if (!cmd) return;
+
+            addLine('~ $ ' + cmd, 'tline-acc');
+
+            if (cmd === 'clear') {
+                out.innerHTML = '';
+                return;
+            }
+
+            var fn = commands[cmd];
+            if (fn) {
+                var lines = fn();
+                if (lines) lines.forEach(function (l) { addLine(l); });
+            } else {
+                addLine('  Command not found: ' + cmd + '. Type <span class="tcmd">help</span> for commands.', 'tline-err');
+            }
+        });
+    }
+})();
+
+/* ═══════════════════════════════════════════════
+   VUE INSTANCE
+   ═══════════════════════════════════════════════ */
 new Vue({
     el: '#app',
     data: {
-        services: [
-          {
-            title: 'Mentorship: Projects, Career & Portfolio',
-            description: 'I help students and early professionals figure out the right path in tech from choosing good projects to building a solid portfolio and getting interview-ready. We’ll go through your goals, improve your LinkedIn and resume, and plan how you can reach the next level step by step. You can book a short call with me on Topmate to get started and I’ll share a clear 3-month roadmap for you.',
-            link: 'https://topmate.io/prem_kumar_sharma',
-            image: 'https://www.aihr.com/wp-content/uploads/mentorship-programs-cover.png'
-          },
-          {
-            title: 'AI Product Development, MVP to Production',
-            description: 'If you have an idea and want to turn it into a real AI product, I can help you build it end-to-end from concept and prototype to a working deployment. I’ve worked with RAG models, APIs, chatbots, and full AI systems for startups and projects. Just message me on LinkedIn, tell me a bit about what you’re building, and we can explore how to bring it to life.',
-            link: 'https://www.linkedin.com/in/prem-kumar-sharma-a499b1201/',
-            image: 'https://newvision-software.com/wp-content/uploads/2024/10/Building-the-winning-AI-products.png'
-          },
-          {
-            title: 'Content & Social Media Development',
-            description: 'I work with creators and founders to plan and grow their online presence. From short video scripts and thumbnail ideas to complete posting schedules, I help you stay consistent and build a personal brand that actually connects with people. If you want to discuss your content or get a few quick suggestions, just drop me a message on LinkedIn I reply to every genuine query.',
-            link: 'https://www.linkedin.com/in/prem-kumar-sharma-a499b1201/',
-            image: 'https://www.socialchamp.com/blog/wp-content/uploads/2024/03/Content-Blog-Banner_Q1-2024_1125x600_081_Social-Media-Growth.png'
-          },
-          {
-            title: 'Cinematic AI Content Making: Full Production + BGM',
-            description: 'I create fully automated, AI-generated cinematic videos from script writing and visuals to voice-over, background music, and editing. Everything is done end-to-end using AI tools, yet crafted carefully to look natural, emotional, and visually stunning. Whether you want short clips or full storytelling videos, I can help you bring your ideas to life. Just message me on LinkedIn, and we’ll plan something creative for your channel.',
-            link: 'https://www.linkedin.com/in/prem-kumar-sharma-a499b1201/',
-            image: 'https://smartclick.ai/wp-content/uploads/2020/08/shutterstock_1356497663-scaled.jpg'
-          }
+        experiences: [
+            {
+                company: 'Indian Institute of Technology, Bombay',
+                role: 'Research Associate',
+                type: 'Full-time',
+                date: 'Jul 2025 – Present',
+                location: 'Mumbai, India · On-site',
+                current: true,
+                skills: ['Signal Processing', 'Wavelet Transforms', 'Deep Learning', 'NLP', 'LLMs', 'Generative AI', 'Computer Vision', 'AI Explainability'],
+                bullets: [
+                    'Researching deepfake detection and minutiae matching in biometric fingerprints using wavelet transforms and time-frequency methods under Prof. Vikram M. Gadre (ANRF-PAIR Program).',
+                    'Built post-hoc interpretability and evaluation pipelines for AI/ML models, identifying failure modes across 3+ active research projects.',
+                    'Spearheading the ANRF-PAIR Hub & Spokes national program (INR 105 Cr), coordinating 7 partner institutes, 100+ researchers, and 13 concurrent projects.'
+                ]
+            },
+            {
+                company: 'Thundergits',
+                role: 'AI & Automation Product Strategy Consultant Lead',
+                type: 'Consulting',
+                date: 'Aug 2025 – Present',
+                location: 'Remote',
+                current: true,
+                skills: ['AI Strategy', 'Product Management', 'PRD Writing', 'Client Acquisition', 'Solution Architecture'],
+                bullets: [
+                    'Leading client acquisition, strategy calls, and deal negotiations for AI & automation-driven solutions.',
+                    'Translating business problems into AI-enabled product requirements (PRDs) and clear solution scopes.',
+                    'Defining product architecture including features, automation workflows, tech stack, delivery roadmap, and team structure.'
+                ]
+            },
+            {
+                company: 'LOQO AI',
+                role: 'Generative AI Engineer',
+                type: 'Full-time · Remote',
+                date: 'Jul 2024 – Jun 2025',
+                location: 'New Delhi, India · Remote',
+                current: false,
+                skills: ['GPT-4/5', 'LLaMA', 'Stable Diffusion', 'RAG', 'CrewAI', 'LangChain', 'Python', 'Docker', 'Flask'],
+                bullets: [
+                    'Architected multi-agent GenAI pipelines (GPT-4/5, Gemini, CrewAI), reducing average production cycle time by ~60%.',
+                    'Built text-to-video pipelines integrating LLaMA, Stable Diffusion, Flux, and ElevenLabs, processing 200+ content pieces/month with less than 2% production error rate.',
+                    'Designed modular RAG and prompt engineering frameworks with fine-tuning support, improving output quality by ~35% across 5+ client verticals.'
+                ]
+            },
+            {
+                company: 'Programming Classes',
+                role: 'Educator',
+                type: 'Part-time',
+                date: 'Nov 2024 – Jun 2025',
+                location: 'Patna',
+                current: false,
+                skills: ['Python', 'SQL', 'Power BI', 'Tableau', 'Excel', 'Figma', 'Statistics'],
+                description: 'Taught Python, data analysis, SQL, Power BI, Tableau, Advanced Excel, statistics, and UI/UX design. Provided career guidance and mentored students on real-world projects.'
+            },
+            {
+                company: '7 Miles Per Second',
+                role: 'Software Developer Intern',
+                type: 'Internship',
+                date: 'Aug 2024 – Nov 2024',
+                location: 'Chennai · Remote',
+                current: false,
+                skills: ['App Development', 'Team Collaboration', 'Leadership'],
+                description: 'Led app development projects from design to deployment, collaborating across teams to deliver high-quality applications focused on user experience.'
+            },
+            {
+                company: 'Medical Network Pvt. Ltd.',
+                role: 'WebOps Intern',
+                type: 'Internship',
+                date: 'Jan 2024 – Jun 2024',
+                location: 'Patna · On-site',
+                current: false,
+                skills: ['Website Maintenance', 'Data Analysis', 'Digital Infrastructure'],
+                description: 'Maintained website functionality and optimized digital infrastructure. Provided insights from leads, marketing, and inventory data.'
+            },
+            {
+                company: 'TechoTians',
+                role: 'Web Developer Intern',
+                type: 'Internship',
+                date: 'Aug 2023 – Dec 2023',
+                location: 'Patna · On-site',
+                current: false,
+                skills: ['HTML/CSS', 'JavaScript', 'UI/UX', 'Performance Optimization'],
+                description: 'Developed and maintained websites and landing pages for optimal performance and user experience.'
+            },
+            {
+                company: 'Learn Everything AI',
+                role: 'WordPress Developer & Graphics Designer',
+                type: 'Part-time',
+                date: 'Jan 2023 – Aug 2023',
+                current: false,
+                skills: ['WordPress', 'Graphic Design', 'Branding'],
+                description: 'Developed WordPress sites and designed posters/carousels for brand visibility and engagement.'
+            }
+        ],
+
+        projects: [
+            {
+                title: 'EduBridge: User-Centric LMS Platform',
+                link: 'https://github.com/prem-kumar-sharma/Edubridge',
+                description: 'Led end-to-end product design of an educational LMS, translating stakeholder pain-points into scalable prototypes with interactive dashboards and automated admin workflows.',
+                image: 'https://topsoftwarecompanies.co/front_assets/img/blog/IN_DEsignthinking_Design-Thinking-2.png',
+                tags: ['Figma', 'KDT-EAST', 'Jira', 'Product Design']
+            },
+            {
+                title: 'Food Rating Prediction: ML Pipeline',
+                link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
+                description: 'Built end-to-end ML pipelines across 5 models on 50K+ samples; achieved top-10% accuracy through rigorous error analysis on real-world food review data.',
+                image: 'https://proveg.org/wp-content/uploads/2022/12/AdobeStock_493066768-scaled-1.jpeg',
+                tags: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas']
+            },
+            {
+                title: 'IITM Resume Analyzer',
+                link: 'https://github.com/prem-kumar-sharma/IITM-Resume-Feedbacks',
+                description: 'Developed a resume analyzer tool generating actionable feedback based on IITM BS Resume Guidelines, powered by OpenAI GPT.',
+                image: 'https://squeezegrowth.com/wp-content/uploads/2022/01/Best-Resume-Scanning-Software-scaled.webp',
+                tags: ['OpenAI API', 'Python', 'NLP', 'GenAI']
+            },
+            {
+                title: 'Library Management System',
+                link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
+                description: 'Full-stack library management system with Redis caching, Flask backend, and PostgreSQL for efficient high-volume operations.',
+                image: 'https://www.vervelogic.com/blog/wp-content/uploads/2019/08/LMS-01.png',
+                tags: ['Flask', 'PostgreSQL', 'Redis', 'Docker']
+            },
+            {
+                title: 'Diabeteasy: ML Health Tool',
+                link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
+                description: 'ML-based diabetes management tool with Google Maps integration for nearby doctor discovery and health tracking.',
+                image: 'https://sa1s3optim.patientpop.com/assets/images/provider/photos/2421932.jpg',
+                tags: ['Python', 'Machine Learning', 'Google Maps API']
+            },
+            {
+                title: 'Food Log App',
+                link: 'https://github.com/prem-kumar-sharma/food-log-app',
+                description: 'Responsive meal tracking app using the Edamam API for real-time nutritional data, built with Vue.js.',
+                image: 'https://superiorfs.com.au/Documents/banner-blog-superior-current_trends-1-@2x.jpg',
+                tags: ['Vue.js', 'Edamam API', 'JavaScript']
+            }
+        ],
+
+        skillCategories: [
+            {
+                name: 'Languages',
+                skills: ['Python', 'SQL', 'JavaScript', 'Java']
+            },
+            {
+                name: 'GenAI & LLMs',
+                skills: ['Fine-Tuning (LoRA, QLoRA)', 'RAG', 'LLM Evaluation', 'GPT-4/5', 'Gemini', 'LLaMA', 'BERT', 'T5', 'Stable Diffusion', 'Flux', 'ElevenLabs']
+            },
+            {
+                name: 'Agentic AI',
+                skills: ['Multi-Agent Orchestration', 'Tool-Using LLMs', 'MCP', 'Claude Code', 'CrewAI', 'LangChain', 'Autonomous Pipelines']
+            },
+            {
+                name: 'ML & Research',
+                skills: ['Scikit-learn', 'XGBoost', 'Post-hoc Explainability', 'Wavelet Transforms', 'Signal/Image Processing', 'Deep Learning', 'Computer Vision', 'NLP']
+            },
+            {
+                name: 'Frameworks & Libraries',
+                skills: ['Flask', 'SQLAlchemy', 'ReactJS', 'VueJS', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Streamlit']
+            },
+            {
+                name: 'Infrastructure & Tools',
+                skills: ['Docker', 'Git', 'AWS', 'GCP', 'PostgreSQL', 'Redis', 'Celery', 'Figma', 'Jira']
+            }
         ],
 
         videos: [
@@ -161,7 +524,7 @@ new Vue({
                 link: 'https://youtu.be/BuwF8LAdZcg?si=RzChhymiidBY7iox'
             },
             {
-                title: '3 Degrees in 5 Years & Ph.D Without GATE/NET | The Knowledge Exchange Ep. 1',
+                title: '3 Degrees in 5 Years & Ph.D Without GATE/NET',
                 link: 'https://youtu.be/uZBHNj66500?si=jlVUJ99PfkKz75E_'
             },
             {
@@ -173,172 +536,7 @@ new Vue({
                 link: 'https://youtu.be/WhviDVE1Qkk?si=K38EiFb6UBSlpEoh'
             }
         ],
-        projects: [
-            {
-                title: 'WonCourse - AI-Powered Learning Platform',
-                link: 'https://github.com/prem-kumar-sharma/WonCourse-soft-engg-project-may-2024-se-may-27',
-                description: 'Developed WonCourse, an AI-powered learning platform integrating GenAI technologies to enhance the learning experience. Implemented features like video lectures, coding assistance, and AI-powered chatbots for course queries. Used RAG (Retrieval-Augmented Generation) for contextual support.',
-                image: 'https://nearlearn.com/public/images/ai-training-in-bangalore.jpeg'
-            },
-            {
-                title: 'EduBridge: Design Thinking Project',
-                link: 'https://github.com/prem-kumar-sharma/Edubridge',
-                description: 'An LMS tailored for educational institutions, designed to simplify administrative tasks, enhance teacher-student communication, and optimize learning outcomes. Developed using the KDT-EAST framework, this project prioritizes user-centric design, scalability, and technological feasibility.',
-                image: 'https://topsoftwarecompanies.co/front_assets/img/blog/IN_DEsignthinking_Design-Thinking-2.png'
-            },
-            {
-                title: 'Food Recipe Rating Prediction',
-                link: 'https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings',
-                description: 'Built predictive models to forecast food recipe ratings using logistic regression and random forest, achieving over 77% accuracy.',
-                image: 'https://proveg.org/wp-content/uploads/2022/12/AdobeStock_493066768-scaled-1.jpeg'
-            },
-            {
-                title: 'Food Log App',
-                link: 'https://github.com/prem-kumar-sharma/food-log-app',
-                description: 'Developed a responsive meal tracking app using Edamam API for nutritional data.',
-                image: 'https://superiorfs.com.au/Documents/banner-blog-superior-current_trends-1-@2x.jpg'
-            },
-            {
-                title: 'Library Management System',
-                link: 'https://github.com/prem-kumar-sharma/Library-Management-System',
-                description: 'Created a full-stack library management system with caching for efficient operations.',
-                image: 'https://www.vervelogic.com/blog/wp-content/uploads/2019/08/LMS-01.png'
-            },
-            {
-                title: 'Diabeteasy',
-                link: 'https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy',
-                description: 'Developed an ML-based diabetes management tool with Google Maps integration for doctor suggestions.',
-                image: 'https://sa1s3optim.patientpop.com/assets/images/provider/photos/2421932.jpg'
-            },
-            {
-                title: 'IITM Resume Analyzer',
-                link: 'https://github.com/prem-kumar-sharma/IITM-Resume-Feedbacks',
-                description: 'Developed a resume analyzer tool for generating actionable feedback based on IITM BS Resume Guidelines, using OpenAI model.',
-                image: 'https://squeezegrowth.com/wp-content/uploads/2022/01/Best-Resume-Scanning-Software-scaled.webp'
-            },
-            {
-                title: 'Strategies-for-Professional-Growth Projects',
-                link: 'https://github.com/prem-kumar-sharma/Strategies-for-Professional-Growth-Project',
-                description: 'A research project that delves into the realities of entrepreneurship beyond the glamour, providing practical insights and strategies essential for startup success.',
-                image: 'https://epaouydin3q.exactdn.com/wp-content/uploads/2024/02/Personalized-Career-Development.jpg?strip=all&lossy=1&ssl=1'
-            },
-            {
-                title: 'Business Data Management(BDM) Capstone Projects',
-                link: 'https://github.com/prem-kumar-sharma/BDM-Capstone-Projects',
-                description: 'Conducted in-depth data analysis to support decision-making processes for business development.',
-                image: 'https://www.blue-pencil.ca/wp-content/uploads/2020/04/laptops.png'
-            }
-        ],
-        experiences: [
-      {
-        company: 'Indian Institute of Technology, Bombay',
-        role: 'Research Associate',
-        type: 'Full-time',
-        date: 'July, 2025 – Present',
-        location: 'Mumbai, India · on-site',
-        skills: [
-          'Signal Processing',
-          'Data Science',
-          'Machine Learning',
-          'Artificial Intelligence (AI)',
-          'Deep Learning',
-          'Natural Language Processing (NLP)',
-          'Large Language Models (LLM)',
-          'Generative AI',
-          'Computer Vision'
-        ],
-        description:
-          'Working as an Associate Research Fellow under the Post-Baccalaureate/Pre-Doc Fellowship program at IIT Bombay, under the mentorship of Prof. Vikram M. Gadre. The project involves integrating advanced signal and image processing techniques including wavelets and time-frequency analysis with modern machine learning and deep learning frameworks.',
-        gif: 'https://images.squarespace-cdn.com/content/v1/5bcfdf91e8ba4404c104e52e/1540936480836-3I7EOTSP4CDJT97QQLUL/electrocute.gif'
-      },
-      {
-        company: 'Loqo AI',
-        role: 'Generative AI Engineer',
-        type: 'Full-time',
-        date: 'Apr 2025 – Oct 2025 · 7 mos',
-        location: 'New Delhi, Delhi, India · Remote',
-        skills: [
-          'Python (Programming Language)',
-          'Data Science',
-          'Machine Learning',
-          'Artificial Intelligence (AI)',
-          'Deep Learning',
-          'Natural Language Processing (NLP)',
-          'Large Language Models (LLM)',
-          'Generative AI',
-          'Computer Vision'
-        ],
-        description:
-          'Built AI Agents for task automation, leveraging RAG models and multi-modal capabilities. Automated workflows using Selenium, AI-driven scripts, and optimized prompt engineering for image generation and text generation.',
-        gif: 'https://cdn.dribbble.com/userupload/23731317/file/original-5eb2f9967073700b38a31280cc2c32e0.gif'
-      },
-          {
-            company: 'Loqo AI',
-            role: 'Generative AI Engineer Intern',
-            type: 'Internship',
-            date: 'Jul 2024 – Mar 2025 · 9 mos',
-            location: '',
-            skills: [
-              'Artificial Intelligence (AI)',
-              'Large Language Models (LLM)',
-              'Generative AI',
-              'Computer Vision',
-              'Git',
-              'Python (Programming Language)',
-              'Docker',
-                'Machine Learning',
-                'Deep Learning',
-                'Flask'
-            ],
-            description:
-              'Developing a text‑to‑video generator app, integrating advanced AI models to generate high‑quality visual content…',
-            gif: 'https://miro.medium.com/v2/resize:fit:1400/1*TlbU0F-waQf7_zOfhUNldQ.gif'
-          },
-          {
-            company: '7 Miles Per Second',
-            role: 'Software Developer Intern',
-            type: 'Internship',
-            date: 'Aug 2024 – Nov 2024 · 4 mos',
-            location: 'Chennai, Tamil Nadu · Remote',
-            skills: ['App Development', 'Team Collaboration', 'Leadership'],
-            description:
-              'Led app development projects from design to deployment, collaborating across teams. Enhanced technical and leadership skills through innovative projects.',
-            gif: 'https://i.pinimg.com/originals/81/17/8b/81178b47a8598f0c81c4799f2cdd4057.gif'
-          },
-          {
-            company: 'Medical Network Pvt. Ltd.',
-            role: 'WebOps Intern',
-            type: 'Internship',
-            date: 'Jan 2024 – Jun 2024 · 6 mos',
-            location: 'Patna, Bihar · On‑site',
-            skills: ['Website Maintenance', 'Data Insights'],
-            description:
-              'Maintained website functionality and optimized digital infrastructure. Provided insights from lead, marketing, and inventory data.',
-            gif: 'https://user-images.githubusercontent.com/74038190/212749447-bfb7e725-6987-49d9-ae85-2015e3e7cc41.gif'
-          },
-          {
-            company: 'TechoTians',
-            role: 'Web Developer Intern',
-            type: 'Internship',
-            date: 'Aug 2023 – Dec 2023 · 5 mos',
-            location: 'Patna, Bihar · On‑site',
-            skills: ['UI/UX', 'Performance Optimization'],
-            description:
-              'Developed websites focusing on user experience and performance. Analyzed trends to improve marketing strategies.',
-            gif: 'https://user-images.githubusercontent.com/115187902/230603133-52eedb90-6313-41ef-86a6-122ec3848e19.gif'
-          },
-          {
-            company: 'Learn Everything AI',
-            role: 'WordPress Developer & Graphics Designer',
-            type: 'Part‑time',
-            date: 'Jan 2023 – Aug 2023 · 8 mos',
-            location: 'India · Hybrid',
-            skills: ['WordPress', 'Graphic Design'],
-            description:
-              'Designed WordPress websites to improve user experience and engagement.',
-            gif: 'https://i.pinimg.com/originals/32/9b/63/329b63886c58f6f4915b8642f52ec8b3.gif'
-          }
-        ],
+
         certifications: [
             {
                 title: 'SQL (Advanced) & SQL (Intermediate)',
@@ -347,7 +545,7 @@ new Vue({
                 image: 'sql.webp'
             },
             {
-                title: 'NPTEL Believers',
+                title: 'NPTEL Believer',
                 issuer: 'IIT Madras',
                 date: 'Dec 2024',
                 image: 'nptel_beliver.webp'
@@ -388,50 +586,13 @@ new Vue({
                 date: 'Sep 2024',
                 image: 'batm.webp'
             }
-            ],
-            educations: [
-            {
-              institution: 'Indian Institute of Technology, Madras',
-              degree: 'BS in Data Science & Application',
-              date: 'Jan 2021 – Apr 2025',
-              location: 'Chennai, Tamil Nadu',
-              details: 'Skills: Machine Learning · Data Structure & Algorithm · Vue.js · AI · Back‑End Web Development · Bash · Business Data Management · Business Analytics · Communication · Data Analysis · Data Presentation · Data Science · Deep Learning · DBMS · Data Visualization · Flask · Java · JavaScript · LLM',
-              gif: 'https://classroomclipart.com/images/gallery/Animations/Graduation/animated-clipart-graduation-throwing-cap-in-air-04c.gif'
-            },
-            {
-              institution: 'State Board of Technical Education (SBTE), Bihar',
-              degree: 'Diploma in Civil Engineering, Govt. Polytechnic Patna 07',
-              date: 'Oct 2020 – Oct 2023',
-              details: 'Grade: 8.25 CGPA',
-              gif: 'https://media.tenor.com/Ze8lxl-TgaEAAAAM/engineering.gif'
-            },
-            {
-              institution: 'R.K.D. College',
-              degree: 'Senior Secondary, PCM',
-              date: 'Mar 2017 – Apr 2019',
-              details: 'Grade: 84.6%',
-              gif: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Exciting_-_Idil_Keysan_-_Wikimedia_Giphy_stickers_2019.gif/1200px-Exciting_-_Idil_Keysan_-_Wikimedia_Giphy_stickers_2019.gif'
-            },
-            {
-              institution: 'Gyan Bharti Public School, Gaya',
-              degree: 'Secondary School',
-              date: 'Mar 2012 – Apr 2017',
-              details: 'Grade: 9.6 CGPA',
-              gif: 'https://media.tenor.com/2XYVf11lS-cAAAAM/school-work-angry.gif'
-            }
-          ]
+        ]
+    },
 
-    
-},
-methods: {
-  getEmbedUrl(url) {
-    // matches both "youtube.com/watch?v=" and "youtu.be/"
-    const m = url.match(/(?:v=|\.be\/)([^&]+)/);
-    return m
-      ? `https://www.youtube.com/embed/${m[1]}`
-      : url;
-  }
+    methods: {
+        getEmbedUrl: function (url) {
+            var m = url.match(/(?:v=|\.be\/)([^&?]+)/);
+            return m ? 'https://www.youtube.com/embed/' + m[1] : url;
+        }
     }
-
-
 });
