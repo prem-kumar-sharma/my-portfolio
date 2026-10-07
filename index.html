@@ -3,539 +3,985 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prem Kumar Sharma — AI Researcher, GenAI Engineer, Content Creator</title>
-    <meta name="description" content="Portfolio of Prem Kumar Sharma — Research Associate at IIT Bombay, IIT Madras BS '25, ex-Generative AI Engineer at LOQO AI. Building AI systems, researching explainability, and creating honest content.">
-    <meta name="keywords" content="Prem Kumar Sharma, IIT Bombay, IIT Madras, Generative AI Engineer, Research Associate, RAG, LLMs, AI Agents, deepfake detection, wavelet transforms, insightbyprem">
-    <meta property="og:title" content="Prem Kumar Sharma — AI Researcher & GenAI Engineer">
-    <meta property="og:description" content="Research Associate at IIT Bombay. Building AI systems, researching explainability, creating content.">
+    <title>Prem Kumar Sharma — AI Engineer & Researcher</title>
+    <meta name="description" content="Portfolio of Prem Kumar Sharma — Research Associate (AI Engineer) at Precog, IIIT Hyderabad. Ex-IIT Bombay research, ex-Generative AI Engineer at LOQO AI, IIT Madras BS '25. Building grounded AI systems, mentoring students, and creating honest content.">
+    <meta name="keywords" content="Prem Kumar Sharma, IIIT Hyderabad, Precog, IIT Bombay, IIT Madras, Generative AI Engineer, Research Associate, RAG, LLMs, AI Agents, deepfake detection, wavelet transforms, insightbyprem">
+    <meta name="author" content="Prem Kumar Sharma">
+    <meta name="theme-color" content="#0b0b0a">
+    <meta property="og:title" content="Prem Kumar Sharma — AI Engineer & Researcher">
+    <meta property="og:description" content="Research Associate at Precog, IIIT Hyderabad. Building grounded AI systems, mentoring students, creating content.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://prem-kumar-sharma.github.io/my-portfolio/">
+    <meta property="og:image" content="https://prem-kumar-sharma.github.io/my-portfolio/MYPIC.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='40' fill='%23ecebe6'%3EP%3C/text%3E%3Ccircle cx='48' cy='46' r='5' fill='%23ff5b25'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <script>
+        // Enable motion styles; if the scripts never boot (CDN down, JS error), fall back to a static page.
+        document.documentElement.classList.add('js');
+        setTimeout(function () {
+            if (!window.__booted) document.documentElement.classList.remove('js');
+        }, 5000);
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Prem Kumar Sharma",
+        "jobTitle": "Research Associate",
+        "address": { "@type": "PostalAddress", "addressLocality": "Patna", "addressRegion": "Bihar", "addressCountry": "IN" },
+        "worksFor": { "@type": "Organization", "name": "International Institute of Information Technology, Hyderabad" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Indian Institute of Technology Madras" },
+        "url": "https://prem-kumar-sharma.github.io/my-portfolio/",
+        "email": "mailto:insightbyprem.business@gmail.com",
+        "sameAs": [
+            "https://www.linkedin.com/in/prem-kumar-sharma-a499b1201",
+            "https://github.com/prem-kumar-sharma",
+            "https://www.youtube.com/@insightbyprem",
+            "https://www.instagram.com/prem.kr_sharma/",
+            "https://topmate.io/prem_kumar_sharma"
+        ]
+    }
+    </script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <div id="scroll-progress-bar"></div>
-    <canvas id="dots-bg"></canvas>
+    <!-- ═══ Preloader ═══ -->
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="loader__row">
+            <span class="mono">Prem Kumar Sharma</span>
+            <span class="mono">Portfolio — Patna, IN</span>
+        </div>
+        <div class="loader__row loader__row--bottom">
+            <span class="loader__word" id="loader-word">Research</span>
+            <span class="loader__count"><span id="loader-num">0</span></span>
+        </div>
+        <div class="loader__bar"><i id="loader-bar"></i></div>
+    </div>
 
-    <!-- Splash Screen -->
-    <div id="splash-screen">
-        <div class="splash-wrap">
-            <div class="splash-terminal">
-                <div class="splash-term-header">
-                    <span class="tdot tdot-r"></span>
-                    <span class="tdot tdot-y"></span>
-                    <span class="tdot tdot-g"></span>
-                    <span class="splash-term-title">prem@portfolio ~ </span>
-                </div>
-                <div class="splash-term-body">
-                    <div class="splash-line"><span class="sp-prompt">$</span><span class="sp-cmd"> ./load-portfolio.sh</span></div>
-                    <div class="splash-line sp-info">Initializing AI portfolio...</div>
-                    <div class="splash-line sp-ok">✓ Systems online</div>
-                    <div class="splash-progress-row">
-                        <span class="sp-label">Loading</span>
-                        <div class="splash-progress-bar">
-                            <div class="progress-fill" id="progress-fill"></div>
-                        </div>
-                        <span id="loading-percentage" class="sp-pct">0%</span>
-                    </div>
-                </div>
+    <!-- ═══ Cursor ═══ -->
+    <div class="cursor" aria-hidden="true">
+        <div class="cursor__dot"></div>
+        <div class="cursor__ring"><span class="cursor__label"></span></div>
+    </div>
+
+    <!-- ═══ Header ═══ -->
+    <header class="nav" id="nav">
+        <a href="#top" class="nav__logo" aria-label="Back to top" data-magnetic>
+            <span class="roll">Prem Kumar Sharma</span>
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+            <a href="#about" data-nav="about"><span class="roll">About</span></a>
+            <a href="#experience" data-nav="experience"><span class="roll">Experience</span></a>
+            <a href="#work" data-nav="work"><span class="roll">Work</span></a>
+            <a href="#skills" data-nav="skills"><span class="roll">Skills</span></a>
+            <a href="#content" data-nav="content"><span class="roll">Content</span></a>
+            <a href="#contact" data-nav="contact"><span class="roll">Contact</span></a>
+        </nav>
+        <div class="nav__right">
+            <span class="nav__clock mono"><span class="pulse"></span> Patna <span id="clock">--:--</span></span>
+            <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="nav__cta" data-magnetic><span class="pulse"></span><span class="roll">Book a 1:1 call</span></a>
+            <button class="nav__menu" id="menu-btn" aria-expanded="false" aria-controls="menu">
+                <span class="nav__menu-label">Menu</span>
+                <span class="nav__menu-icon" aria-hidden="true"><i></i><i></i></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <div class="menu" id="menu" aria-hidden="true">
+        <nav class="menu__links" aria-label="Mobile">
+            <a href="#about"><span class="mono">01</span>About</a>
+            <a href="#experience"><span class="mono">02</span>Experience</a>
+            <a href="#work"><span class="mono">03</span>Work</a>
+            <a href="#skills"><span class="mono">04</span>Skills</a>
+            <a href="#content"><span class="mono">05</span>Content</a>
+            <a href="#mentor"><span class="mono">06</span>Mentorship</a>
+            <a href="#contact"><span class="mono">07</span>Contact</a>
+        </nav>
+        <div class="menu__foot mono">
+            <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="menu__cta">Book a 1:1 mentorship call <span aria-hidden="true">↗</span></a>
+            <a href="mailto:insightbyprem.business@gmail.com">insightbyprem.business@gmail.com</a>
+            <div class="menu__socials">
+                <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/prem-kumar-sharma" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener">YouTube</a>
             </div>
         </div>
     </div>
 
-    <!-- Main App -->
-    <div id="app" style="display:none;">
-
-        <!-- Navbar -->
-        <nav id="navbar">
-            <div class="nav-inner">
-                <a href="#hero" class="nav-brand">PK<span class="brand-dot">.</span></a>
-                <ul class="nav-menu">
-                    <li><a href="#about"      class="nav-link" data-nav="about">About</a></li>
-                    <li><a href="#experience" class="nav-link" data-nav="experience">Experience</a></li>
-                    <li><a href="#projects"   class="nav-link" data-nav="projects">Projects</a></li>
-                    <li><a href="#skills"     class="nav-link" data-nav="skills">Skills</a></li>
-                    <li><a href="#content"    class="nav-link" data-nav="content">Content</a></li>
-                    <li><a href="#contact"    class="nav-link" data-nav="contact">Contact</a></li>
-                </ul>
-                <a href="#contact" class="nav-cta">Get In Touch</a>
-                <button class="nav-burger" id="nav-burger" aria-label="Open menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Mobile Drawer -->
-        <div class="mob-drawer" id="mob-drawer">
-            <ul>
-                <li><a href="#about"      class="drawer-link">About</a></li>
-                <li><a href="#experience" class="drawer-link">Experience</a></li>
-                <li><a href="#projects"   class="drawer-link">Projects</a></li>
-                <li><a href="#skills"     class="drawer-link">Skills</a></li>
-                <li><a href="#content"    class="drawer-link">Content</a></li>
-                <li><a href="#contact"    class="drawer-link">Contact</a></li>
-            </ul>
-        </div>
+    <main id="main">
 
         <!-- ═══ HERO ═══ -->
-        <section id="hero">
-            <!-- <script
-                src="https://topmate-embed.s3.ap-south-1.amazonaws.com/v1/topmate-embed.js"
-                user-profile="https://topmate.io/embed/profile/prem_kumar_sharma?theme=D5534D"
-                btn-style='{"backgroundColor":"#000","color":"#fff","border":"1px solid #000"}'
-                embed-version="v1"
-                button-text="Let's Connect"
-                position-right="30px"
-                position-bottom="80px"
-                custom-padding="0px"
-                custom-font-size="16px"
-                custom-font-weight="500"
-                custom-width="200px"
-                async=""
-                defer=""
-            ></script> -->
+        <section class="hero" id="top">
+            <canvas class="hero__field" id="field" aria-hidden="true"></canvas>
 
-            <div class="hero-content">
-                <p class="hero-hi reveal">Hi, I'm</p>
-                <h1 class="hero-name reveal">Prem Kumar Sharma</h1>
-                <div class="hero-role reveal">
-                    <span class="role-static">I'm a </span><span id="typewriter-el"></span><span class="type-cursor">|</span>
-                </div>
-                <p class="hero-tagline reveal">
-                    I build AI systems, research how they work under the hood,<br class="hero-br"> and help others do both.
-                </p>
-                <div class="hero-btns reveal">
-                    <a href="#projects" class="btn-primary">View My Work</a>
-                    <a href="#contact"  class="btn-outline">Get In Touch</a>
-                </div>
-                <div class="hero-socials reveal">
-                    <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener" aria-label="LinkedIn" class="hsoc">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    </a>
-                    <a href="https://github.com/prem-kumar-sharma" target="_blank" rel="noopener" aria-label="GitHub" class="hsoc">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                    <a href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener" aria-label="YouTube" class="hsoc">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-                    </a>
-                    <a href="mailto:premksharma@alumni.iitm.ac.in" aria-label="Email" class="hsoc">
-                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    </a>
-                </div>
-                <div class="hero-status reveal">
-                    <span class="live-dot"></span>
-                    Currently: Research Associate @ IIT Bombay &nbsp;·&nbsp; Open to consulting
-                </div>
+            <div class="hero__meta wrap" data-hero>
+                <span class="mono">(Research Associate — Precog, IIIT Hyderabad)</span>
+                <span class="mono hero__coords">25.59° N, 85.14° E</span>
             </div>
-            <a href="#about" class="hero-scroll" aria-label="Scroll down">↓</a>
+
+            <h1 class="hero__title wrap" aria-label="Prem Kumar Sharma">
+                <span class="hero__line" aria-hidden="true"><span data-chars>Prem Kumar</span></span>
+                <span class="hero__line hero__line--2" aria-hidden="true">
+                    <span class="hero__aside mono" data-hero>AI Engineer<br>&amp; Researcher</span>
+                    <span data-chars>Sharma</span><span class="hero__star" data-hero>*</span>
+                </span>
+            </h1>
+
+            <div class="hero__foot wrap">
+                <p class="hero__lede" data-hero>I build AI systems, research how they work <em>under the hood</em>, and help others do both.</p>
+                <div class="hero__role" data-hero>
+                    <span class="mono hero__role-label">Currently —</span>
+                    <span class="hero__role-text" id="role">Research Associate @ IIIT Hyderabad</span>
+                </div>
+                <a href="#about" class="hero__scroll mono" data-hero aria-label="Scroll to about">
+                    <span>Scroll</span>
+                    <span class="hero__scroll-line"><i></i></span>
+                </a>
+            </div>
         </section>
 
+        <!-- Marquee -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee__track" id="marquee">
+                <div class="marquee__group">
+                    <span>Generative AI</span><b>✳</b><em>Explainability</em><b>✳</b>
+                    <span>Agentic Systems</span><b>✳</b><em>Wavelets</em><b>✳</b>
+                    <span>RAG &amp; Fine-tuning</span><b>✳</b><em>Signal Processing</em><b>✳</b>
+                    <span>Teaching</span><b>✳</b><em>Building in public</em><b>✳</b>
+                </div>
+                <div class="marquee__group">
+                    <span>Generative AI</span><b>✳</b><em>Explainability</em><b>✳</b>
+                    <span>Agentic Systems</span><b>✳</b><em>Wavelets</em><b>✳</b>
+                    <span>RAG &amp; Fine-tuning</span><b>✳</b><em>Signal Processing</em><b>✳</b>
+                    <span>Teaching</span><b>✳</b><em>Building in public</em><b>✳</b>
+                </div>
+            </div>
+        </div>
+
         <!-- ═══ ABOUT ═══ -->
-        <section id="about" class="sec-wrap">
-            <div class="container">
-                <h2 class="sec-title reveal"><span class="sec-num">01.</span> About Me</h2>
-                <div class="about-layout">
-                    <div class="about-left reveal">
-                        <div class="profile-wrap">
-                            <img src="MYPIC.webp" alt="Prem Kumar Sharma" class="profile-img">
+        <section class="section about" id="about">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="mono" data-scramble>(01)</span>
+                    <span class="mono" data-scramble>About</span>
+                </div>
+
+                <p class="statement" data-fill>
+                    I'm an engineer and researcher working where <em>research meets production.</em>
+                    At IIIT Hyderabad's Precog lab, with Prof. Ponnurangam Kumaraguru, I build grounded, production-ready AI systems.
+                    Before that, I researched deepfake detection at IIT Bombay and shipped GenAI at LOQO AI.
+                </p>
+
+                <div class="about__grid">
+                    <figure class="about__portrait">
+                        <div class="about__portrait-inner">
+                            <img src="MYPIC.webp" alt="Portrait of Prem Kumar Sharma" width="600" height="750">
                         </div>
-                        <div class="quick-facts">
-                            <div class="qf"><span>📍</span> Mumbai, India</div>
-                            <div class="qf"><span>🎓</span> BS Data Science · IIT Madras '25</div>
-                            <div class="qf"><span>📊</span> Minor: Economics & Finance</div>
-                            <div class="qf"><span>🔬</span> Research Associate @ IIT Bombay</div>
-                            <div class="qf"><span>💼</span> Open to consulting & collaboration</div>
-                        </div>
-                    </div>
-                    <div class="about-right reveal">
-                        <p>I build AI systems, research how they work under the hood, and help others do both.</p>
-                        <p>Currently a <strong>Research Associate at IIT Bombay</strong>, working under Prof. Vikram M. Gadre on AI explainability, deepfake detection in biometric fingerprints, and signal/image processing using wavelets, time-frequency methods, and machine learning.</p>
-                        <p>Previously a <strong>Generative AI Engineer at LOQO AI</strong> for more than a year, where I built text-to-video pipelines, worked with GPT-4, LLaMA, BERT, Stable Diffusion, and applied RAG, fine-tuning, and prompt engineering to ship production GenAI systems.</p>
-                        <p>I also <strong>consult businesses and startups</strong> on AI product strategy: scoping problems, writing PRDs, defining architecture, and bridging the gap between what AI can do and what a business actually needs.</p>
-                        <p>On the side, I teach and create content. I mentor students in Python, SQL, data analysis, and career planning. On YouTube and LinkedIn, I share what I'm learning. <em>No polished narratives, just the real process of figuring it out.</em></p>
+                        <figcaption class="mono">Prem — 2026</figcaption>
+                    </figure>
+
+                    <div class="about__body">
+                        <p data-reveal>Currently a <strong>Research Associate (AI Engineer) at Precog, IIIT Hyderabad</strong>, working with Prof. Ponnurangam Kumaraguru (PK), where I build grounded, production-ready AI systems for national-scale initiatives.</p>
+                        <p data-reveal>Before that, I spent a year at <strong>IIT Bombay</strong> under Prof. Vikram M. Gadre, researching deepfake detection and minutiae matching in contact-based and contactless fingerprints with wavelets and time-frequency methods, and coordinating the ANRF-PAIR national research program.</p>
+                        <p data-reveal>Earlier, as a <strong>Generative AI Engineer at LOQO AI</strong>, I architected multi-agent pipelines and text-to-video systems with GPT-4/5, Gemini, LLaMA, Stable Diffusion and ElevenLabs, and applied RAG and fine-tuning to ship production GenAI.</p>
+                        <p data-reveal>I also <strong>mentor students</strong> in Python, AI, careers and computational thinking, and share the real process of figuring it out with 18K+ people on YouTube and LinkedIn. <em>No polished narratives.</em></p>
+
+                        <dl class="facts" data-reveal>
+                            <div><dt class="mono">Based in</dt><dd>Patna, Bihar, India</dd></div>
+                            <div><dt class="mono">Now</dt><dd>Research Associate, Precog @ IIIT Hyderabad</dd></div>
+                            <div><dt class="mono">Advisor</dt><dd>Prof. Ponnurangam Kumaraguru (PK)</dd></div>
+                            <div><dt class="mono">Previously</dt><dd>IIT Bombay · LOQO AI</dd></div>
+                            <div><dt class="mono">Education</dt><dd>BS Data Science, IIT Madras '25</dd></div>
+                            <div><dt class="mono">Minor</dt><dd>Economics &amp; Finance</dd></div>
+                            <div><dt class="mono">Open to</dt><dd><a href="#mentor" class="link-arrow">1:1 mentorship</a> &amp; consulting</dd></div>
+                        </dl>
                     </div>
                 </div>
 
-                <!-- Stats -->
-                <div class="stats-row reveal">
-                    <div class="stat-card">
-                        <div class="stat-val" data-count="13" data-suffix="+">0</div>
-                        <div class="stat-lbl">Research Projects Coordinated</div>
+                <div class="stats">
+                    <div class="stat" data-reveal>
+                        <span class="stat__num" data-count="1.4" data-decimals="1" data-suffix="M+">1.4M+</span>
+                        <span class="stat__label mono">YouTube views</span>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-val" data-count="100" data-suffix="+">0</div>
-                        <div class="stat-lbl">Researchers in Network</div>
+                    <div class="stat" data-reveal>
+                        <span class="stat__num" data-count="18" data-suffix="K+">18K+</span>
+                        <span class="stat__label mono">Followers across YouTube &amp; LinkedIn</span>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-val" data-count="500" data-suffix="+">0</div>
-                        <div class="stat-lbl">Students Mentored</div>
+                    <div class="stat" data-reveal>
+                        <span class="stat__num" data-count="2000" data-suffix="+">2,000+</span>
+                        <span class="stat__label mono">Students mentored</span>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-val" data-count="7300" data-suffix="+">0</div>
-                        <div class="stat-lbl">LinkedIn Followers</div>
+                    <div class="stat" data-reveal>
+                        <span class="stat__num" data-count="13" data-suffix="+">13+</span>
+                        <span class="stat__label mono">National research projects coordinated</span>
                     </div>
                 </div>
 
-                <!-- Education -->
-                <div class="edu-strip reveal">
-                    <h3 class="sub-title">Education</h3>
-                    <div class="edu-row">
-                        <div class="edu-card">
-                            <div class="edu-deg">BS in Data Science & Applications</div>
-                            <div class="edu-inst">Indian Institute of Technology, Madras</div>
-                            <div class="edu-meta">2021 – 2025 · Minor: Economics & Finance</div>
-                        </div>
-                        <div class="edu-sep"></div>
-                        <div class="edu-card">
-                            <div class="edu-deg">Diploma in Civil Engineering</div>
-                            <div class="edu-inst">Government Polytechnic Patna 07, SBTE Bihar</div>
-                            <div class="edu-meta">2020 – 2023 · 8.25 CGPA</div>
-                        </div>
-                        <div class="edu-sep"></div>
-                        <div class="edu-card">
-                            <div class="edu-deg">Senior Secondary (PCM)</div>
-                            <div class="edu-inst">R.K.D. College</div>
-                            <div class="edu-meta">2017 – 2019 · 84.6%</div>
-                        </div>
+                <div class="edu">
+                    <h3 class="edu__title mono" data-reveal>Education</h3>
+                    <div class="edu__row" data-reveal>
+                        <span class="edu__years mono">2021 — 2025</span>
+                        <span class="edu__deg">BS in Data Science &amp; Applications</span>
+                        <span class="edu__inst">Indian Institute of Technology, Madras</span>
+                        <span class="edu__note mono">Minor: Economics &amp; Finance</span>
+                    </div>
+                    <div class="edu__row" data-reveal>
+                        <span class="edu__years mono">2020 — 2023</span>
+                        <span class="edu__deg">Diploma in Civil Engineering</span>
+                        <span class="edu__inst">Government Polytechnic Patna 07, SBTE Bihar</span>
+                        <span class="edu__note mono">8.25 CGPA</span>
+                    </div>
+                    <div class="edu__row" data-reveal>
+                        <span class="edu__years mono">2017 — 2019</span>
+                        <span class="edu__deg">Senior Secondary (PCM)</span>
+                        <span class="edu__inst">R.K.D. College</span>
+                        <span class="edu__note mono">84.6%</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ═══ EXPERIENCE ═══ -->
-        <section id="experience" class="sec-wrap sec-alt">
-            <div class="container">
-                <h2 class="sec-title reveal"><span class="sec-num">02.</span> Experience</h2>
-                <div class="timeline">
-                    <div class="tl-item reveal" v-for="(exp, idx) in experiences" :key="exp.company + exp.role + idx">
-                        <div class="tl-dot-col">
-                            <div class="tl-dot" :class="{ 'tl-dot-live': exp.current }"></div>
-                        </div>
-                        <div class="tl-card">
-                            <div class="tl-card-head">
-                                <div>
-                                    <h3 class="tl-role">{{ exp.role }}</h3>
-                                    <div class="tl-company-row">
-                                        <span class="tl-company">{{ exp.company }}</span>
-                                        <span v-if="exp.current" class="curr-pill">● Current</span>
-                                    </div>
-                                </div>
-                                <div class="tl-date">{{ exp.date }}</div>
-                            </div>
-                            <div class="tl-meta-row">
-                                <span class="tl-type">{{ exp.type }}</span>
-                                <span v-if="exp.location" class="tl-loc">· {{ exp.location }}</span>
-                            </div>
-                            <ul v-if="exp.bullets && exp.bullets.length" class="tl-bullets">
-                                <li v-for="b in exp.bullets" :key="b">{{ b }}</li>
-                            </ul>
-                            <p v-else-if="exp.description" class="tl-desc">{{ exp.description }}</p>
-                            <div class="tl-tags">
-                                <span class="tl-tag" v-for="s in exp.skills" :key="s">{{ s }}</span>
-                            </div>
-                        </div>
-                    </div>
+        <section class="section exp" id="experience">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="mono" data-scramble>(02)</span>
+                    <span class="mono" data-scramble>Experience</span>
                 </div>
+                <h2 class="h2" data-split>Where I've <em>been</em></h2>
+
+                <ol class="exp__list">
+                    <li class="exp__item is-open" data-reveal>
+                        <button class="exp__row" aria-expanded="true">
+                            <span class="exp__num mono">01</span>
+                            <span class="exp__role">Research Associate (AI Engineer) <span class="tag-live">Now</span></span>
+                            <span class="exp__co">Precog, IIIT Hyderabad</span>
+                            <span class="exp__date mono">Jul 2026 — Present</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Full-time · Hyderabad, India · On-site · Advisor: Prof. Ponnurangam Kumaraguru (PK)</p>
+                            <p class="exp__desc">Building grounded, production-ready AI systems for national-scale initiatives at Precog, IIIT Hyderabad.</p>
+                            <ul class="chips"><li>LLMs</li><li>Grounded AI</li><li>RAG</li><li>AI Engineering</li><li>Evaluation</li><li>Python</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">02</span>
+                            <span class="exp__role">Mentor <span class="tag-live">Now</span></span>
+                            <span class="exp__co">Geekashram</span>
+                            <span class="exp__date mono">Jun 2026 — Present</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Freelance · Patna, Bihar · Remote</p>
+                            <p class="exp__desc">Helping students develop a strong foundation in Python, AI, and computational thinking while making learning engaging and practical.</p>
+                            <ul class="chips"><li>Python</li><li>AI Fundamentals</li><li>Computational Thinking</li><li>Teaching</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">03</span>
+                            <span class="exp__role">AI &amp; Automation Product Strategy Consultant Lead <span class="tag-live">Now</span></span>
+                            <span class="exp__co">Thundergits</span>
+                            <span class="exp__date mono">Aug 2025 — Present</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Consulting · Remote</p>
+                            <ul class="exp__bullets">
+                                <li>Leading client acquisition, strategy calls, and deal negotiations for AI &amp; automation-driven solutions.</li>
+                                <li>Translating business problems into AI-enabled product requirements (PRDs) and clear solution scopes.</li>
+                                <li>Defining product architecture including features, automation workflows, tech stack, delivery roadmap, and team structure.</li>
+                            </ul>
+                            <ul class="chips"><li>AI Strategy</li><li>Product Management</li><li>PRD Writing</li><li>Client Acquisition</li><li>Solution Architecture</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">04</span>
+                            <span class="exp__role">Project Associate (Research Fellow)</span>
+                            <span class="exp__co">IIT Bombay</span>
+                            <span class="exp__date mono">Jul 2025 — Jun 2026</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Full-time · Mumbai, India · On-site · Advisor: Prof. Vikram M. Gadre</p>
+                            <ul class="exp__bullets">
+                                <li>Researched deepfake detection and minutiae matching in contact-based and contactless biometric fingerprints using wavelet transforms and time-frequency methods.</li>
+                                <li>Built post-hoc interpretability and evaluation pipelines for AI/ML models, identifying failure modes and decision-boundary weaknesses that informed retraining strategies across 3+ active research projects.</li>
+                                <li>Spearheaded the ANRF-PAIR Hub &amp; Spokes national program (INR 105 Cr), coordinating research workflows, milestone tracking, and reporting across 7 partner institutes, 100+ researchers, and 13 concurrent projects.</li>
+                            </ul>
+                            <ul class="chips"><li>Signal Processing</li><li>Wavelet Transforms</li><li>Deep Learning</li><li>Computer Vision</li><li>AI Explainability</li><li>Biometrics</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">05</span>
+                            <span class="exp__role">Digital Content Creator</span>
+                            <span class="exp__co">YouTube · @insightbyprem</span>
+                            <span class="exp__date mono">Jun 2025 — Jul 2026</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Self-employed · India</p>
+                            <p class="exp__desc">Creating content around AI, education, technology, and career growth to make complex ideas simple and actionable. Grew the channel to 6.9K+ subscribers and 1.4M+ views.</p>
+                            <ul class="chips"><li>Storytelling</li><li>Video Production</li><li>AI Education</li><li>Career Guidance</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">06</span>
+                            <span class="exp__role">Generative AI Engineer</span>
+                            <span class="exp__co">LOQO AI</span>
+                            <span class="exp__date mono">Jul 2024 — Jun 2025</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Full-time · New Delhi, India · Remote</p>
+                            <ul class="exp__bullets">
+                                <li>Architected multi-agent GenAI pipelines (GPT-4/5, Gemini, CrewAI), automating end-to-end content workflows and cutting average production cycle time by ~60% (from ~5 hrs to ~2 hrs per asset).</li>
+                                <li>Built and optimized text-to-video pipelines integrating LLaMA, Stable Diffusion, Flux, and ElevenLabs, processing 200+ content pieces/month across client accounts with a &lt;2% production error rate.</li>
+                                <li>Designed modular RAG and prompt engineering frameworks with fine-tuning support, improving output quality by ~35% on internal benchmarks across 5+ client verticals.</li>
+                                <li>Partnered with product and business teams to ship agent-driven AI solutions.</li>
+                            </ul>
+                            <ul class="chips"><li>GPT-4/5</li><li>Gemini</li><li>CrewAI</li><li>LLaMA</li><li>Stable Diffusion</li><li>RAG</li><li>LangChain</li><li>Docker</li><li>Flask</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">07</span>
+                            <span class="exp__role">Educator</span>
+                            <span class="exp__co">Programming Classes</span>
+                            <span class="exp__date mono">Nov 2024 — Jun 2025</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Part-time · Patna</p>
+                            <p class="exp__desc">Taught Python, data analysis, SQL, Power BI, Tableau, Advanced Excel, statistics, and UI/UX design. Provided career guidance and mentored students on real-world projects.</p>
+                            <ul class="chips"><li>Python</li><li>SQL</li><li>Power BI</li><li>Tableau</li><li>Excel</li><li>Figma</li><li>Statistics</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">08</span>
+                            <span class="exp__role">Software Developer Intern</span>
+                            <span class="exp__co">7 Miles Per Second</span>
+                            <span class="exp__date mono">Aug 2024 — Nov 2024</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Internship · Chennai · Remote</p>
+                            <p class="exp__desc">Led app development projects from design to deployment, collaborating across teams to deliver high-quality applications focused on user experience.</p>
+                            <ul class="chips"><li>App Development</li><li>Team Collaboration</li><li>Leadership</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">09</span>
+                            <span class="exp__role">WebOps Intern</span>
+                            <span class="exp__co">Medical Network Pvt. Ltd.</span>
+                            <span class="exp__date mono">Jan 2024 — Jun 2024</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Internship · Patna · On-site</p>
+                            <p class="exp__desc">Maintained website functionality and optimized digital infrastructure. Provided insights from leads, marketing, and inventory data.</p>
+                            <ul class="chips"><li>Website Maintenance</li><li>Data Analysis</li><li>Digital Infrastructure</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">10</span>
+                            <span class="exp__role">Web Developer Intern</span>
+                            <span class="exp__co">TechoTians</span>
+                            <span class="exp__date mono">Aug 2023 — Dec 2023</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Internship · Patna · On-site</p>
+                            <p class="exp__desc">Developed and maintained websites and landing pages for optimal performance and user experience.</p>
+                            <ul class="chips"><li>HTML/CSS</li><li>JavaScript</li><li>UI/UX</li><li>Performance Optimization</li></ul>
+                        </div></div>
+                    </li>
+                    <li class="exp__item" data-reveal>
+                        <button class="exp__row" aria-expanded="false">
+                            <span class="exp__num mono">11</span>
+                            <span class="exp__role">WordPress Developer &amp; Graphics Designer</span>
+                            <span class="exp__co">Learn Everything AI</span>
+                            <span class="exp__date mono">Jan 2023 — Aug 2023</span>
+                            <span class="exp__plus" aria-hidden="true"></span>
+                        </button>
+                        <div class="exp__panel"><div class="exp__inner">
+                            <p class="exp__meta mono">Part-time</p>
+                            <p class="exp__desc">Developed WordPress sites and designed posters/carousels for brand visibility and engagement.</p>
+                            <ul class="chips"><li>WordPress</li><li>Graphic Design</li><li>Branding</li></ul>
+                        </div></div>
+                    </li>
+                </ol>
             </div>
         </section>
 
-        <!-- ═══ PROJECTS ═══ -->
-        <section id="projects" class="sec-wrap">
-            <div class="container">
-                <h2 class="sec-title reveal"><span class="sec-num">03.</span> Projects</h2>
+        <!-- ═══ WORK ═══ -->
+        <section class="section work" id="work">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="mono" data-scramble>(03)</span>
+                    <span class="mono" data-scramble>Selected work</span>
+                </div>
+                <h2 class="h2" data-split>Things I've <em>shipped</em></h2>
 
                 <!-- Featured -->
-                <div class="featured-card reveal">
-                    <div class="feat-badge">⭐ Featured Project</div>
-                    <div class="feat-body">
-                        <div class="feat-info">
-                            <h3>WonCourse: AI-Enabled Learning Platform</h3>
-                            <p>Shipped a full-stack LMS with AI-powered contextual doubt resolution for video lectures, backed by modular REST APIs (Flask/SQLAlchemy) and CI/CD workflows via Git. Integrated GenAI-driven assistance into assignments and learning modules, enabling adaptive content recommendations and faster query resolution.</p>
-                            <div class="feat-stack">
-                                <span>GenAI</span><span>Flask</span><span>VueJS</span><span>SQLAlchemy</span><span>RAG</span><span>PostgreSQL</span>
-                            </div>
-                            <a href="https://github.com/prem-kumar-sharma/WonCourse-soft-engg-project-may-2024-se-may-27" target="_blank" class="btn-primary btn-sm">View on GitHub →</a>
-                        </div>
-                        <div class="feat-img">
-                            <img src="https://nearlearn.com/public/images/ai-training-in-bangalore.jpeg" alt="WonCourse" loading="lazy">
-                        </div>
+                <article class="feature" data-reveal>
+                    <div class="feature__info">
+                        <span class="mono feature__kicker"><span class="pulse"></span> Featured project</span>
+                        <h3 class="feature__title">WonCourse</h3>
+                        <p class="feature__sub">An AI-enabled learning platform.</p>
+                        <p class="feature__desc">Shipped a full-stack LMS with AI-powered contextual doubt resolution for video lectures, backed by modular REST APIs (Flask/SQLAlchemy) and CI/CD workflows via Git. Integrated GenAI-driven assistance into assignments and learning modules, enabling adaptive content recommendations and faster query resolution.</p>
+                        <ul class="chips"><li>GenAI</li><li>RAG</li><li>Flask</li><li>VueJS</li><li>SQLAlchemy</li><li>PostgreSQL</li></ul>
+                        <a href="https://github.com/prem-kumar-sharma/WonCourse-soft-engg-project-may-2024-se-may-27" target="_blank" rel="noopener" class="btn" data-magnetic>
+                            <span class="roll">View on GitHub</span> <span class="btn__arrow" aria-hidden="true">↗</span>
+                        </a>
                     </div>
-                </div>
 
-                <!-- Grid -->
-                <div class="proj-grid">
-                    <div class="proj-card reveal" v-for="p in projects" :key="p.title">
-                        <div class="proj-img-wrap">
-                            <img :src="p.image" :alt="p.title" loading="lazy" decoding="async">
-                            <div class="proj-overlay">
-                                <a :href="p.link" target="_blank" class="proj-overlay-btn">View Project</a>
+                    <!-- Product mock: lecture player + contextual AI doubt panel -->
+                    <div class="mock" aria-hidden="true">
+                        <div class="mock__bar"><i></i><i></i><i></i><span class="mono">woncourse.app/lecture/ml-week-4</span></div>
+                        <div class="mock__body">
+                            <div class="mock__video">
+                                <div class="mock__screen">
+                                    <svg viewBox="0 0 200 90" preserveAspectRatio="none" class="mock__plot">
+                                        <path d="M0 80 C 30 78, 40 30, 70 34 S 110 70, 130 50 S 170 12, 200 10" pathLength="1"/>
+                                    </svg>
+                                    <span class="mock__play"></span>
+                                </div>
+                                <div class="mock__progress"><i></i><b style="left:38%"></b><b style="left:61%"></b></div>
+                                <div class="mock__caption mono">Week 4 · Gradient descent &amp; learning rates</div>
                             </div>
-                        </div>
-                        <div class="proj-body">
-                            <div class="proj-tags">
-                                <span v-for="t in p.tags" :key="t">{{ t }}</span>
+                            <div class="mock__chat">
+                                <div class="mock__msg mock__msg--q">Why does the loss spike at 12:04?</div>
+                                <div class="mock__msg mock__msg--a"><span class="mono">AI · from lecture @ 12:04</span>The learning rate is raised to 0.5 there, so updates overshoot the minimum. Try the schedule from Assignment 3.</div>
+                                <div class="mock__typing"><i></i><i></i><i></i></div>
                             </div>
-                            <h3 class="proj-title">{{ p.title }}</h3>
-                            <p class="proj-desc">{{ p.description }}</p>
-                            <a :href="p.link" target="_blank" class="proj-gh-link">GitHub →</a>
                         </div>
                     </div>
+                </article>
+            </div>
+
+            <!-- Horizontal gallery -->
+            <div class="work__pin" id="work-pin">
+                <div class="work__track" id="work-track">
+                    <div class="work__intro">
+                        <span class="mono">More projects</span>
+                        <span class="work__count">06</span>
+                        <p>Products, ML pipelines and tools, built end to end.</p>
+                        <span class="mono work__hint">Keep scrolling →</span>
+                    </div>
+
+                    <a class="card" href="https://github.com/prem-kumar-sharma/Edubridge" target="_blank" rel="noopener" data-cursor="View">
+                        <div class="card__cover">
+                            <span class="card__num">01</span>
+                            <svg viewBox="0 0 200 120" class="card__art">
+                                <path d="M10 92 H190" pathLength="1"/>
+                                <path d="M10 92 Q100 6 190 92" pathLength="1"/>
+                                <path d="M46 92 V58 M73 92 V40 M100 92 V35 M127 92 V40 M154 92 V58" pathLength="1"/>
+                                <circle class="hl" cx="100" cy="35" r="5"/>
+                            </svg>
+                        </div>
+                        <div class="card__meta">
+                            <h3 class="card__title">EduBridge</h3>
+                            <p class="card__sub">User-centric LMS platform</p>
+                            <p class="card__desc">Led end-to-end product design of an educational LMS, translating stakeholder pain-points into scalable prototypes with interactive dashboards and automated admin workflows.</p>
+                            <ul class="chips chips--sm"><li>Figma</li><li>KDT-EAST</li><li>Jira</li><li>Product Design</li></ul>
+                        </div>
+                    </a>
+
+                    <a class="card" href="https://github.com/prem-kumar-sharma/Machine-Learning-Project-Predicting-Food-Ratings" target="_blank" rel="noopener" data-cursor="View">
+                        <div class="card__cover">
+                            <span class="card__num">02</span>
+                            <svg viewBox="0 0 200 120" class="card__art">
+                                <path d="M20 100 H180" pathLength="1"/>
+                                <path d="M36 100 V78 M62 100 V66 M88 100 V70 M114 100 V50 M140 100 V36" pathLength="1"/>
+                                <path d="M30 84 L60 70 L88 74 L114 54 L150 26" pathLength="1"/>
+                                <circle class="hl" cx="150" cy="26" r="5"/>
+                            </svg>
+                        </div>
+                        <div class="card__meta">
+                            <h3 class="card__title">Food Rating Prediction</h3>
+                            <p class="card__sub">ML pipeline</p>
+                            <p class="card__desc">Built end-to-end ML pipelines across 5 models on 50K+ samples; achieved top-10% accuracy through rigorous error analysis on real-world food review data.</p>
+                            <ul class="chips chips--sm"><li>Python</li><li>Scikit-learn</li><li>XGBoost</li><li>Pandas</li></ul>
+                        </div>
+                    </a>
+
+                    <a class="card" href="https://github.com/prem-kumar-sharma/IITM-Resume-Feedbacks" target="_blank" rel="noopener" data-cursor="View">
+                        <div class="card__cover">
+                            <span class="card__num">03</span>
+                            <svg viewBox="0 0 200 120" class="card__art">
+                                <path d="M64 12 H136 V108 H64 Z" pathLength="1"/>
+                                <path d="M76 30 H124 M76 44 H116 M76 58 H124 M76 72 H106 M76 86 H120" pathLength="1"/>
+                                <path class="hl-line" d="M54 58 H146" pathLength="1"/>
+                            </svg>
+                        </div>
+                        <div class="card__meta">
+                            <h3 class="card__title">IITM Resume Analyzer</h3>
+                            <p class="card__sub">GenAI feedback tool</p>
+                            <p class="card__desc">A resume analyzer that generates actionable feedback based on the IITM BS resume guidelines, powered by OpenAI GPT.</p>
+                            <ul class="chips chips--sm"><li>OpenAI API</li><li>Python</li><li>NLP</li><li>GenAI</li></ul>
+                        </div>
+                    </a>
+
+                    <a class="card" href="https://github.com/prem-kumar-sharma/Library-Management-System" target="_blank" rel="noopener" data-cursor="View">
+                        <div class="card__cover">
+                            <span class="card__num">04</span>
+                            <svg viewBox="0 0 200 120" class="card__art">
+                                <path d="M24 104 H176" pathLength="1"/>
+                                <path d="M40 104 V40 H54 V104 M58 104 V28 H70 V104 M74 104 V48 H90 V104 M94 104 V34 H104 V104" pathLength="1"/>
+                                <path d="M112 104 L130 44 L142 48 L124 104" pathLength="1"/>
+                                <path d="M150 104 V52 H164 V104" pathLength="1"/>
+                                <circle class="hl" cx="157" cy="40" r="5"/>
+                            </svg>
+                        </div>
+                        <div class="card__meta">
+                            <h3 class="card__title">Library Management</h3>
+                            <p class="card__sub">Full-stack system</p>
+                            <p class="card__desc">Full-stack library management system with Redis caching, a Flask backend, and PostgreSQL for efficient high-volume operations.</p>
+                            <ul class="chips chips--sm"><li>Flask</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li></ul>
+                        </div>
+                    </a>
+
+                    <a class="card" href="https://github.com/prem-kumar-sharma/ML-Health-Project/tree/main/Diabeteasy" target="_blank" rel="noopener" data-cursor="View">
+                        <div class="card__cover">
+                            <span class="card__num">05</span>
+                            <svg viewBox="0 0 200 120" class="card__art">
+                                <path d="M10 70 H62 L72 52 L84 96 L98 22 L110 84 L120 70 H190" pathLength="1"/>
+                                <path d="M156 20 a12 12 0 0 1 12 12 c0 10 -12 22 -12 22 s-12 -12 -12 -22 a12 12 0 0 1 12 -12 z" pathLength="1"/>
+                                <circle class="hl" cx="156" cy="32" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="card__meta">
+                            <h3 class="card__title">Diabeteasy</h3>
+                            <p class="card__sub">ML health tool</p>
+                            <p class="card__desc">ML-based diabetes management tool with Google Maps integration for nearby doctor discovery and health tracking.</p>
+                            <ul class="chips chips--sm"><li>Python</li><li>Machine Learning</li><li>Google Maps API</li></ul>
+                        </div>
+                    </a>
+
+                    <a class="card" href="https://github.com/prem-kumar-sharma/food-log-app" target="_blank" rel="noopener" data-cursor="View">
+                        <div class="card__cover">
+                            <span class="card__num">06</span>
+                            <svg viewBox="0 0 200 120" class="card__art">
+                                <circle cx="100" cy="60" r="44" pathLength="1"/>
+                                <circle cx="100" cy="60" r="30" pathLength="1"/>
+                                <path d="M40 24 V96 M34 24 V44 Q40 52 46 44 V24" pathLength="1"/>
+                                <path d="M160 24 Q172 44 160 60 V96" pathLength="1"/>
+                                <circle class="hl" cx="100" cy="60" r="5"/>
+                            </svg>
+                        </div>
+                        <div class="card__meta">
+                            <h3 class="card__title">Food Log App</h3>
+                            <p class="card__sub">Nutrition tracker</p>
+                            <p class="card__desc">Responsive meal-tracking app using the Edamam API for real-time nutritional data, built with Vue.js.</p>
+                            <ul class="chips chips--sm"><li>Vue.js</li><li>Edamam API</li><li>JavaScript</li></ul>
+                        </div>
+                    </a>
+
+                    <a class="card card--more" href="https://github.com/prem-kumar-sharma" target="_blank" rel="noopener" data-cursor="GitHub">
+                        <span class="mono">Everything else</span>
+                        <span class="card--more__title">More on <em>GitHub</em></span>
+                        <span class="card--more__arrow" aria-hidden="true">↗</span>
+                    </a>
                 </div>
+                <div class="work__progress" aria-hidden="true"><i id="work-progress"></i></div>
             </div>
         </section>
 
         <!-- ═══ SKILLS ═══ -->
-        <section id="skills" class="sec-wrap sec-alt">
-            <div class="container">
-                <h2 class="sec-title reveal"><span class="sec-num">04.</span> Tech Stack</h2>
-                <div class="skill-cats">
-                    <div class="skill-cat reveal" v-for="cat in skillCategories" :key="cat.name">
-                        <h3 class="skill-cat-name">{{ cat.name }}</h3>
-                        <div class="skill-tags-wrap">
-                            <span class="stag" v-for="s in cat.skills" :key="s">{{ s }}</span>
-                        </div>
+        <section class="section skills" id="skills">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="mono" data-scramble>(04)</span>
+                    <span class="mono" data-scramble>Capabilities</span>
+                </div>
+                <h2 class="h2" data-split>Tools of the <em>trade</em></h2>
+
+                <div class="skills__list">
+                    <div class="skill-row" data-reveal>
+                        <span class="mono skill-row__num">01</span>
+                        <h3 class="skill-row__name">Languages</h3>
+                        <ul class="chips"><li>Python</li><li>SQL</li><li>JavaScript</li><li>Java</li></ul>
+                    </div>
+                    <div class="skill-row" data-reveal>
+                        <span class="mono skill-row__num">02</span>
+                        <h3 class="skill-row__name">GenAI &amp; LLMs</h3>
+                        <ul class="chips"><li>Fine-Tuning (LoRA, QLoRA)</li><li>RAG</li><li>LLM Evaluation</li><li>GPT-4/5</li><li>Gemini</li><li>LLaMA</li><li>BERT</li><li>T5</li><li>Stable Diffusion</li><li>Flux</li><li>ElevenLabs</li></ul>
+                    </div>
+                    <div class="skill-row" data-reveal>
+                        <span class="mono skill-row__num">03</span>
+                        <h3 class="skill-row__name">Agentic AI</h3>
+                        <ul class="chips"><li>Multi-Agent Orchestration</li><li>Tool-Using LLMs</li><li>MCP</li><li>Claude Code</li><li>CrewAI</li><li>LangChain</li><li>Autonomous Pipelines</li></ul>
+                    </div>
+                    <div class="skill-row" data-reveal>
+                        <span class="mono skill-row__num">04</span>
+                        <h3 class="skill-row__name">ML &amp; Research</h3>
+                        <ul class="chips"><li>Scikit-learn</li><li>XGBoost</li><li>Post-hoc Explainability</li><li>Wavelet Transforms</li><li>Signal/Image Processing</li><li>Deep Learning</li><li>Computer Vision</li><li>NLP</li></ul>
+                    </div>
+                    <div class="skill-row" data-reveal>
+                        <span class="mono skill-row__num">05</span>
+                        <h3 class="skill-row__name">Frameworks</h3>
+                        <ul class="chips"><li>Flask</li><li>SQLAlchemy</li><li>ReactJS</li><li>VueJS</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li><li>Streamlit</li></ul>
+                    </div>
+                    <div class="skill-row" data-reveal>
+                        <span class="mono skill-row__num">06</span>
+                        <h3 class="skill-row__name">Infrastructure</h3>
+                        <ul class="chips"><li>Docker</li><li>Git</li><li>AWS</li><li>GCP</li><li>PostgreSQL</li><li>Redis</li><li>Celery</li><li>Figma</li><li>Jira</li></ul>
                     </div>
                 </div>
 
-                <!-- Certifications -->
-                <div class="reveal" style="margin-top:3rem;">
-                    <h3 class="sub-title">Certifications</h3>
-                    <div class="certifications-gallery">
-                        <div class="certification-card" v-for="cert in certifications" :key="cert.title">
-                            <a :href="cert.link || '#'" target="_blank">
-                                <img :src="cert.image" :alt="cert.title" loading="lazy" decoding="async">
-                                <h4>{{ cert.title }}</h4>
-                                <p>{{ cert.issuer }} · {{ cert.date }}</p>
-                            </a>
-                        </div>
+                <div class="certs">
+                    <div class="certs__head" data-reveal>
+                        <h3 class="certs__title">Certifications</h3>
+                        <span class="mono">08 — drag to explore</span>
+                    </div>
+                    <div class="certs__rail" id="certs-rail" data-reveal>
+                        <button class="cert" data-cursor="Open" data-full="sql.webp">
+                            <span class="cert__img"><img src="sql.webp" alt="" loading="lazy" decoding="async"></span>
+                            <span class="cert__title">SQL (Advanced) &amp; SQL (Intermediate)</span>
+                            <span class="cert__meta mono">HackerRank · Jan 2025</span>
+                        </button>
+                        <button class="cert" data-cursor="Open" data-full="nptel_beliver.webp">
+                            <span class="cert__img"><img src="nptel_beliver.webp" alt="" loading="lazy" decoding="async"></span>
+                            <span class="cert__title">NPTEL Believer</span>
+                            <span class="cert__meta mono">IIT Madras · Dec 2024</span>
+                        </button>
+                        <button class="cert" data-cursor="Open" data-full="cloud_computing.webp">
+                            <span class="cert__img"><img src="cloud_computing.webp" alt="" loading="lazy" decoding="async"></span>
+                            <span class="cert__title">Cloud Computing</span>
+                            <span class="cert__meta mono">IIT Kharagpur · Nov 2024</span>
+                        </button>
+                        <button class="cert" data-cursor="Open" data-full="scd.webp">
+                            <span class="cert__img"><img src="scd.webp" alt="" loading="lazy" decoding="async"></span>
+                            <span class="cert__title">Software Conceptual Design</span>
+                            <span class="cert__meta mono">IIT Bombay · Nov 2024</span>
+                        </button>
+                        <button class="cert" data-cursor="Open" data-full="oppe_ml.webp">
+                            <span class="cert__img"><img src="oppe_ml.webp" alt="" loading="lazy" decoding="async"></span>
+                            <span class="cert__title">Machine Learning using NumPy</span>
+                            <span class="cert__meta mono">IIT Madras · Oct 2024</span>
+                        </button>
+                        <button class="cert" data-cursor="Open" data-full="ssd.webp">
+                            <span class="cert__img"><img src="ssd.webp" alt="" loading="lazy" decoding="async"></span>
+                            <span class="cert__title">Soft Skill Development</span>
+                            <span class="cert__meta mono">NPTEL (IIT Kharagpur) · Oct 2024</span>
+                        </button>
+                        <button class="cert" data-cursor="Open" data-full="aiml.webp">
+                            <span class="cert__img"><img src="aiml.webp" alt="" loading="lazy" decoding="async"></span>
+                            <span class="cert__title">AI/ML for Geodata Analysis</span>
+                            <span class="cert__meta mono">ISRO · Sep 2024</span>
+                        </button>
+                        <button class="cert" data-cursor="Open" data-full="batm.webp">
+                            <span class="cert__img"><img src="batm.webp" alt="" loading="lazy" decoding="async"></span>
+                            <span class="cert__title">BATM using Python</span>
+                            <span class="cert__meta mono">NPTEL (IIT Roorkee) · Sep 2024</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ═══ CONTENT & COMMUNITY ═══ -->
-        <section id="content" class="sec-wrap">
-            <div class="container">
-                <h2 class="sec-title reveal"><span class="sec-num">05.</span> Content & Community</h2>
-                <p class="sec-sub reveal">Beyond engineering: building in public, teaching what I learn, and documenting the real journey.</p>
+        <!-- ═══ CONTENT ═══ -->
+        <section class="section content" id="content">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="mono" data-scramble>(05)</span>
+                    <span class="mono" data-scramble>Content &amp; community</span>
+                </div>
+                <h2 class="h2" data-split>Building in <em>public</em></h2>
+                <p class="lede" data-reveal>Beyond engineering: teaching what I learn and documenting the real journey.</p>
 
-                <div class="platforms-row reveal">
-                    <div class="platform-card yt-card">
-                        <div class="pc-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                <div class="platforms">
+                    <a class="platform" href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener" data-reveal>
+                        <div class="platform__head">
+                            <span class="mono">YouTube · @insightbyprem</span>
+                            <span class="platform__arrow" aria-hidden="true">↗</span>
                         </div>
-                        <div class="pc-name">@insightbyprem</div>
-                        <div class="pc-stats">
-                            <div class="pcstat"><strong>2,900+</strong><span>Subscribers</span></div>
-                            <div class="pcstat"><strong>174K+</strong><span>Views (90d)</span></div>
-                            <div class="pcstat"><strong>5,800+</strong><span>Watch Hours</span></div>
+                        <span class="platform__big" data-count="1.4" data-decimals="1" data-suffix="M+">1.4M+</span>
+                        <span class="mono platform__big-label">Lifetime views · 490K+ in the last 90 days</span>
+                        <div class="platform__stats">
+                            <div><strong>6,900+</strong><span class="mono">Subscribers</span></div>
+                            <div><strong>230</strong><span class="mono">Videos</span></div>
                         </div>
-                        <p class="pc-desc">AI, education, and career growth. Honest, unfiltered, behind-the-scenes of the journey.</p>
-                        <a href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener" class="btn-outline btn-sm">Visit Channel →</a>
-                    </div>
-
-                    <div class="platform-card li-card">
-                        <div class="pc-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        <p>AI, education, IIT Madras BS and career growth. Honest, unfiltered, behind the scenes.</p>
+                    </a>
+                    <a class="platform" href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener" data-reveal>
+                        <div class="platform__head">
+                            <span class="mono">LinkedIn</span>
+                            <span class="platform__arrow" aria-hidden="true">↗</span>
                         </div>
-                        <div class="pc-name">Prem Kumar Sharma</div>
-                        <div class="pc-stats">
-                            <div class="pcstat"><strong>7,300+</strong><span>Followers</span></div>
-                            <div class="pcstat"><strong>500+</strong><span>Connections</span></div>
+                        <span class="platform__big" data-count="11800" data-suffix="+">11,800+</span>
+                        <span class="mono platform__big-label">Followers</span>
+                        <div class="platform__stats">
+                            <div><strong>500+</strong><span class="mono">Connections</span></div>
+                            <div><strong>18K+</strong><span class="mono">Combined audience</span></div>
                         </div>
-                        <p class="pc-desc">Regular posts on Generative AI, career insights, and the real process of building in tech.</p>
-                        <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener" class="btn-outline btn-sm">Connect →</a>
-                    </div>
-
-                    <div class="platform-card mentor-card">
-                        <div class="pc-icon" style="font-size:28px;line-height:1;">🎯</div>
-                        <div class="pc-name">Teaching & Mentorship</div>
-                        <div class="pc-stats">
-                            <div class="pcstat"><strong>500+</strong><span>Students</span></div>
-                            <div class="pcstat"><strong>250+</strong><span>Hackathon</span></div>
+                        <p>Posts on Generative AI, research, career insights and the real process of building in tech.</p>
+                    </a>
+                    <a class="platform platform--accent" href="#mentor" data-reveal>
+                        <div class="platform__head">
+                            <span class="mono">1:1 Mentorship</span>
+                            <span class="platform__arrow" aria-hidden="true">↓</span>
                         </div>
-                        <p class="pc-desc">Python, SQL, data analysis, Power BI, career guidance, and real-world project mentoring.</p>
-                        <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="btn-outline btn-sm">Book a Session →</a>
-                    </div>
+                        <span class="platform__big" data-count="2000" data-suffix="+">2,000+</span>
+                        <span class="mono platform__big-label">Students mentored</span>
+                        <div class="platform__stats">
+                            <div><strong>250+</strong><span class="mono">Hackathon participants led</span></div>
+                            <div><strong>1:1</strong><span class="mono">Calls on Topmate</span></div>
+                        </div>
+                        <p>Career roadmaps, projects, resume reviews and interview prep. Book a session below.</p>
+                    </a>
                 </div>
 
-                <h3 class="sub-title reveal" style="margin-top:3rem;">Latest Videos</h3>
-                <div class="videos-gallery">
-                    <div class="video-card" v-for="video in videos" :key="video.link">
-                        <iframe
-                            :src="getEmbedUrl(video.link)"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            loading="lazy"
-                        ></iframe>
-                        <p>{{ video.title }}</p>
+                <div class="videos__head" data-reveal>
+                    <div>
+                        <h3 class="videos__title">From the channel</h3>
+                        <p class="mono videos__note">Stats as of Oct 2026</p>
+                    </div>
+                    <div class="tabs" role="tablist" aria-label="Video list">
+                        <button class="tabs__btn is-active" role="tab" aria-selected="true" aria-controls="videos-top" id="tab-top">Most watched</button>
+                        <button class="tabs__btn" role="tab" aria-selected="false" aria-controls="videos-new" id="tab-new">Latest</button>
+                        <a href="https://www.youtube.com/@insightbyprem/videos" target="_blank" rel="noopener" class="link-arrow mono tabs__all">All 230 ↗</a>
+                    </div>
+                </div>
+                <div class="videos" id="videos-top" role="tabpanel" aria-labelledby="tab-top" data-reveal>
+                        <button class="video" data-yt="93GMN20wAco" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/93GMN20wAco/hqdefault.jpg" alt="" loading="lazy"><span class="video__rank mono">#1</span><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">This Is My REAL IIT Madras BS Degree | 4-Year Journey, Reality &amp; Future</span>
+                            <span class="video__meta mono">172K views · Feb 2026</span>
+                        </button>
+                        <button class="video" data-yt="UF6wrVlJwSc" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/UF6wrVlJwSc/hqdefault.jpg" alt="" loading="lazy"><span class="video__rank mono">#2</span><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">IIT Madras BS Placement Reality 2026 | Salaries, Dual Degree, Full Breakdown</span>
+                            <span class="video__meta mono">72.6K views · Feb 2026</span>
+                        </button>
+                        <button class="video" data-yt="g1Zhg0LqLwk" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/g1Zhg0LqLwk/hqdefault.jpg" alt="" loading="lazy"><span class="video__rank mono">#3</span><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">IIT Madras BS Alumni Card | Same as BTech Alumni? Real Benefits Explained</span>
+                            <span class="video__meta mono">38.5K views · Feb 2026</span>
+                        </button>
+                        <button class="video" data-yt="P11fIG6trWg" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/P11fIG6trWg/hqdefault.jpg" alt="" loading="lazy"><span class="video__rank mono">#4</span><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">How I Completed IIT Madras BSc + BS in Just 1 Year | Secret Strategy</span>
+                            <span class="video__meta mono">29K views · Apr 2026</span>
+                        </button>
+                        <button class="video" data-yt="twzJERJ6pqo" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/twzJERJ6pqo/hqdefault.jpg" alt="" loading="lazy"><span class="video__rank mono">#5</span><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">Truth About IIT Madras BS Degree | Online IIT Degree Reality Check</span>
+                            <span class="video__meta mono">19.9K views · Feb 2026</span>
+                        </button>
+                        <button class="video" data-yt="8LvwzLObj8A" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/8LvwzLObj8A/hqdefault.jpg" alt="" loading="lazy"><span class="video__rank mono">#6</span><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">Before Taking an Online Degree, Watch This | IIT Madras BS Graduate</span>
+                            <span class="video__meta mono">15.5K views · Apr 2026</span>
+                        </button>
+                </div>
+                <div class="videos" id="videos-new" role="tabpanel" aria-labelledby="tab-new" hidden>
+                        <button class="video" data-yt="Gi074VGs_5E" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/Gi074VGs_5E/hqdefault.jpg" alt="" loading="lazy"><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">My First Podcast with a Professor | Prof. PK x SARAL AI</span>
+                            <span class="video__meta mono">1.3K views · Oct 2026</span>
+                        </button>
+                        <button class="video" data-yt="pQoXg4Ekems" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/pQoXg4Ekems/hqdefault.jpg" alt="" loading="lazy"><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">My Complete BS Degree Course Selection | What I Studied Every Semester</span>
+                            <span class="video__meta mono">5K views · Sep 2026</span>
+                        </button>
+                        <button class="video" data-yt="3BEuJedUaVE" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/3BEuJedUaVE/hqdefault.jpg" alt="" loading="lazy"><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">How to Become a Software Engineer from 1st Year in the AI Era?</span>
+                            <span class="video__meta mono">4.7K views · Sep 2026</span>
+                        </button>
+                        <button class="video" data-yt="rDUn4Kolf5M" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/rDUn4Kolf5M/hqdefault.jpg" alt="" loading="lazy"><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">Tier-3 College or IIT Online Degree? The REAL Difference Explained</span>
+                            <span class="video__meta mono">3.4K views · Sep 2026</span>
+                        </button>
+                        <button class="video" data-yt="eqxd0ItJiVo" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/eqxd0ItJiVo/hqdefault.jpg" alt="" loading="lazy"><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">IIT Madras BS Degree: The Missing Piece Nobody Tells You</span>
+                            <span class="video__meta mono">5.3K views · Sep 2026</span>
+                        </button>
+                        <button class="video" data-yt="xRp1QHiCtxk" data-cursor="Play">
+                            <span class="video__thumb"><img src="https://i.ytimg.com/vi/xRp1QHiCtxk/hqdefault.jpg" alt="" loading="lazy"><span class="video__play" aria-hidden="true"></span></span>
+                            <span class="video__title">How I Got Into IIIT Hyderabad Through Open Source</span>
+                            <span class="video__meta mono">8K views · Aug 2026</span>
+                        </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ MENTORSHIP CTA ═══ -->
+        <section class="mentor" id="mentor">
+            <div class="mentor__marquee" aria-hidden="true">
+                <div class="mentor__marquee-track">
+                    <span>Book a 1:1 call ✳ Career roadmaps ✳ Project reviews ✳ Interview prep ✳ Book a 1:1 call ✳ Career roadmaps ✳ Project reviews ✳ Interview prep ✳&nbsp;</span>
+                    <span>Book a 1:1 call ✳ Career roadmaps ✳ Project reviews ✳ Interview prep ✳ Book a 1:1 call ✳ Career roadmaps ✳ Project reviews ✳ Interview prep ✳&nbsp;</span>
+                </div>
+            </div>
+            <div class="wrap mentor__inner">
+                <div class="mentor__top mono">
+                    <span>(06) — 1:1 Mentorship</span>
+                    <span><span class="mentor__dot"></span> Slots open on Topmate</span>
+                </div>
+
+                <div class="mentor__grid">
+                    <div class="mentor__copy">
+                        <h2 class="mentor__title" data-split>Stuck on your next step? <em>Let's map it out.</em></h2>
+                        <p class="mentor__lede" data-reveal>A focused 1:1 call with someone who went from a diploma in civil engineering to IIT Madras, IIT Bombay and IIIT Hyderabad, and has mentored 2,000+ students along the way.</p>
+                    </div>
+
+                    <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="mentor__badge" data-magnetic data-cursor-hide aria-label="Book a 1:1 call on Topmate">
+                        <svg viewBox="0 0 200 200" class="mentor__ring" aria-hidden="true">
+                            <defs><path id="ring-path" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+                            <text textLength="486"><textPath href="#ring-path">BOOK A 1:1 CALL ✳ BOOK A 1:1 CALL ✳ BOOK A 1:1 CALL ✳ </textPath></text>
+                        </svg>
+                        <span class="mentor__badge-arrow" aria-hidden="true">↗</span>
+                    </a>
+                </div>
+
+                <div class="mentor__bottom">
+                    <ol class="mentor__list">
+                        <li data-reveal><span class="mono">01</span><strong>Career roadmap</strong><p>AI/ML, research or industry: pick a direction and plan the next 6 months.</p></li>
+                        <li data-reveal><span class="mono">02</span><strong>Projects &amp; portfolio</strong><p>Choose projects that get noticed, then review your GitHub and portfolio.</p></li>
+                        <li data-reveal><span class="mono">03</span><strong>Resume &amp; interviews</strong><p>Line-by-line resume feedback and mock interview prep.</p></li>
+                        <li data-reveal><span class="mono">04</span><strong>Python, SQL &amp; data</strong><p>Get unstuck on fundamentals, assignments and real-world analysis.</p></li>
+                    </ol>
+                    <div class="mentor__action" data-reveal>
+                        <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="mentor__btn" data-magnetic>
+                            <span class="mentor__btn-label">Book a 1:1 call</span>
+                            <span class="mentor__btn-sub mono">Pick a slot on Topmate</span>
+                            <span class="mentor__btn-arrow" aria-hidden="true">↗</span>
+                        </a>
+                        <p class="mono mentor__proof">2,000+ students mentored · 250+ hackathon participants led · 18K+ community</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ═══ CONTACT ═══ -->
-        <section id="contact" class="sec-wrap sec-alt">
-            <div class="container">
-                <h2 class="sec-title reveal"><span class="sec-num">06.</span> Let's Connect</h2>
-                <p class="contact-sub reveal">Whether you're building with AI, thinking through a product idea, or just want to talk shop, I'm always open to a conversation.</p>
+        <section class="contact" id="contact">
+            <div class="wrap">
+                <div class="section__head">
+                    <span class="mono" data-scramble>(07)</span>
+                    <span class="mono" data-scramble>Contact</span>
+                </div>
 
-                <div class="contact-layout">
-                    <div class="contact-left reveal">
-                        <div class="avail-badge">
-                            <span class="live-dot"></span>
-                            Open to consulting & collaboration · Responds within 24h
+                <h2 class="contact__title" data-split>Let's build something <em>honest.</em></h2>
+
+                <div class="contact__grid">
+                    <div class="contact__left" data-reveal>
+                        <p class="contact__lede">Whether you're building with AI, thinking through a product idea, or just want to talk shop, I'm always open to a conversation.</p>
+                        <button class="email" id="copy-email" data-email="insightbyprem.business@gmail.com" data-cursor="Copy">
+                            <span class="email__addr">insightbyprem.business@gmail.com</span>
+                            <span class="email__state mono" aria-live="polite">Copy</span>
+                        </button>
+                        <p class="mono contact__avail"><span class="pulse"></span> Open to consulting &amp; collaboration · replies within 24h</p>
+                    </div>
+
+                    <div class="contact__right">
+                        <h3 class="mono contact__ww-title" data-reveal>Work with me</h3>
+                        <div class="ww" data-reveal>
+                            <span class="mono">A</span>
+                            <div><strong>AI product consulting</strong><p>Scope, architect and ship your AI product idea.</p></div>
                         </div>
-                        <div class="contact-details">
-                            <a href="mailto:premksharma@alumni.iitm.ac.in" class="cd">
-                                <span>✉</span><span>premksharma@alumni.iitm.ac.in</span>
-                            </a>
-                            <div class="cd">
-                                <span>📍</span><span>Mumbai, Maharashtra, India</span>
-                            </div>
+                        <div class="ww" data-reveal>
+                            <span class="mono">B</span>
+                            <div><strong>Mentorship</strong><p>Career, projects, portfolio and interview prep.</p></div>
                         </div>
-                        <div class="csoc-row">
-                            <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener" class="csoc-btn csoc-li">LinkedIn</a>
-                            <a href="https://github.com/prem-kumar-sharma" target="_blank" rel="noopener" class="csoc-btn csoc-gh">GitHub</a>
-                            <a href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener" class="csoc-btn csoc-yt">YouTube</a>
-                            <a href="https://www.instagram.com/prem.kr_sharma/" target="_blank" rel="noopener" class="csoc-btn csoc-ig">Instagram</a>
+                        <div class="ww" data-reveal>
+                            <span class="mono">C</span>
+                            <div><strong>Research collaboration</strong><p>AI explainability, GenAI systems, signal processing.</p></div>
                         </div>
                     </div>
-                    <div class="contact-right reveal">
-                        <div class="work-card">
-                            <h3>Work With Me</h3>
-                            <div class="ww-opts">
-                                <div class="ww-opt">
-                                    <span class="ww-icon">🤖</span>
-                                    <div><strong>AI Product Consulting</strong><p>Scope, architect, and ship your AI product idea</p></div>
-                                </div>
-                                <div class="ww-opt">
-                                    <span class="ww-icon">🎓</span>
-                                    <div><strong>Mentorship</strong><p>Career, projects, portfolio, and interview prep</p></div>
-                                </div>
-                                <div class="ww-opt">
-                                    <span class="ww-icon">🔬</span>
-                                    <div><strong>Research Collaboration</strong><p>AI explainability, GenAI systems, signal processing</p></div>
-                                </div>
-                            </div>
-                            <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="btn-primary" style="display:block;text-align:center;margin-top:1.5rem;">
-                                Book a Call on Topmate →
-                            </a>
-                        </div>
-                    </div>
+
+                    <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="cta-orb" data-magnetic data-cursor-hide>
+                        <span class="cta-orb__text">Book a call<br><span aria-hidden="true">↗</span></span>
+                    </a>
+                </div>
+
+                <div class="socials" data-reveal>
+                    <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank" rel="noopener"><span class="roll">LinkedIn</span><span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/prem-kumar-sharma" target="_blank" rel="noopener"><span class="roll">GitHub</span><span aria-hidden="true">↗</span></a>
+                    <a href="https://www.youtube.com/@insightbyprem" target="_blank" rel="noopener"><span class="roll">YouTube</span><span aria-hidden="true">↗</span></a>
+                    <a href="https://www.instagram.com/prem.kr_sharma/" target="_blank" rel="noopener"><span class="roll">Instagram</span><span aria-hidden="true">↗</span></a>
+                    <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener"><span class="roll">Topmate</span><span aria-hidden="true">↗</span></a>
                 </div>
             </div>
         </section>
+    </main>
 
-        <!-- Footer -->
-        <footer>
-            <div class="footer-inner">
-                <p class="footer-quote">"No polished narratives. Just the real process of figuring it out."</p>
-                <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/prem-kumar-sharma-a499b1201" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/prem-kumar-sharma" target="_blank">GitHub</a>
-                    <a href="https://www.youtube.com/@insightbyprem" target="_blank">YouTube</a>
-                </div>
-                <p class="footer-copy">© 2025 Prem Kumar Sharma. Built with intention.</p>
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="wrap footer__top">
+            <p class="footer__quote">“No polished narratives. Just the real process of figuring it out.”</p>
+            <div class="footer__col mono">
+                <span>Local time · Patna</span>
+                <span id="clock-footer">--:-- IST</span>
+                <a href="mailto:insightbyprem.business@gmail.com" class="footer__mail">insightbyprem.business@gmail.com</a>
             </div>
-        </footer>
+            <div class="footer__col mono">
+                <button class="footer__btn" id="term-open"><span class="roll">Open terminal</span> <kbd>`</kbd></button>
+                <a href="#top" class="footer__btn"><span class="roll">Back to top</span> ↑</a>
+            </div>
+        </div>
+        <div class="footer__mark" aria-hidden="true">
+            <span>Prem Kumar Sharma</span>
+        </div>
+        <div class="wrap footer__bottom mono">
+            <span>© <span id="year">2026</span> Prem Kumar Sharma</span>
+            <span>Designed &amp; built with intention</span>
+        </div>
+    </footer>
+
+    <!-- Floating mentorship CTA -->
+    <a href="https://topmate.io/prem_kumar_sharma" target="_blank" rel="noopener" class="float-cta" id="float-cta" aria-label="Book a 1:1 mentorship call on Topmate">
+        <span class="pulse"></span>
+        <span class="float-cta__label">Book a 1:1 call</span>
+        <span class="float-cta__arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <!-- ═══ Terminal easter egg ═══ -->
+    <div class="term" id="term" role="dialog" aria-label="Terminal" aria-hidden="true">
+        <div class="term__bar">
+            <span class="mono">prem@portfolio: ~</span>
+            <button class="term__close mono" id="term-close" aria-label="Close terminal">esc</button>
+        </div>
+        <div class="term__out" id="term-out">
+            <div class="term__line">Type <span class="term__acc">help</span> to see available commands.</div>
+        </div>
+        <label class="term__input">
+            <span class="term__prompt">~ $</span>
+            <input type="text" id="term-in" autocomplete="off" spellcheck="false" aria-label="Terminal command">
+        </label>
     </div>
 
-    <!-- Terminal Easter Egg -->
-    <button id="term-btn" aria-label="Open terminal" title="Open terminal">&gt;_</button>
-    <div id="term-panel">
-        <div class="term-hdr">
-            <span class="tdot tdot-r"></span>
-            <span class="tdot tdot-y"></span>
-            <span class="tdot tdot-g"></span>
-            <span class="term-hdr-title">prem@portfolio ~ </span>
-            <button id="term-close">✕</button>
-        </div>
-        <div id="term-out">
-            <div class="tline">Type <span class="tcmd">help</span> to see available commands.</div>
-        </div>
-        <div class="term-input-row">
-            <span class="term-pr">~ $&nbsp;</span>
-            <input type="text" id="term-in" placeholder="enter command..." autocomplete="off" spellcheck="false">
-        </div>
-    </div>
+    <!-- Certificate lightbox -->
+    <dialog class="lightbox" id="lightbox">
+        <img src="" alt="" id="lightbox-img">
+        <button class="lightbox__close mono" id="lightbox-close">Close ✕</button>
+    </dialog>
 
-    <!-- Scroll to top -->
-    <button id="scroll-up" aria-label="Scroll to top" title="Back to top">↑</button>
-
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
     <script src="app.js" defer></script>
-
-    <script>
-        // Scroll to top
-        (function() {
-            var btn = document.getElementById('scroll-up');
-            if (!btn) return;
-            function toggle() { btn.classList.toggle('visible', window.scrollY > 300); }
-            btn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-            window.addEventListener('scroll', toggle, { passive: true });
-            toggle();
-        })();
-
-        // Scroll progress bar
-        (function() {
-            var bar = document.getElementById('scroll-progress-bar');
-            if (!bar) return;
-            window.addEventListener('scroll', function() {
-                var pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-                bar.style.width = Math.min(pct, 100) + '%';
-            }, { passive: true });
-        })();
-
-        // Hamburger / mobile drawer
-        (function() {
-            var h = document.getElementById('nav-burger');
-            var d = document.getElementById('mob-drawer');
-            if (!h || !d) return;
-            h.addEventListener('click', function() {
-                h.classList.toggle('open');
-                d.classList.toggle('open');
-            });
-            document.querySelectorAll('.drawer-link').forEach(function(l) {
-                l.addEventListener('click', function() {
-                    h.classList.remove('open');
-                    d.classList.remove('open');
-                });
-            });
-        })();
-
-        // Active nav on scroll
-        (function() {
-            var secs = ['about','experience','projects','skills','content','contact'];
-            var links = document.querySelectorAll('.nav-link');
-            window.addEventListener('scroll', function() {
-                var y = window.scrollY + 120;
-                secs.forEach(function(id) {
-                    var el = document.getElementById(id);
-                    if (!el) return;
-                    if (el.offsetTop <= y && el.offsetTop + el.offsetHeight > y) {
-                        links.forEach(function(l) {
-                            l.classList.toggle('active', l.getAttribute('data-nav') === id);
-                        });
-                    }
-                });
-            }, { passive: true });
-        })();
-
-        // Navbar shrink on scroll
-        (function() {
-            var nav = document.getElementById('navbar');
-            if (!nav) return;
-            window.addEventListener('scroll', function() {
-                nav.classList.toggle('scrolled', window.scrollY > 60);
-            }, { passive: true });
-        })();
-    </script>
 </body>
 </html>
