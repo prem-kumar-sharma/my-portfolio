@@ -237,9 +237,14 @@
         var nav = $('#nav');
         if (!nav) return;
         var lastY = window.scrollY;
+        var accent = $('#mentor');
         window.addEventListener('scroll', function () {
             var y = window.scrollY;
             nav.classList.toggle('is-scrolled', y > 40);
+            if (accent) {
+                var r = accent.getBoundingClientRect();
+                nav.classList.toggle('on-accent', r.top < nav.offsetHeight && r.bottom > nav.offsetHeight / 2);
+            }
             if (!menuOpen) nav.classList.toggle('is-hidden', y > lastY && y > 400);
             lastY = y;
         }, { passive: true });
@@ -847,11 +852,27 @@
         ScrollTrigger.batch('[data-reveal]', {
             start: 'top 90%',
             once: true,
+            // .is-in drops the CSS hidden state, so clearing inline styles afterwards leaves the element in place.
+            // After a big jump (nav click), elements scrolled past arrive in the same batch: show those instantly
+            // and keep the stagger short so the ones on screen don't wait behind them.
             onEnter: function (batch) {
-                gsap.to(batch, { opacity: 1, y: 0, duration: 1.15, ease: 'expo.out', stagger: 0.08, overwrite: true, clearProps: 'transform' });
+                var onScreen = [];
+                batch.forEach(function (el) {
+                    el.classList.add('is-in');
+                    var r = el.getBoundingClientRect();
+                    if (r.top < window.innerHeight && r.bottom > 0) onScreen.push(el);
+                    else gsap.set(el, { clearProps: 'opacity,transform' });
+                });
+                if (!onScreen.length) return;
+                gsap.fromTo(onScreen, { opacity: 0, y: 40 }, {
+                    opacity: 1, y: 0, duration: 1.15, ease: 'expo.out', overwrite: true,
+                    stagger: Math.min(0.08, 0.5 / onScreen.length),
+                    clearProps: 'opacity,transform'
+                });
             },
             onLeave: function (batch) {
-                gsap.set(batch, { opacity: 1, y: 0, clearProps: 'transform' });
+                batch.forEach(function (el) { el.classList.add('is-in'); });
+                gsap.set(batch, { clearProps: 'opacity,transform' });
             }
         });
     }
